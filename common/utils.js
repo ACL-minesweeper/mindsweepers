@@ -16,18 +16,34 @@ function generateRandomIndex(lengthOfArray) {
     return integer; 
 }
 
+
+
 function getArrayOfMineCoordinates(numMines, numRows, numColumns, firstClickArray) {
     // initialize an empty array that we will push coordinate pairs into (coorcinate pairs will each be an array of two numbers)
     const arrayOfMineCoordinates = []; 
 
+
     while (arrayOfMineCoordinates.length !== numMines) {
         const rowIndex = generateRandomIndex(numRows);
         const columnIndex = generateRandomIndex(numColumns); 
-        const coordinateArray = [rowIndex, columnIndex]; 
+        const potentialCoordinateArray = [rowIndex, columnIndex]; 
 
-        if (!arrayOfMineCoordinates.includes(coordinateArray) && coordinateArray !== firstClickArray) {
-            arrayOfMineCoordinates.push(coordinateArray); 
+
+        const coordinateIsNotInArrayOfMineCoordinates = !arrayOfMineCoordinates.find(coordinate => (JSON.stringify(coordinate) === JSON.stringify(potentialCoordinateArray))); 
+        console.log(coordinateIsNotInArrayOfMineCoordinates, 'long name');
+
+        const isNotFirstClickArray = JSON.stringify(potentialCoordinateArray) !== JSON.stringify(firstClickArray); 
+        console.log(isNotFirstClickArray, 'is not  first click');
+
+
+        if (coordinateIsNotInArrayOfMineCoordinates && isNotFirstClickArray) {
+            arrayOfMineCoordinates.push(potentialCoordinateArray); 
+            console.log(potentialCoordinateArray, 'potential coordinate');
         }
     }
     return arrayOfMineCoordinates; 
 }
+
+console.log(getArrayOfMineCoordinates(8, 3, 3, [1, 0]));
+
+
