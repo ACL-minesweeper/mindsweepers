@@ -3,13 +3,15 @@ body {
     color: white;
 }
 
-#main-container {
+.game-container {
     display: grid;
     grid-template-rows: 1fr 1fr 1fr;
     grid-template-columns: 1fr 1fr 1fr;
+
     border: white 1px solid;
 }
 
 div {
     border: 1px white solid;
 }
+
