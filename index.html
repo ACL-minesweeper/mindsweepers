@@ -7,22 +7,36 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="./home/home.css">
         <link rel="stylesheet" href="./common/main.css">
+        <link
+            href="https://fonts.googleapis.com/css?family=Lilita+One&display=swap"
+            rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Lato&display=swap"
+            rel="stylesheet">
         <title>Mindsweeper</title>
     </head>
     <body>
         <header><img src="./assests/poop-emoji-.png">
-            <p>MINDSWEEPER</p>
+            <h1>MINDSWEEPER</h1>
             <p>Meet The Developers</p>
         </header>
-        <div id="instructions">Instructions.. click stuff and boom.</div>
+        <div id="instructions">The purpose of the game is to open all the cells
+            of the board which do not contain a bomb. To start, click anywhere
+            on the board.
+            You lose if you set off a bomb cell. Each number on the board
+            represents the number of bombs touching that square. If you think
+            that a square might definitely haves a mine underneath of it, right
+            click on it to flag the square.
+
+        </div>
         <div id="user-input">
             <form id="get-user-name">
-                <label for="name">Enter Your Name</label>
-                <input type="text" name="name" id="name" required>
+                <label for="name"></label>
+                <input type="text" name="name" id="name"
+                    value="Enter Player Name" required>
             </form>
         </div>
         <div id="play-game">
-            <button>Play Game</button>
+            <button class="start-btn">Play Game</button>
         </div>
 
         <script type="module" src="app.js"></script>
