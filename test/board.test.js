@@ -1,5 +1,5 @@
 // IMPORT MODULES under test here:
-import { getRows, getColumns } from '../common/utils.js';
+import { getRows, getColumns, isLoss } from '../common/utils.js';
 import { makeBoardArray } from '../game/make-board-array.js';
 import giveBoardArrayMines from '../game/give-board-array-mines.js';
 import giveBoardNumAdjMines from '../game/give-board-numAdjMines.js';
@@ -66,4 +66,26 @@ test('numAdjcell is updated properly for 3 mines on a 3x3 board', function(asser
     assert.equal(numAdjResultValue1, numAdjExpectedValue1);
     assert.equal(numAdjResultValue2, numAdjExpectedValue2);
 
+});
+
+test('isLoss returns true if user click is a mine and returns falsey if user click is not a mine', function(assert) {
+    //Arrange
+    // Set up your parameters and expectations
+    const testBoard = makeBoardArray(3, 3);
+    const minesArray = [[0, 0], [1, 1], [2, 2]];
+    giveBoardArrayMines(testBoard, minesArray);
+    const clickedCellWithMine = [0, 0];
+    const clickedCellNoMine = [0, 1];
+    const expectedWithMine = true;
+    const expectedNoMine = false;
+
+    //Act 
+    // Call the function you're testing and set the result to a const
+    const resultWithMine = isLoss(testBoard, clickedCellWithMine);
+    const resultNoMine = isLoss(testBoard, clickedCellNoMine);
+
+    //Assert
+    // Make assertions about what is expected valid result
+    assert.deepEqual(expectedWithMine, resultWithMine);
+    assert.deepEqual(expectedNoMine, resultNoMine);
 });
