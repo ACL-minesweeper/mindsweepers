@@ -1,11 +1,11 @@
 // getRows function gets the number of rows 
 // one of the rules is that the board will always be rectangular
 
-function getRows(boardArray) {
+export function getRows(boardArray) {
     return boardArray.length;
 }
 
-function getColumns(boardArray) {
+export function getColumns(boardArray) {
     const firstItem = boardArray[0];
     return firstItem.length;
 }
