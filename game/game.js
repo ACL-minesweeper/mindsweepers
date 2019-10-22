@@ -3,15 +3,17 @@ import { makeBoardArray } from './make-board-array.js';
 import giveBoardArrayMines from './give-board-array-mines.js';
 import giveBoardNumAdjMines from './give-board-numAdjMines.js';
 
-//Get Dom elements
+// get Dom elements
 const mainContainer = document.getElementById('main-container');
 
+// initialize variables
 const numRows = 8;
 const numColumns = 8;
-
+const numMines = 10;
 const boardArray = makeBoardArray(numRows, numColumns);
-
+// always the cell currently clicked by user and will be updated anytime a user clicks a cell
 let clickedCell = []; 
+let firstClick = true;
 
 // sarah's function that we will use for the for loop
 const createCell = id => {
@@ -23,6 +25,14 @@ const createCell = id => {
         const coordStringArr = event.target.id.split(',');
         const coordNumberArr = coordStringArr.map(Number);
         clickedCell = coordNumberArr;
+        if (firstClick){
+            // initializing board only for first click
+            initializeDreamBoardState(boardArray, clickedCell);
+            firstClick = false;
+        }
+        else {
+            //play game
+        }
     });
 };
 
@@ -34,6 +44,11 @@ const setBlankBoard = boardArray => {
         });
     });
 };
+
+function initializeDreamBoardState(boardArray, clickedCell) {
+    const arrayOfMineCoordinates = getArrayOfMineCoordinates(numMines, numRows, numColumns, clickedCell);
+    giveBoardArrayMines(boardArray, arrayOfMineCoordinates);
+    giveBoardNumAdjMines(boardArray, arrayOfMineCoordinates);
+}
+
 setBlankBoard(boardArray);
-//Creating function that calls other functions to set up the board
-// const setNewBoard = () => {};
