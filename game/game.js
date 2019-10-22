@@ -11,15 +11,18 @@ const numColumns = 8;
 
 const boardArray = makeBoardArray(numRows, numColumns);
 
+let clickedCell = []; 
+
 // sarah's function that we will use for the for loop
 const createCell = id => {
     const newDiv = document.createElement('div');
     newDiv.id = id;
     newDiv.textContent = id;
     mainContainer.appendChild(newDiv);
-    newDiv.addEventListener('click', () => {
-        alert('you clicked here!');
-        return mainContainer;
+    newDiv.addEventListener('click', event => {
+        const coordStringArr = event.target.id.split(',');
+        const coordNumberArr = coordStringArr.map(Number);
+        clickedCell = coordNumberArr;
     });
 };
 
