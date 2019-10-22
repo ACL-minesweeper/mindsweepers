@@ -1,6 +1,6 @@
-const mainContainer = document.getElementById('main-container');
 
 
+// sarah's function that we will use for the for loop 
 const createCell = (id) => {
     const newDiv = document.createElement('div');
     newDiv.id = id;
@@ -11,17 +11,3 @@ const createCell = (id) => {
         return mainContainer;
     });
 };
-
-createCell('00');
-createCell('01');
-createCell('02');
-createCell('10');
-createCell('11');
-createCell('12');
-createCell('20');
-createCell('21');
-createCell('22');
-
-//forLoop (id, numOfCellsWanted)
-
-
