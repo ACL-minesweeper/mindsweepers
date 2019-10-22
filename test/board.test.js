@@ -56,9 +56,7 @@ test('numAdjcell is updated properly for 3 mines on a 3x3 board', function(asser
     //Act 
     // Call the function you're testing and set the result to a const
     giveBoardArrayMines(testBoard, minesArray);
-    console.log(testBoard);
     giveBoardNumAdjMines(testBoard, minesArray);
-    console.log(testBoard);
     const numAdjResultValue0 = testBoard[0][2].numAdjMines;
     const numAdjResultValue1 = testBoard[3][2].numAdjMines;
     const numAdjResultValue2 = testBoard[1][0].numAdjMines; 
