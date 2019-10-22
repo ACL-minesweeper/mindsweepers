@@ -1,4 +1,4 @@
-function makeBoard(numRows, numColumns) {
+export function makeBoardArray(numRows, numColumns) {
     const board = []; 
     for (let i = 0; i < numRows; i++) {
         const rowsArray = [];
@@ -20,4 +20,4 @@ function makeBoard(numRows, numColumns) {
     return board; 
 }
 
-console.log(makeBoard(2, 2));
+// console.log(makeBoardArray(2, 2));
