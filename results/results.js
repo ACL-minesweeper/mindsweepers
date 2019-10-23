@@ -10,3 +10,4 @@ const currentUser = loadProfile();
 userProfile.textContent = currentUser.user; 
 totalWins.textContent = currentUser.wins; 
 totalLosses.textContent = currentUser.losses; 
+

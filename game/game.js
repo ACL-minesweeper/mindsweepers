@@ -14,7 +14,6 @@ const userProfile = document.getElementById('profile-user-name');
 const currentUser = loadProfile(); 
 
 userProfile.textContent = currentUser.user; 
-
 // initialize variables
 const numRows = 8;
 const numColumns = 8;
