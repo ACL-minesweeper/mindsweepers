@@ -1,7 +1,8 @@
 body {
-  background: black;
-  color: white;
+  background: white;
+  color: blue;
 }
+
 #main-container {
   display: grid;
   width: 600px;
@@ -10,6 +11,16 @@ body {
   grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
   border: white 1px solid;
 }
+
 div {
   border: 1px white solid;
+}
+
+.flagged {
+  background-image: url("../assests/placeholder-flag.png");
+  background-repeat: none;
+}
+
+.opacity {
+  background-color: rgba(0, 0, 0, 0.5);
 }

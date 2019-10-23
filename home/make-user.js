@@ -1,6 +1,5 @@
 
 
-
 function makeUser(username) {
     let newUser = {
         user: username,
@@ -9,8 +8,6 @@ function makeUser(username) {
     };
 
     return newUser;
-
-
 }
 
 export default makeUser;
