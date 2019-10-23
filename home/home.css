@@ -30,7 +30,7 @@ p {
   font-size: 0.5em;
 }
 
-input#name {
+label {
   font-size: 1.5em;
   padding: 3%;
   font-family: "Lato", sans-serif;
@@ -58,7 +58,8 @@ div#user-input {
   justify-content: center;
 }
 
-#user-input {
+input[id="name"] {
+  font-size: 150%;
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;
@@ -76,7 +77,7 @@ div#play-game {
   padding: 5%;
 }
 
-.start-btn {
+button {
   font-family: "Lilita One", cursive;
   display: block;
   height: 64px;
@@ -93,7 +94,7 @@ div#play-game {
   text-align: center;
 }
 
-.start-btn:hover {
+button:hover {
   border: 2px solid #83c441;
   background: white;
   color: #83c441;
