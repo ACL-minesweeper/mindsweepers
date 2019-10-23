@@ -38,14 +38,15 @@ export function isLoss(boardArrayParam, clickedCellCoordinatePairParam){
 
 export function isWin(boardArrayParam, numFlagsLeft){
     if (numFlagsLeft === 0){
+        let winning = true;
         boardArrayParam.forEach(row => {
             row.forEach(cell => {
                 if (!cell.isMine && cell.isHidden){
-                    return false;
+                    winning = false;
                 }
             });
         });
-        return true;
+        return winning;
     }
 }
 

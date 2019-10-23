@@ -1,5 +1,5 @@
 // IMPORT MODULES under test here:
-import { getRows, getColumns, isLoss } from '../common/utils.js';
+import { getRows, getColumns, isLoss, isWin } from '../common/utils.js';
 import { makeBoardArray } from '../game/make-board-array.js';
 import giveBoardArrayMines from '../game/give-board-array-mines.js';
 import giveBoardNumAdjMines from '../game/give-board-numAdjMines.js';
@@ -88,4 +88,43 @@ test('isLoss returns true if user click is a mine and returns falsey if user cli
     // Make assertions about what is expected valid result
     assert.deepEqual(expectedWithMine, resultWithMine);
     assert.deepEqual(expectedNoMine, resultNoMine);
+});
+
+test('isWin returns true when every cell that is not a mine is not hidden', function(assert) {
+    //Arrange
+    // Set up your parameters and expectations
+    const testBoard = makeBoardArray(2, 2);
+    const minesArray = [[0, 0], [1, 1]];
+    giveBoardArrayMines(testBoard, minesArray);
+
+    const expectedWin = true;
+    //Act 
+    // Call the function you're testing and set the result to a const
+    const flagsLeft = 0;
+    testBoard[0][1].isHidden = false;
+    testBoard[1][0].isHidden = false;
+    const resultWin = isWin(testBoard, flagsLeft);
+
+    //Assert
+    // Make assertions about what is expected valid result
+    assert.equal(expectedWin, resultWin);
+});
+
+test('isWin returns false if all all cell that are not mines are hidden', function(assert) {
+    //Arrange
+    // Set up your parameters and expectations
+    const testBoard = makeBoardArray(2, 2);
+    const minesArray = [[0, 0], [1, 1]];
+    giveBoardArrayMines(testBoard, minesArray);
+    const flagsLeft = 0;
+    testBoard[1][0].isHidden = false;
+    testBoard[0][1].isHidden = true;
+    const expected = false;
+    //Act 
+    // Call the function you're testing and set the result to a const
+    const result = isWin(testBoard, flagsLeft);
+
+    //Assert
+    // Make assertions about what is expected valid result
+    assert.equal(expected, result);
 });
