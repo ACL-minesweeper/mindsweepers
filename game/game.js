@@ -14,7 +14,6 @@ const userProfile = document.getElementById('profile-user-name');
 const currentUser = loadProfile(); 
 
 userProfile.textContent = currentUser.user; 
-
 // initialize variables
 const numRows = 8;
 const numColumns = 8;
@@ -22,7 +21,8 @@ const numMines = 10;
 const boardArray = makeBoardArray(numRows, numColumns);
 // always the cell currently clicked by user and will be updated anytime a user clicks a cell
 let clickedCell = []; 
-let firstClick = true;
+export let firstClick = true;
+export let flagsRemaining = numMines;
 
 // sarah's function that we will use for the for loop
 const createCell = id => {
