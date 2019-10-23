@@ -26,7 +26,7 @@ const createCell = id => {
         const coordNumberArr = coordStringArr.map(Number);
         clickedCell = coordNumberArr;
         if (firstClick){
-            // initializing board only for first click
+            // after the first click, board objects are updated with mines and numAdjMines
             initializeDreamBoardState(boardArray, clickedCell);
             firstClick = false;
         }

@@ -16,7 +16,6 @@ export function generateRandomIndex(lengthOfArray) {
     return integer;
 }
 
-
 export function saveUser(user) {
     const json = JSON.stringify(user);
     localStorage.setItem('user', json);
@@ -27,6 +26,28 @@ export function getUser() {
     if (!json) return null;
     const user = JSON.parse(json);
     return user;
+}
+
+// called after each click (after first click) to check if bomb was in clicked cell object
+export function isLoss(boardArrayParam, clickedCellCoordinatePairParam){
+    if (boardArrayParam[clickedCellCoordinatePairParam[0]][clickedCellCoordinatePairParam[1]].isMine){
+        return true;
+    }
+    else return false;   
+}
+
+export function isWin(boardArrayParam, numFlagsLeft){
+    if (numFlagsLeft === 0){
+        let winning = true;
+        boardArrayParam.forEach(row => {
+            row.forEach(cell => {
+                if (!cell.isMine && cell.isHidden){
+                    winning = false;
+                }
+            });
+        });
+        return winning;
+    }
 }
 
 
