@@ -43,7 +43,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     if (cellObject.isMine) {
         // this function needs to be created 
         gameOver();
-    } else 
+    } else
     if (cellObject.numAdjMines === 0) {
         // update the DOM
         domCell.classList.remove('opacity');
