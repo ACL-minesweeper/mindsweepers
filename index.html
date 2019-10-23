@@ -29,18 +29,20 @@
             represents the number of bombs touching that square. If you think
             that a square might definitely haves a mine underneath of it, right
             click on it to flag the square.
+        </div>
 
-            <body>
-                <div id="user-input">
-                    <form id="get-user-name">
-                        <label for="name">Enter Your Name</label>
-                        <input type="text" name="name" id="name" required>
-                    </form>
-                </div>
-                <div id="play-game">
-                    <button>Play Game</button>
-                </div>
-                <script type="module" src="./home/home.js"></script>
-            </body>
+        <body>
+            <div id="user-input">
+                <form id="get-user-name">
+                    <label for="name"></label>
+                    <input type="text" name="name" id="name"
+                        value="Enter Player Name" required>
+                </form>
+            </div>
+            <div id="play-game">
+                <button id="start-game" class="start-btn">Play Game</button>
+            </div>
+            <script type="module" src="./home/home.js"></script>
+        </body>
 
-        </html>
+    </html>

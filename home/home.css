@@ -2,7 +2,7 @@ body {
 }
 
 header {
-  padding: 2%;
+  padding: 3%;
   text-align: center;
   background: #83c441;
   color: white;
@@ -38,8 +38,8 @@ input#name {
   bordercolor: rgb(142, 141, 141);
 }
 
-div#instructions {
-}
+/* div#instructions {
+} */
 
 #instructions {
   display: flex;
