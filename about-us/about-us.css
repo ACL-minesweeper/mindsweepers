@@ -26,24 +26,22 @@ p {
   justify-content: center;
 }
 
+
+
 main.main-container {
-  display: flex;
-  grid-template-columns: 300px;
-  grid-template-rows: 300px;
-  grid-row: auto;
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
-main.section.grid-images {
-  flex-wrap: wrap;
+.section.grid-images {
+  display: grid;
 }
 
 .box {
   padding: 20px;
   border-radius: 10px;
-  color: #fff;
+
   font-size: 40px;
 }
 
