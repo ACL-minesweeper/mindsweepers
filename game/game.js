@@ -21,19 +21,21 @@ const createCell = id => {
     const newDiv = document.createElement('div');
     newDiv.id = id;
     newDiv.textContent = id;
+    newDiv.classList.add('opacity');
     mainContainer.appendChild(newDiv);
     newDiv.addEventListener('click', event => {
-        const coordStringArr = event.target.id.split(',');
+        const domCellId = event.target.id;
+        const coordStringArr = domCellId.split(',');
         const coordNumberArr = coordStringArr.map(Number);
         clickedCell = coordNumberArr;
         if (firstClick){
-            // initializing board only for first click
+            // after the first click, board objects are updated with mines and numAdjines
             initializeDreamBoardState(boardArray, clickedCell);
             firstClick = false;
         }
         else {
             //play game
-            playGame([1,1], boardArray);
+            playGame(coordNumberArr, boardArray);
         }
     });
 };
