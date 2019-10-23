@@ -26,8 +26,6 @@ p {
   justify-content: center;
 }
 
-
-
 main.main-container {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
@@ -57,4 +55,27 @@ h1 {
 
 p {
   font-size: 0.5em;
+}
+
+.back-to-home {
+  font-family: "Lilita One", cursive;
+  display: block;
+  height: 54px;
+  width: 238px;
+  border: 2px solid white;
+  background: #83c441;
+  border-radius: 4px;
+  position: absolute;
+  overflow: hidden;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: white;
+  font-size: 22px;
+  text-align: center;
+}
+
+.start-btn:hover {
+  border: 2px solid #83c441;
+  background: white;
+  color: #83c441;
 }
