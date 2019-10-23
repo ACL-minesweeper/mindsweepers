@@ -36,6 +36,19 @@ export function isLoss(boardArrayParam, clickedCellCoordinatePairParam){
     else return false;   
 }
 
+export function isWin(boardArrayParam, numFlagsLeft){
+    if (numFlagsLeft === 0){
+        boardArrayParam.forEach(row => {
+            row.forEach(cell => {
+                if (!cell.isMine && cell.isHidden){
+                    return false;
+                }
+            });
+        });
+        return true;
+    }
+}
+
 
 
 
