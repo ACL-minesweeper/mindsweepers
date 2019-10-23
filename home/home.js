@@ -5,7 +5,7 @@ import { saveUser } from '../common/utils.js';
 const playGameButton = document.getElementById('play-game');
 
 
-playGameButton.addEventListener('click', function() {
+playGameButton.addEventListener('submit', function() {
 
     let userName = document.getElementById('name').value;
 
