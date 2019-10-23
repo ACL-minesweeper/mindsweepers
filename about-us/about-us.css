@@ -1,15 +1,62 @@
 body {
-    background: black;
-    color: white;
-  }
-  #main-container {
-    display: grid;
-    width: 600px;
-    height: 600px;
-    grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-    border: white 1px solid;
-  }
-  div {
-    border: 1px white solid;
-  }
+  width: 80%;
+}
+
+header {
+  padding: 2%;
+  text-align: center;
+  background: #83c441;
+  color: white;
+  font-size: 30px;
+  font-family: "Baloo", cursive;
+}
+header-img {
+  margin: -21px;
+}
+
+div.h1 {
+  display: flex;
+  justify-content: center;
+}
+
+p {
+  color: pink;
+  font-family: "Lato", sans-serif;
+  display: flex;
+  justify-content: center;
+}
+
+main.main-container {
+  display: flex;
+  grid-template-columns: 300px;
+  grid-template-rows: 300px;
+  grid-row: auto;
+  grid-column-gap: 20px;
+  grid-row-gap: 20px;
+  flex-wrap: wrap;
+}
+
+main.section.grid-images {
+  flex-wrap: wrap;
+}
+
+.box {
+  padding: 20px;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 40px;
+}
+
+.tress-and-dogs {
+  display: flex;
+  justify-content: space-between;
+}
+
+h1 {
+  font-size: 1.5em;
+  font-family: "Lilita One", cursive;
+}
+
+p {
+  font-size: 0.5em;
+}
