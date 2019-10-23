@@ -1,15 +1,19 @@
-// for testing purposes
+// import { flagsRemaining } from './game.js';
+import { isWin, isLoss } from '../common/utils.js';
 const flagDiv = document.getElementById('flag-div');
-let userFlags = 10;
 let userHasFlag = false;
 flagDiv.addEventListener('click', () => {
     if (userHasFlag) userHasFlag = false;
-    else if (!userHasFlag) userHasFlag = true
+    else if (!userHasFlag) userHasFlag = true;
 });
 
-// bomb placement are know
+// for MVP
+let flagsRemaining = 10;
+// Show user initial amount of flags
+flagDiv.textContent = flagsRemaining;
+
+// mine placement are known
 export const playGame = (clickedCellLocationArr, boardArrParam) => {
-    console.log('in playGame');
     const objectRow = clickedCellLocationArr[0];
     const objectColumn = clickedCellLocationArr[1];
     const cellObject = boardArrParam[objectRow][objectColumn];
@@ -18,7 +22,10 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     if (cellObject.isFlagged) {
         cellObject.isFlagged = false;
         // update the DOM
+        domCell.classList.add('opacity');
         domCell.classList.remove('flagged');
+        flagsRemaining++;
+        flagDiv.textContent = flagsRemaining;
     } else
     // if the user grabbed a flag
     if (userHasFlag) {
@@ -27,6 +34,8 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
             // then update the DOM
             domCell.classList.remove('opacity');
             domCell.classList.add('flagged');
+            flagsRemaining--;
+            flagDiv.textContent = flagsRemaining;
             cellObject.isFlagged = true;
             userHasFlag = false;
         }
@@ -42,6 +51,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     } else {
         // populate the DOM with the number
         domCell.textContent = cellObject.numAdjMines;
+        domCell.classList.remove('opacity');
         cellObject.isHidden = false;
     }
 };

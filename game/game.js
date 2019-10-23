@@ -40,6 +40,8 @@ const createCell = id => {
             // after the first click, board objects are updated with mines and numAdjines
             initializeDreamBoardState(boardArray, clickedCell);
             firstClick = false;
+            newDiv.classList.remove('opacity');
+            boardArray[clickedCell[0]][clickedCell[1]].isHidden = false;
         }
         else {
             //play game
