@@ -2,8 +2,9 @@ import { getArrayOfMineCoordinates } from './get-mines.js';
 import { makeBoardArray } from './make-board-array.js';
 import giveBoardArrayMines from './give-board-array-mines.js';
 import giveBoardNumAdjMines from './give-board-numAdjMines.js';
+import { playGame } from './play-game.js';
 
-// get Dom elements
+// get DOM elements
 const mainContainer = document.getElementById('main-container');
 
 // initialize variables
@@ -32,6 +33,7 @@ const createCell = id => {
         }
         else {
             //play game
+            playGame([1,1], boardArray);
         }
     });
 };
