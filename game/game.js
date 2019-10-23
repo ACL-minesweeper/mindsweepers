@@ -2,8 +2,9 @@ import { getArrayOfMineCoordinates } from './get-mines.js';
 import { makeBoardArray } from './make-board-array.js';
 import giveBoardArrayMines from './give-board-array-mines.js';
 import giveBoardNumAdjMines from './give-board-numAdjMines.js';
+import { playGame } from './play-game.js';
 
-// get Dom elements
+// get DOM elements
 const mainContainer = document.getElementById('main-container');
 
 // initialize variables
@@ -20,18 +21,25 @@ const createCell = id => {
     const newDiv = document.createElement('div');
     newDiv.id = id;
     newDiv.textContent = id;
+    newDiv.classList.add('opacity');
     mainContainer.appendChild(newDiv);
     newDiv.addEventListener('click', event => {
-        const coordStringArr = event.target.id.split(',');
+        const domCellId = event.target.id;
+        const coordStringArr = domCellId.split(',');
         const coordNumberArr = coordStringArr.map(Number);
         clickedCell = coordNumberArr;
         if (firstClick){
+<<<<<<< HEAD
             // after the first click, board objects are updated with mines and numAdjMines
+=======
+            // after the first click, board objects are updated with mines and numAdjines
+>>>>>>> 92abd63838921304e617da593b758f827a9d149e
             initializeDreamBoardState(boardArray, clickedCell);
             firstClick = false;
         }
         else {
             //play game
+            playGame(coordNumberArr, boardArray);
         }
     });
 };
