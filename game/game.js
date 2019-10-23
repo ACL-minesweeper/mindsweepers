@@ -4,7 +4,7 @@ import giveBoardArrayMines from './give-board-array-mines.js';
 import giveBoardNumAdjMines from './give-board-numAdjMines.js';
 import { playGame } from './play-game.js';
 import loadProfile from '../common/load-profile.js';
-import { getUser, saveUser } from '../common/utils.js'; 
+
 
 // get DOM elements
 const mainContainer = document.getElementById('main-container');
