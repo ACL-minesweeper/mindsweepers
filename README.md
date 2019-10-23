@@ -48,9 +48,10 @@ This repo will be hosted on github pages upon completion.
 ## Stretch Goals
 - multiple skins and/or color themes
     - black holes in outer space
+    - lost souls in a graveyard
 - list of high scores by user
 - automate the revealing of empty cells adjacent to a empty cell that a user selects
-- 
+- developing additional tests of functions as time permits
 
 # Challenge
 -one branch / computer --> branch name is the name of the feature!
