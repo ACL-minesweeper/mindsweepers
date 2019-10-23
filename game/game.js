@@ -4,7 +4,7 @@ import giveBoardArrayMines from './give-board-array-mines.js';
 import giveBoardNumAdjMines from './give-board-numAdjMines.js';
 import { playGame } from './play-game.js';
 import loadProfile from '../common/load-profile.js';
-import { getUser, saveUser } from '../common/utils.js'; 
+
 
 // get DOM elements
 const mainContainer = document.getElementById('main-container');
@@ -49,7 +49,7 @@ const createCell = id => {
 };
 
 //Part one of setting board: set up board for the first click.
-const setBlankBoard = boardArray => {
+export const setBlankBoard = boardArray => {
     boardArray.forEach(row => {
         row.forEach(cell => {
             createCell(cell.id);
