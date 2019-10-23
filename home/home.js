@@ -8,13 +8,12 @@ function processForm(event) {
     event.preventDefault();
     const formData = new FormData(userInfoForm);
     const user = getUserName(formData);
+    makeUser(user);
     saveUser(user);
     window.location = '../game/index.html';
 }
 
 function getUserName(formData) {
-    const user = {
-        name: formData.get('name')
-    };
+    const user = formData.get('name');
     return user;
 }
