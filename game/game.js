@@ -49,7 +49,7 @@ const createCell = id => {
 };
 
 //Part one of setting board: set up board for the first click.
-const setBlankBoard = boardArray => {
+export const setBlankBoard = boardArray => {
     boardArray.forEach(row => {
         row.forEach(cell => {
             createCell(cell.id);
