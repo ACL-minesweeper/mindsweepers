@@ -6,7 +6,6 @@ function makeUser(username) {
         wins: 0,
         losses: 0
     };
-
     return newUser;
 }
 
