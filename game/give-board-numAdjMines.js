@@ -1,11 +1,11 @@
 import { getRows, getColumns } from '../common/utils.js'; 
 
 export const isValidRowIndexFunc = (cellRowIndexParam, boardArrayParam) => {
-    cellRowIndexParam >= 0 && cellRowIndexParam < getRows(boardArrayParam);
+    return (cellRowIndexParam >= 0 && cellRowIndexParam < getRows(boardArrayParam));
 };
 
 export const isValidColumnIndexFunc = (cellColumnIndexParam, boardArrayParam) => {
-    cellColumnIndexParam >= 0 && cellColumnIndexParam < getColumns(boardArrayParam);
+    return (cellColumnIndexParam >= 0 && cellColumnIndexParam < getColumns(boardArrayParam));
 };
 
 const giveBoardNumAdjMines = (boardArray, minesArray) => {
