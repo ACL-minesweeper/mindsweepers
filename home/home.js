@@ -1,22 +1,20 @@
 import makeUser from '../home/make-user.js';
 import { saveUser } from '../common/utils.js';
 
+const userInfoForm = document.getElementById('get-user-name');
+userInfoForm.addEventListener('submit', processForm);
 
-const playGameButton = document.getElementById('play-game');
+function processForm(event) {
+    event.preventDefault();
+    const formData = new FormData(userInfoForm);
+    const user = getUserName(formData);
+    saveUser(user);
+    window.location = '../game/index.html';
+}
 
-
-playGameButton.addEventListener('click', function() {
-
-    let userName = document.getElementById('name').value;
-
-    console.log(userName, 'this is the user name');
-
-
-    
-    const madeUser = makeUser(userName);
-
-    saveUser(madeUser);
-
-    // take user to the game page when they click the "play game" button 
-    window.location = '../game/';
-});
+function getUserName(formData) {
+    const user = {
+        name: formData.get('name')
+    };
+    return user;
+}
