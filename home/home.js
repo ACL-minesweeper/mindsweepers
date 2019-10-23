@@ -2,20 +2,21 @@ import makeUser from '../home/make-user.js';
 import { saveUser } from '../common/utils.js';
 
 
-
-let userName = document.getElementById('name').textContent;
 const playGameButton = document.getElementById('play-game');
 
 
 playGameButton.addEventListener('click', function() {
 
-    let currentUser = makeUser(userName);
+    let userName = document.getElementById('name').value;
 
-    saveUser(currentUser);
-
-
+    console.log(userName, 'this is the user name');
 
 
+    
+    const madeUser = makeUser(userName);
 
-    //window.location = 'gameboard';
+    saveUser(madeUser);
+
+    // take user to the game page when they click the "play game" button 
+    window.location = '../game/';
 });

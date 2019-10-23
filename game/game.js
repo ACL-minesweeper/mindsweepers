@@ -3,9 +3,17 @@ import { makeBoardArray } from './make-board-array.js';
 import giveBoardArrayMines from './give-board-array-mines.js';
 import giveBoardNumAdjMines from './give-board-numAdjMines.js';
 import { playGame } from './play-game.js';
+import loadProfile from '../common/load-profile.js';
+import { getUser, saveUser } from '../common/utils.js'; 
 
 // get DOM elements
 const mainContainer = document.getElementById('main-container');
+const userProfile = document.getElementById('profile-user-name');
+
+//updating DOM with user profile (in this case, just the user name)
+const currentUser = loadProfile(); 
+
+userProfile.textContent = currentUser.user; 
 
 // initialize variables
 const numRows = 8;
