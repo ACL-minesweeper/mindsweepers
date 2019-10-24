@@ -1,10 +1,4 @@
-body {
-  text-align: center;
-  margin: auto;
-  background: white;
-  color: whitesmoke;
-  color: rgb(21, 39, 21);
-}
+
 
 #main-container {
   margin: auto;
@@ -56,44 +50,6 @@ span#profile-user-name {
   font-weight: bolder;
 }
 
-button#play-again-button {
-  display: block;
-  height: 64px;
-  width: 248px;
-  border: 2px solid white;
-  background: #83c441;
-  border-radius: 4px;
-  color: white;
-  font-size: 1.5em;
-}
-
-button#results-button {
-  display: block;
-  height: 64px;
-  width: 248px;
-  border: 2px solid white;
-  background: #83c441;
-  border-radius: 4px;
-  color: white;
-  font-size: 1.5em;
-}
-
-div.buttons {
-  display: flex;
-  justify-content: center;
-}
-
-button#play-again-button:hover {
-  border: 2px solid #83c441;
-  background: white;
-  color: #83c441;
-}
-
-button#results-button:hover {
-  border: 2px solid #83c441;
-  background: white;
-  color: #83c441;
-}
 
 .flagged {
   background-image: url("../assests/placeholder-flag.png");
@@ -106,4 +62,10 @@ button#results-button:hover {
 
 .mine {
   background-image: url("../assests/bomb.png");
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  padding: 50px;
 }
