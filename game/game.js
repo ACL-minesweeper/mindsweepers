@@ -60,7 +60,13 @@ export const setBlankBoard = boardArray => {
 };
 
 function initializeDreamBoardState(boardArray, clickedCell) {
-    const arrayOfMineCoordinates = getArrayOfMineCoordinates(numMines, numRows, numColumns, boardArray, clickedCell);
+    const arrayOfMineCoordinates = getArrayOfMineCoordinates(
+        numMines,
+        numRows,
+        numColumns,
+        boardArray,
+        clickedCell
+    );
     giveBoardArrayMines(boardArray, arrayOfMineCoordinates);
     giveBoardNumAdjMines(boardArray, arrayOfMineCoordinates);
 }
