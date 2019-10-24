@@ -1,10 +1,13 @@
 // import { flagsRemaining } from './game.js';
+import { firstClick } from './game.js';
 import { isWin } from '../common/utils.js';
 const flagDiv = document.getElementById('flag-info');
 let userHasFlag = false;
 flagDiv.addEventListener('click', () => {
-    if (userHasFlag) userHasFlag = false;
-    else if (!userHasFlag) userHasFlag = true;
+    if (!firstClick){
+        if (userHasFlag) userHasFlag = false;
+        else if (!userHasFlag) userHasFlag = true;
+    }
 });
 
 // for MVP
@@ -42,6 +45,11 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
             domCell.classList.add('flagged');
             flagsRemaining--;
             flagDiv.textContent = flagsRemaining;
+            const image = document.createElement('img');
+            image.src = '../assests/placeholder-baggy.png';
+            image.id = 'bag';
+            image.alt = 'poop bag icon';
+            flagDiv.appendChild(image);
             cellObject.isFlagged = true;
             userHasFlag = false;
         }
