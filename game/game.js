@@ -27,7 +27,6 @@ export let flagsRemaining = numMines;
 const createCell = id => {
     const newDiv = document.createElement('div');
     newDiv.id = id;
-    newDiv.textContent = id;
     newDiv.classList.add('opacity');
     mainContainer.appendChild(newDiv);
     newDiv.addEventListener('click', event => {
