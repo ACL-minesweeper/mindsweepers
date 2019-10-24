@@ -18,22 +18,30 @@ body {
 }
 
 #flag-info {
+  font-size: 4em;
   font-weight: bolder;
   display: flex;
-  font-size: 500%;
+  padding: 10px;
 }
 
 #bag {
-  width: 100px;
-  height: auto;
+  padding-right: 1px;
+  padding-left: 8px;
 }
 
 body #boardgame-header {
   margin: auto;
 }
 
+span#profile-user-name {
+  font-size: 3em;
+  margin-left: 15px;
+  font-weight: bold;
+}
+
 #boardgame-header {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 600px;
   background-color: #83c441;
@@ -46,6 +54,45 @@ body #boardgame-header {
   justify-content: center;
   font-size: 275%;
   font-weight: bolder;
+}
+
+button#play-again-button {
+  display: block;
+  height: 64px;
+  width: 248px;
+  border: 2px solid white;
+  background: #83c441;
+  border-radius: 4px;
+  color: white;
+  font-size: 1.5em;
+}
+
+button#results-button {
+  display: block;
+  height: 64px;
+  width: 248px;
+  border: 2px solid white;
+  background: #83c441;
+  border-radius: 4px;
+  color: white;
+  font-size: 1.5em;
+}
+
+div.buttons {
+  display: flex;
+  justify-content: center;
+}
+
+button#play-again-button:hover {
+  border: 2px solid #83c441;
+  background: white;
+  color: #83c441;
+}
+
+button#results-button:hover {
+  border: 2px solid #83c441;
+  background: white;
+  color: #83c441;
 }
 
 .flagged {
