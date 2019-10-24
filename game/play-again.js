@@ -1,16 +1,8 @@
 import { makeBoardArray } from './make-board-array.js';
 import { setBlankBoard, firstClick, flagsRemaining } from './game.js';
-import { saveUser } from '../common/utils.js';
 
-// update user win/loss record in local storage
-const updateUserStats = ({ userObjParam, isWinParam, isLossParam }) => {
-    // add a win if they won
-    userObjParam.wins += isWinParam;
-    // add a loss if they lost
-    userObjParam.losses += isLossParam;
-    // save updated user to local storage
-    saveUser(userObjParam);
-};
+
+
 
 // clear the DOM board
 const resetBoard = ({ mainContainerParam, numMinesParam, boardArrayParam, numRowsParam, numColumnsParam }) => {
@@ -26,7 +18,6 @@ const resetBoard = ({ mainContainerParam, numMinesParam, boardArrayParam, numRow
     setBlankBoard(boardArrayParam);
 };
 
-export const playAgain = ({ userObjParam, isWinParam, isLossParam, mainContainerParam, numMinesParam, boardArrayParam, numRowsParam, numColumnsParam }) => {
-    updateUserStats({ userObjParam, isWinParam, isLossParam });
+export const playAgain = ({ mainContainerParam, numMinesParam, boardArrayParam, numRowsParam, numColumnsParam }) => {
     resetBoard({ mainContainerParam, numMinesParam, boardArrayParam, numRowsParam, numColumnsParam });
 };

@@ -1,6 +1,8 @@
 // import { flagsRemaining } from './game.js';
-import { firstClick } from './game.js';
-import { isWin } from '../common/utils.js';
+import { firstClick, cellClick } from './game.js';
+import { isWin, getUser, saveUser } from '../common/utils.js';
+
+
 const flagDiv = document.getElementById('flag-info');
 let userHasFlag = false;
 flagDiv.addEventListener('click', () => {
@@ -56,7 +58,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     }
     else if (cellObject.isMine) {
         // execute loss sequence
-        endGameLoss();
+        userWon(false, boardArrParam);
     } 
     else if (cellObject.numAdjMines === 0) {
         // update the DOM
@@ -70,14 +72,51 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     }
     if (isWin()) {
         // execute win sequence
-        endGameWin();
+        userWon(true, boardArrParam);
     }
 };
 
-function endGameWin() {
-    alert('You WON!');
+// update user win/loss record in local storage
+const updateUserStats = (userObjParam, isWinParam) => {
+    if (isWinParam) {
+        userObjParam.wins++;
+    } else {
+        userObjParam.losses++;
+    }
+    // save updated user to local storage
+    saveUser(userObjParam);
+};
+
+function userWon(userWonBoolean, boardArrParam) {
+    boardArrParam.forEach(row => {
+        row.forEach(cell => {
+            // get the div element corresponding to the cell object 
+            const divId = cell.id; 
+            const divElement = document.getElementById(divId); 
+
+            // prevent user from continuing game by removing the event listener for each cell
+            divElement.removeEventListener('click', cellClick); 
+
+            // if the cell is a mine and the game is over 
+            if (cell.isMine) {
+                // remove the hidden class to show the mines
+                divElement.classList.remove('opacity');
+            }
+        });
+    });
+
+    //update local storage for win/loss count on the user object
+    //get user object from local storage
+    const userObj = getUser(); 
+    //update win/loss count and save user object back to local storage
+    updateUserStats(userObj, userWonBoolean);
+
+    if (userWonBoolean) {
+        alert('you WON!');
+    } else {
+        alert('you LOST!');
+    }
 }
 
-function endGameLoss() {
-    alert('You LOST!');
-}
+
+
