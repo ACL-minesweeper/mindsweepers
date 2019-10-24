@@ -29,23 +29,26 @@ const createCell = id => {
     newDiv.id = id;
     newDiv.classList.add('opacity');
     mainContainer.appendChild(newDiv);
-    newDiv.addEventListener('click', event => {
-        const domCellId = event.target.id;
-        const coordStringArr = domCellId.split(',');
-        const coordNumberArr = coordStringArr.map(Number);
-        clickedCell = coordNumberArr;
-        if (firstClick) {
-      // after the first click, board objects are updated with mines and numAdjines
-            initializeDreamBoardState(boardArray, clickedCell);
-            firstClick = false;
-            newDiv.classList.remove('opacity');
-            boardArray[clickedCell[0]][clickedCell[1]].isHidden = false;
-        } else {
-      //play game
-            playGame(coordNumberArr, boardArray);
-        }
-    });
+    newDiv.addEventListener('click', cellClick);
 };
+
+//click handler function
+export function cellClick(event) {
+    const domCellId = event.target.id;
+    const coordStringArr = domCellId.split(',');
+    const coordNumberArr = coordStringArr.map(Number);
+    clickedCell = coordNumberArr;
+    if (firstClick) {
+  // after the first click, board objects are updated with mines and numAdjines
+        initializeDreamBoardState(boardArray, clickedCell);
+        firstClick = false;
+        event.target.classList.remove('opacity');
+        boardArray[clickedCell[0]][clickedCell[1]].isHidden = false;
+    } else {
+  //play game
+        playGame(coordNumberArr, boardArray);
+    }
+}
 
 //Part one of setting board: set up board for the first click.
 export const setBlankBoard = boardArray => {
