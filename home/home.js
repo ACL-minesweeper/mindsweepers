@@ -8,8 +8,8 @@ function processForm(event) {
     event.preventDefault();
     const formData = new FormData(userInfoForm);
     const user = getUserName(formData);
-    makeUser(user);
-    saveUser(user);
+    const userObject = makeUser(user);
+    saveUser(userObject);
     window.location = '../game/index.html';
 }
 

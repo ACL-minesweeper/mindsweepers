@@ -1,6 +1,6 @@
 // import { flagsRemaining } from './game.js';
 import { isWin } from '../common/utils.js';
-const flagDiv = document.getElementById('flag-div');
+const flagDiv = document.getElementById('flag-info');
 let userHasFlag = false;
 flagDiv.addEventListener('click', () => {
     if (userHasFlag) userHasFlag = false;
@@ -11,6 +11,11 @@ flagDiv.addEventListener('click', () => {
 let flagsRemaining = 10;
 // Show user initial amount of flags
 flagDiv.textContent = flagsRemaining;
+const image = document.createElement('img');
+image.src = '../assests/placeholder-baggy.png';
+image.id = 'bag';
+image.alt = 'poop bag icon';
+flagDiv.appendChild(image);
 
 // mine placement are known
 export const playGame = (clickedCellLocationArr, boardArrParam) => {
@@ -22,7 +27,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     // remove a flag from a flagged cell
     if (cellObject.isFlagged) {
         cellObject.isFlagged = false;
-        // update the DOM
+    // update the DOM
         domCell.classList.add('opacity');
         domCell.classList.remove('flagged');
         flagsRemaining++;
@@ -32,7 +37,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     else if (userHasFlag) {
         // and the cell does not have a flag and the cell is still hidden
         if (!cellObject.isFlagged && cellObject.isHidden) {
-            // then update the DOM
+      // then update the DOM
             domCell.classList.remove('opacity');
             domCell.classList.add('flagged');
             flagsRemaining--;
@@ -50,7 +55,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
     } else {
-        // populate the DOM with the number
+    // populate the DOM with the number
         domCell.textContent = cellObject.numAdjMines;
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;

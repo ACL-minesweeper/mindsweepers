@@ -2,5 +2,26 @@ body {
   width: 80%;
   border: 4px rgb(135, 193, 48) solid;
   border-radius: 4px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+header {
+  margin-bottom: 50px;
+  padding: 3%;
+  text-align: center;
+  background: #83c441;
+  color: white;
+  font-size: 30px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
 
+.logo-top img {
+  width: 20%;
+  height: 20%;
+}
+
+.tress-and-dogs {
+  display: flex;
+  justify-content: space-between;
 }

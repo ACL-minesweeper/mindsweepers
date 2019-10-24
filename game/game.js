@@ -5,22 +5,22 @@ import giveBoardNumAdjMines from './give-board-numAdjMines.js';
 import { playGame } from './play-game.js';
 import loadProfile from '../common/load-profile.js';
 
-
 // get DOM elements
 const mainContainer = document.getElementById('main-container');
 const userProfile = document.getElementById('profile-user-name');
 
 //updating DOM with user profile (in this case, just the user name)
-const currentUser = loadProfile(); 
+const currentUser = loadProfile();
 
-userProfile.textContent = currentUser.user; 
+userProfile.textContent = currentUser;
+
 // initialize variables
 const numRows = 8;
 const numColumns = 8;
 const numMines = 10;
 const boardArray = makeBoardArray(numRows, numColumns);
 // always the cell currently clicked by user and will be updated anytime a user clicks a cell
-let clickedCell = []; 
+let clickedCell = [];
 export let firstClick = true;
 export let flagsRemaining = numMines;
 
@@ -36,15 +36,14 @@ const createCell = id => {
         const coordStringArr = domCellId.split(',');
         const coordNumberArr = coordStringArr.map(Number);
         clickedCell = coordNumberArr;
-        if (firstClick){
-            // after the first click, board objects are updated with mines and numAdjines
+        if (firstClick) {
+      // after the first click, board objects are updated with mines and numAdjines
             initializeDreamBoardState(boardArray, clickedCell);
             firstClick = false;
             newDiv.classList.remove('opacity');
             boardArray[clickedCell[0]][clickedCell[1]].isHidden = false;
-        }
-        else {
-            //play game
+        } else {
+      //play game
             playGame(coordNumberArr, boardArray);
         }
     });
