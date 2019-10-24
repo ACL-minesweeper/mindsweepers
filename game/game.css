@@ -17,7 +17,7 @@ body {
   border: white 1px solid;
 }
 
-.flag-info {
+#flag-info {
   font-weight: bolder;
   display: flex;
   font-size: 500%;
