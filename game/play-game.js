@@ -76,7 +76,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
     }
-    if (isWin()) {
+    if (isWin(boardArrParam, flagsRemaining)) {
         // execute win sequence
         userWon(true, boardArrParam);
     }
