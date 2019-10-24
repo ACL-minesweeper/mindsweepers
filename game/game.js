@@ -11,8 +11,7 @@ const userProfile = document.getElementById('profile-user-name');
 
 //updating DOM with user profile (in this case, just the user name)
 const currentUser = loadProfile();
-
-userProfile.textContent = currentUser;
+userProfile.textContent = currentUser.user;
 
 // initialize variables
 const numRows = 8;
