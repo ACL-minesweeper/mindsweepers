@@ -1,5 +1,5 @@
-// import { flagsRemaining } from './game.js';
-import { firstClick, cellClick } from './game.js';
+import state from './state.js';
+import { cellClick } from './game.js';
 import { isWin, getUser, saveUser } from '../common/utils.js';
 import loadProfile from '../common/load-profile.js';
 
@@ -7,16 +7,15 @@ import loadProfile from '../common/load-profile.js';
 const flagDiv = document.getElementById('flag-info');
 let userHasFlag = false;
 flagDiv.addEventListener('click', () => {
-    if (!firstClick){
+    if (!state.firstClick){
         if (userHasFlag) userHasFlag = false;
         else if (!userHasFlag) userHasFlag = true;
     }
 });
 
-// for MVP
-let flagsRemaining = 10;
+
 // Show user initial amount of flags
-flagDiv.textContent = flagsRemaining;
+flagDiv.textContent = state.flagsRemaining;
 const image = document.createElement('img');
 image.src = '../assests/placeholder-baggy.png';
 image.id = 'bag';
@@ -28,6 +27,8 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     const objectRow = clickedCellLocationArr[0];
     const objectColumn = clickedCellLocationArr[1];
     const cellObject = boardArrParam[objectRow][objectColumn];
+    // console.log(boardArrParam, 'playGame board');
+    // debugger;
     const clickedCellIdString = clickedCellLocationArr[0] + ',' + clickedCellLocationArr[1];
     const domCell = document.getElementById(clickedCellIdString);
     // remove a flag from a flagged cell
@@ -36,8 +37,8 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     // update the DOM
         domCell.classList.add('opacity');
         domCell.classList.remove('flagged');
-        flagsRemaining++;
-        flagDiv.textContent = flagsRemaining;
+        state.flagsRemaining++;
+        flagDiv.textContent = state.flagsRemaining;
         const image = document.createElement('img');
         image.src = '../assests/placeholder-baggy.png';
         image.id = 'bag';
@@ -51,8 +52,8 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
       // then update the DOM
             domCell.classList.remove('opacity');
             domCell.classList.add('flagged');
-            flagsRemaining--;
-            flagDiv.textContent = flagsRemaining;
+            state.flagsRemaining--;
+            flagDiv.textContent = state.flagsRemaining;
             const image = document.createElement('img');
             image.src = '../assests/placeholder-baggy.png';
             image.id = 'bag';
@@ -76,7 +77,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
     }
-    if (isWin(boardArrParam, flagsRemaining)) {
+    if (isWin(boardArrParam, state.flagsRemaining)) {
         // execute win sequence
         userWon(true, boardArrParam);
     }
