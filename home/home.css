@@ -1,25 +1,7 @@
 body {
 }
 
-header {
-  padding: 3%;
-  text-align: center;
-  background: #83c441;
-  color: white;
-  font-size: 30px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
-}
 
-.logo-top img {
-  width: 20%;
-  height: 20%;
-}
-
-.tress-and-dogs {
-  display: flex;
-  justify-content: space-between;
-}
 
 h1 {
   font-size: 1.5em;
