@@ -1,5 +1,5 @@
 // import { flagsRemaining } from './game.js';
-import { isWin, isLoss } from '../common/utils.js';
+import { isWin } from '../common/utils.js';
 const flagDiv = document.getElementById('flag-div');
 let userHasFlag = false;
 flagDiv.addEventListener('click', () => {
@@ -43,7 +43,6 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     }
     else if (cellObject.isMine) {
         // execute loss sequence
-        alert('You LOST!');
         endGameLoss();
     } 
     else if (cellObject.numAdjMines === 0) {
@@ -58,9 +57,14 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     }
     if (isWin()) {
         // execute win sequence
-        alert('You WON!');
         endGameWin();
     }
 };
 
-// playGame([1,1], fakeBoardArrParam);
+function endGameWin() {
+    alert('You WON!');
+}
+
+function endGameLoss() {
+    alert('You LOST!');
+}

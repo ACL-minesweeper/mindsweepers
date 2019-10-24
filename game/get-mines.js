@@ -57,7 +57,7 @@ const getInvalidMineCoordinatesBasedOnFirstClick = (boardArrayParam, firstClickA
             const isValidRowIndex = isValidRowIndexFunc(cellRowIndex, boardArrayParam);
             const isValidColumnIndex = isValidColumnIndexFunc(cellColumnIndex, boardArrayParam);
             if (isValidRowIndex && isValidColumnIndex) {
-                invalidMineCoordinateArr.push([isValidRowIndex, isValidColumnIndex]);
+                invalidMineCoordinateArr.push([cellRowIndex, cellColumnIndex]);
             }
         }
     }
