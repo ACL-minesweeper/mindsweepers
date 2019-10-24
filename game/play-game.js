@@ -40,14 +40,6 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
             cellObject.isFlagged = true;
             userHasFlag = false;
         }
-<<<<<<< HEAD
-    } else
-    if (cellObject.isMine) {
-        // this function needs to be created 
-        gameOver();
-    } else
-    if (cellObject.numAdjMines === 0) {
-=======
     }
     else if (cellObject.isMine) {
         // execute loss sequence
@@ -55,7 +47,6 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
         endGameLoss();
     } 
     else if (cellObject.numAdjMines === 0) {
->>>>>>> wednesday-mob
         // update the DOM
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
