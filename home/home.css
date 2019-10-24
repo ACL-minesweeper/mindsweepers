@@ -1,8 +1,3 @@
-h1 {
-  font-size: 1.5em;
-  font-family: "Baloo", cursive;
-}
-
 p {
   font-size: 0.5em;
 }
@@ -54,7 +49,8 @@ div#play-game {
 }
 
 .start-btn {
-  font-family: "Lilita One", cursive;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   display: block;
   height: 64px;
   width: 248px;
@@ -155,7 +151,8 @@ div#play-game {
 }
 
 button {
-  font-family: "Lilita One", cursive;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   display: block;
   height: 64px;
   width: 248px;
