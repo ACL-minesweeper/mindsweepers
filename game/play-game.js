@@ -1,5 +1,5 @@
 // import { flagsRemaining } from './game.js';
-import { isWin, isLoss } from '../common/utils.js';
+import { isWin } from '../common/utils.js';
 const flagDiv = document.getElementById('flag-info');
 let userHasFlag = false;
 flagDiv.addEventListener('click', () => {
@@ -22,9 +22,9 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     const objectRow = clickedCellLocationArr[0];
     const objectColumn = clickedCellLocationArr[1];
     const cellObject = boardArrParam[objectRow][objectColumn];
-    const clickedCellId =
-    clickedCellLocationArr[0] + ',' + clickedCellLocationArr[1];
-    const domCell = document.getElementById(clickedCellId);
+    const clickedCellIdString = clickedCellLocationArr[0] + ',' + clickedCellLocationArr[1];
+    const domCell = document.getElementById(clickedCellIdString);
+    // remove a flag from a flagged cell
     if (cellObject.isFlagged) {
         cellObject.isFlagged = false;
     // update the DOM
@@ -32,10 +32,10 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
         domCell.classList.remove('flagged');
         flagsRemaining++;
         flagDiv.textContent = flagsRemaining;
-    }
-  // if the user grabbed a flag
+    } 
+    // if the user grabbed a flag
     else if (userHasFlag) {
-    // and the cell does not have a flag and the cell is still hidden
+        // and the cell does not have a flag and the cell is still hidden
         if (!cellObject.isFlagged && cellObject.isHidden) {
       // then update the DOM
             domCell.classList.remove('opacity');
@@ -45,11 +45,13 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
             cellObject.isFlagged = true;
             userHasFlag = false;
         }
-    } else if (cellObject.isMine) {
-    // this function needs to be created
-        gameOver();
-    } else if (cellObject.numAdjMines === 0) {
-    // update the DOM
+    }
+    else if (cellObject.isMine) {
+        // execute loss sequence
+        endGameLoss();
+    } 
+    else if (cellObject.numAdjMines === 0) {
+        // update the DOM
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
     } else {
@@ -58,6 +60,16 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
     }
+    if (isWin()) {
+        // execute win sequence
+        endGameWin();
+    }
 };
 
-// playGame([1,1], fakeBoardArrParam);
+function endGameWin() {
+    alert('You WON!');
+}
+
+function endGameLoss() {
+    alert('You LOST!');
+}
