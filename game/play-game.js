@@ -1,6 +1,7 @@
 // import { flagsRemaining } from './game.js';
 import { firstClick, cellClick } from './game.js';
 import { isWin, getUser, saveUser } from '../common/utils.js';
+import loadProfile from '../common/load-profile.js';
 
 
 const flagDiv = document.getElementById('flag-info');
@@ -113,10 +114,13 @@ function userWon(userWonBoolean, boardArrParam) {
     //update win/loss count and save user object back to local storage
     updateUserStats(userObj, userWonBoolean);
 
+    const userProfile = document.getElementById('profile-user-name');
+    const currentUser = loadProfile();
+
     if (userWonBoolean) {
-        alert('you WON!');
+        userProfile.textContent = currentUser.user + ' you won!';
     } else {
-        alert('you LOST!');
+        userProfile.textContent = currentUser.user + ' you lost!';
     }
 }
 
