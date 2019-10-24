@@ -32,6 +32,7 @@ const createCell = id => {
     newDiv.addEventListener('click', cellClick);
 };
 
+//click handler function
 export function cellClick(event) {
     const domCellId = event.target.id;
     const coordStringArr = domCellId.split(',');
@@ -41,7 +42,7 @@ export function cellClick(event) {
   // after the first click, board objects are updated with mines and numAdjines
         initializeDreamBoardState(boardArray, clickedCell);
         firstClick = false;
-        newDiv.classList.remove('opacity');
+        event.target.classList.remove('opacity');
         boardArray[clickedCell[0]][clickedCell[1]].isHidden = false;
     } else {
   //play game

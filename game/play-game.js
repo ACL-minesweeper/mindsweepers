@@ -101,6 +101,8 @@ function userWon(userWonBoolean, boardArrParam) {
             if (cell.isMine) {
                 // remove the hidden class to show the mines
                 divElement.classList.remove('opacity');
+                //show the user the mine image
+                divElement.classList.add('mine');
             }
         });
     });
