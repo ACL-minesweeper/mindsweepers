@@ -35,6 +35,11 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
         domCell.classList.remove('flagged');
         flagsRemaining++;
         flagDiv.textContent = flagsRemaining;
+        const image = document.createElement('img');
+        image.src = '../assests/placeholder-baggy.png';
+        image.id = 'bag';
+        image.alt = 'poop bag icon';
+        flagDiv.appendChild(image);
     } 
     // if the user grabbed a flag
     else if (userHasFlag) {
