@@ -28,7 +28,7 @@ export let flagsRemaining = numMines;
 const createCell = id => {
     const newDiv = document.createElement('div');
     newDiv.id = id;
-    newDiv.textContent = id;
+
     newDiv.classList.add('opacity');
     mainContainer.appendChild(newDiv);
     newDiv.addEventListener('click', event => {
@@ -59,7 +59,13 @@ export const setBlankBoard = boardArray => {
 };
 
 function initializeDreamBoardState(boardArray, clickedCell) {
-    const arrayOfMineCoordinates = getArrayOfMineCoordinates(numMines, numRows, numColumns, boardArray, clickedCell);
+    const arrayOfMineCoordinates = getArrayOfMineCoordinates(
+        numMines,
+        numRows,
+        numColumns,
+        boardArray,
+        clickedCell
+    );
     giveBoardArrayMines(boardArray, arrayOfMineCoordinates);
     giveBoardNumAdjMines(boardArray, arrayOfMineCoordinates);
 }
