@@ -129,6 +129,8 @@ function userWon(userWonBoolean, boardArrParam) {
                     thisDiv.className = '';
                     thisDiv.textContent = '';
                 }, 1000)));
+        const theMainContainer = document.getElementById('main-container');
+        theMainContainer.innerHTML = '';
     } else {
         userProfile.textContent = currentUser.user + ' you lost!';
     }
