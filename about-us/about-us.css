@@ -5,17 +5,20 @@ p {
 }
 
 .main-container {
-  display: flex;
-  justify-content:space-between;
-  margin-top: 25px;
+margin-top: 25px;
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr;
 }
 
 #libby, #sarah, #casey, #tess, #lisa {
 border: 1px black solid;
 padding: 10px;
-height: 550px;
-width: 300px;
 }
+div.images {
+  display: flex;
+  justify-content: center;
+  }
 
 
 h2 {
@@ -25,12 +28,12 @@ h2 {
   font-size: 30px;
 }
 
-img {
+.images img {
+  display: flex;
+  justify-content: center;
   border-radius: 100%;
   padding: 20px;
 }
-
-
 
 #nav-buttons {
   display: flex;

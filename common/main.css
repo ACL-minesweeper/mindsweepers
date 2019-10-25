@@ -27,7 +27,6 @@ display: flex;
 justify-content: center;
 }
 
-
 footer {
   font-size: 30px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
@@ -43,38 +42,33 @@ a {
 }
 a:link {
   text-decoration: none;
-  
-
 }
 
 a:visited {
   text-decoration: none;
 }
 
-
-
 a:active {
   text-decoration: underline;
 }
 
 button {
-
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-    align-self: center;
-    height: 64px;
-    width: 248px;
-    border: 2px solid white;
-    background: #83c441;
-    border-radius: 4px;
-    letter-spacing: 2px;
-    color: white;
-    font-size: 22px;
-    text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  align-self: center;
+  height: 64px;
+  width: 248px;
+  border: 2px solid white;
+  background: #83c441;
+  border-radius: 4px;
+  letter-spacing: 2px;
+  color: white;
+  font-size: 22px;
+  text-align: center;
 }
   
-  button:hover {
-    border: 2px solid #83c441;
-    background: white;
-    color: #83c441;
+button:hover {
+  border: 2px solid #83c441;
+  background: white;
+  color: #83c441;
   }
 
