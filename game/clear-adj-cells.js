@@ -8,7 +8,7 @@ export const clearAdjCells = (cellArray, boardArrayParam) => {
     cellObject.isHidden = false;
     document.getElementById(cellObject.id).classList.remove('opacity');
     
-    // record the fact that this cell has been operated on as the primary cell
+    // record the fact that this cell has been operated on as the cellArray in a call of this function
     cellObject.clearAdjCells = true;
 
     // iterate around this cell
