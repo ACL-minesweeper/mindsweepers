@@ -10,7 +10,7 @@ function processForm(event) {
     const user = getUserName(formData);
     const userObject = makeUser(user);
     saveUser(userObject);
-    window.location = '../game/index.html';
+    window.location = './game/index.html';
 }
 
 function getUserName(formData) {

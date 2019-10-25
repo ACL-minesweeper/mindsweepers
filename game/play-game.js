@@ -2,6 +2,7 @@ import state from './state.js';
 import { cellClick } from './game.js';
 import { isWin, getUser, saveUser } from '../common/utils.js';
 import loadProfile from '../common/load-profile.js';
+import { clearAdjCells } from './clear-adj-cells.js';
 
 
 const flagDiv = document.getElementById('flag-info');
@@ -20,19 +21,12 @@ flagDiv.addEventListener('click', () => {
 
 // Show user initial amount of flags
 flagDiv.textContent = state.flagsRemaining;
-// const flagDivImage = document.createElement('img');
-// flagDivImage.src = '../assets/placeholder-baggy.png';
-// flagDivImage.id = 'bag';
-// flagDivImage.alt = 'poop bag icon';
-// flagDiv.appendChild(flagDivImage);
 
 // mine placement are known
 export const playGame = (clickedCellLocationArr, boardArrParam) => {
     const objectRow = clickedCellLocationArr[0];
     const objectColumn = clickedCellLocationArr[1];
     const cellObject = boardArrParam[objectRow][objectColumn];
-    // console.log(boardArrParam, 'playGame board');
-    // debugger;
     const clickedCellIdString = clickedCellLocationArr[0] + ',' + clickedCellLocationArr[1];
     const domCell = document.getElementById(clickedCellIdString);
     // remove a flag from a flagged cell
@@ -43,33 +37,17 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
         domCell.classList.remove('flagged');
         state.flagsRemaining++;
         flagDiv.textContent = state.flagsRemaining;
-        // const image = document.createElement('img');
-        // image.src = '../assets/placeholder-baggy.png';
-        // image.id = 'bag';
-        // image.alt = 'poop bag icon';
-        // flagDiv.appendChild(image);
     } 
     // if the user grabbed a flag
     else if (userHasFlag) {
-        // update flag header image with hand-bag
-        // console.log('change flagDivImage');
-        // console.log(flagDivImage);
-        // flagDivImage.src = '../assets/bag-hand.png';
-        // and the cell does not have a flag and the cell is still hidden
         if (!cellObject.isFlagged && cellObject.isHidden) {
-      // then update the DOM
-            
+            // then update the DOM
             domCell.classList.remove('opacity');
             domCell.classList.add('flagged');
             flagDiv.classList.remove('flag-post-click');
             flagDiv.classList.add('flag-pre-click');
             state.flagsRemaining--;
             flagDiv.textContent = state.flagsRemaining;
-            // const image = document.createElement('img');
-            // image.src = '../assets/placeholder-baggy.png';
-            // image.id = 'bag';
-            // image.alt = 'poop bag icon';
-            // flagDiv.appendChild(image);
             cellObject.isFlagged = true;
             userHasFlag = false;
         }
@@ -80,8 +58,15 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     } 
     else if (cellObject.numAdjMines === 0) {
         // update the DOM
-        domCell.classList.remove('opacity');
-        cellObject.isHidden = false;
+        // domCell.classList.remove('opacity');
+        // cellObject.isHidden = false;
+
+        const domCellId = cellObject.id;
+        const coordStringArr = domCellId.split(',');
+        const coordNumberArr = coordStringArr.map(Number);
+        const clickedCellArray = coordNumberArr;
+
+        clearAdjCells(clickedCellArray, boardArrParam);
     } else {
     // populate the DOM with the number
         domCell.textContent = cellObject.numAdjMines;

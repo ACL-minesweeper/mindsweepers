@@ -82,3 +82,7 @@ span#profile-user-name {
 .flag-post-click:after {
   content: url(../assets/bag-hand.png);
 }
+
+div {
+  transition: all 1s;
+}
