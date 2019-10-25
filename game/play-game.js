@@ -58,9 +58,6 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     } 
     else if (cellObject.numAdjMines === 0) {
         // update the DOM
-        // domCell.classList.remove('opacity');
-        // cellObject.isHidden = false;
-
         const domCellId = cellObject.id;
         const coordStringArr = domCellId.split(',');
         const coordNumberArr = coordStringArr.map(Number);
@@ -99,9 +96,6 @@ function userWon(userWonBoolean, boardArrParam) {
 
             // prevent user from continuing game by removing the event listener for each cell
             divElement.removeEventListener('click', cellClick); 
-          //  if (userWonBoolean) {
-          //      divElement.className = '';
-          //  }
 
             // if the cell is a mine and the game is over 
             if (cell.isMine) {
