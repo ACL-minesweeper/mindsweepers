@@ -1,0 +1,81 @@
+
+
+p {
+  font-size: 0.5em;
+}
+
+input#name {
+  font-size: 1.5em;
+  padding: 3%;
+  font-family: "Lato", sans-serif;
+  font-weight: 100;
+  border-color: rgb(142, 141, 141);
+}
+
+
+
+#instructions {
+  display: flex;
+  justify-content: center;
+  margin-top: 2%;
+  margin-right: 5%;
+  margin-left: 5%;
+  padding: 5%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 1.5em;
+  color: rgb(80, 80, 80);
+}
+
+div#user-input {
+  display: flex;
+  justify-content: center;
+}
+
+#user-input {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+}
+div#play-game {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+
+  padding: 15px;
+  margin-bottom: 50px;
+}
+
+.logo-top img {
+  width: 20%;
+  height: 20%;
+}
+
+.tress-and-dogs {
+  display: flex;
+  justify-content: space-between;
+}
+
+label {
+  font-size: 1.5em;
+  padding: 3%;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-weight: 100;
+  border-color: rgb(142, 141, 141);
+}
+
+input[id="name"] {
+  font-size: 150%;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border-radius: 4px;
+  box-sizing: border-box;
+  display: flex;
+}
+
+

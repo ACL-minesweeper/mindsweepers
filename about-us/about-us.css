@@ -1,0 +1,38 @@
+
+p {
+  color: black;
+  padding: 10px;
+}
+
+.main-container {
+  display: flex;
+  justify-content:space-between;
+  margin-top: 25px;
+}
+
+#libby, #sarah, #casey, #tess, #lisa {
+border: 1px black solid;
+padding: 10px;
+height: 550px;
+width: 300px;
+}
+
+
+h2 {
+  text-align: center;
+  font-family: 'Baloo', cursive;
+  margin: 5px;
+  font-size: 30px;
+}
+
+img {
+  border-radius: 100%;
+  padding: 20px;
+}
+
+
+
+#nav-buttons {
+  display: flex;
+  justify-content: center;
+}

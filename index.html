@@ -1,17 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="./home/home.css">
+        <link rel="stylesheet" href="./common/main.css">
+        <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap"
+            rel="stylesheet">
+        <title>MINESWEEPER NO.2</title>
+    </head>
+    <body>
+        <header>
+            <h1>MINESWEEPER NO.2</h1>
+            <div class="header-image">
+                <img src="./assets/header-image.png">
+            </div>
+        </header>
+        <div id="instructions">
+                Wow, you are such a good samaritan!
+                The purpose of the game is to find all the doggy doo in the park and put it into a bag. To start, click anywhere on the board. If you step in doo before you give it a doggy bag, you lose! The numbers indicate how many adjacent boxes contain doggy doo. Be sure to mark the squares you think have doo with a doggy bag.  Click the bag then click the square that has the doo.  You can remove a bag by clicking on it if you later think you are wrong. Make sure not to run out of bags before the park is doo-free. Once all the doos are in a bag and all the other spaces are doo-free, you win!
+        </div>
 
-<body>
+            <body>
+                <div id="user-input">
+                    <form id="get-user-name">
+                        <label for="name">Enter Your Name</label>
+                        <input type="text" name="name" id="name" required>
+                        </div>
+                        <div id="play-game">
+                            <button>PLAY GAME</button>
+                        </div>
+                    </form>
+                <footer>
+                        <a href='../about-us/'>ABOUT THE DEV TEAM</a>
+                </footer>
 
-    <script type="module" src="app.js"></script>
-</body>
+                <script type="module" src="./home/home.js"></script>
+            </body>
 
-</html>
+    </html>
