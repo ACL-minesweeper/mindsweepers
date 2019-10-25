@@ -73,7 +73,6 @@ function initializeDreamBoardState(boardArrayParam, clickedCell) {
         clickedCell
     );
     giveBoardArrayMines(boardArrayParam, arrayOfMineCoordinates);
-    console.log(boardArrayParam, 'this is the board array in dream state');
     giveBoardNumAdjMines(boardArrayParam, arrayOfMineCoordinates);
 }
 
@@ -87,14 +86,9 @@ const playAgain = (mainContainerParam) => {
     // reset flags to full count which matches the number of mines
     state.flagsRemaining = state.numMines;
     state.userHasFlag = false; 
-    let flagDiv = document.getElementById('flag-info');
+    const flagDiv = document.getElementById('flag-info');
     flagDiv.textContent = state.flagsRemaining;
-    const image = document.createElement('img');
-    image.src = '../assets/placeholder-baggy.png';
-    image.id = 'bag';
-    image.alt = 'poop bag icon';
-    flagDiv.appendChild(image);
-
+    userProfile.textContent = currentUser.user;
     // create a brand new conceptual board
     const freshBoard = makeBoardArray(state.numRows, state.numColumns);
 
