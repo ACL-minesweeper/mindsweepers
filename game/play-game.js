@@ -130,7 +130,8 @@ function userWon(userWonBoolean, boardArrParam) {
                     thisDiv.textContent = '';
                 }, 1000)));
         const theMainContainer = document.getElementById('main-container');
-        theMainContainer.innerHTML = '';
+        window.setTimeout(() => 
+            theMainContainer.innerHTML = '', 1000);
     } else {
         userProfile.textContent = currentUser.user + ' you lost!';
     }
