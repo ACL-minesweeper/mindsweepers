@@ -5,22 +5,26 @@ import loadProfile from '../common/load-profile.js';
 
 
 const flagDiv = document.getElementById('flag-info');
+flagDiv.classList.add('flag-pre-click');
 let userHasFlag = false;
 flagDiv.addEventListener('click', () => {
     if (!state.firstClick){
         if (userHasFlag) userHasFlag = false;
         else if (!userHasFlag) userHasFlag = true;
+
+        flagDiv.classList.remove('flag-pre-click');
+        flagDiv.classList.add('flag-post-click');
     }
 });
 
 
 // Show user initial amount of flags
 flagDiv.textContent = state.flagsRemaining;
-const image = document.createElement('img');
-image.src = '../assests/placeholder-baggy.png';
-image.id = 'bag';
-image.alt = 'poop bag icon';
-flagDiv.appendChild(image);
+// const flagDivImage = document.createElement('img');
+// flagDivImage.src = '../assets/placeholder-baggy.png';
+// flagDivImage.id = 'bag';
+// flagDivImage.alt = 'poop bag icon';
+// flagDiv.appendChild(flagDivImage);
 
 // mine placement are known
 export const playGame = (clickedCellLocationArr, boardArrParam) => {
@@ -39,26 +43,33 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
         domCell.classList.remove('flagged');
         state.flagsRemaining++;
         flagDiv.textContent = state.flagsRemaining;
-        const image = document.createElement('img');
-        image.src = '../assests/placeholder-baggy.png';
-        image.id = 'bag';
-        image.alt = 'poop bag icon';
-        flagDiv.appendChild(image);
+        // const image = document.createElement('img');
+        // image.src = '../assets/placeholder-baggy.png';
+        // image.id = 'bag';
+        // image.alt = 'poop bag icon';
+        // flagDiv.appendChild(image);
     } 
     // if the user grabbed a flag
     else if (userHasFlag) {
+        // update flag header image with hand-bag
+        // console.log('change flagDivImage');
+        // console.log(flagDivImage);
+        // flagDivImage.src = '../assets/bag-hand.png';
         // and the cell does not have a flag and the cell is still hidden
         if (!cellObject.isFlagged && cellObject.isHidden) {
       // then update the DOM
+            
             domCell.classList.remove('opacity');
             domCell.classList.add('flagged');
+            flagDiv.classList.remove('flag-post-click');
+            flagDiv.classList.add('flag-pre-click');
             state.flagsRemaining--;
             flagDiv.textContent = state.flagsRemaining;
-            const image = document.createElement('img');
-            image.src = '../assests/placeholder-baggy.png';
-            image.id = 'bag';
-            image.alt = 'poop bag icon';
-            flagDiv.appendChild(image);
+            // const image = document.createElement('img');
+            // image.src = '../assets/placeholder-baggy.png';
+            // image.id = 'bag';
+            // image.alt = 'poop bag icon';
+            // flagDiv.appendChild(image);
             cellObject.isFlagged = true;
             userHasFlag = false;
         }

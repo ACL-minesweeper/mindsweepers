@@ -2,7 +2,7 @@
 
 #main-container {
   margin: auto;
-  background-image: url("../assests/board-bg.png");
+  background-image: url("../assets/board-bg.png");
   background-size: cover;
   display: grid;
   width: 600px;
@@ -53,7 +53,7 @@ span#profile-user-name {
 
 
 .flagged {
-  background-image: url("../assests/placeholder-flag.png");
+  background-image: url("../assets/placeholder-flag.png");
   background-repeat: none;
 }
 
@@ -62,15 +62,23 @@ span#profile-user-name {
 }
 
 .mine {
-  background-image: url("../assests/bomb.png");
+  background-image: url("../assets/bomb.png");
 }
 
 .bag-hand {
-  background-image: url("../assests/bag-hand.png");
+  background-image: url("../assets/bag-hand.png");
 }
 
 .buttons {
   display: flex;
   justify-content: center;
   padding: 50px;
+}
+
+.flag-pre-click:after {
+    content: url(../assets/placeholder-baggy.png);
+}
+
+.flag-post-click:after {
+  content: url(../assets/bag-hand.png);
 }
