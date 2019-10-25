@@ -26,7 +26,7 @@ flagDiv.addEventListener('click', () => {
 // Show user initial amount of flags
 flagDiv.textContent = state.flagsRemaining;
 
-// mine placement are known
+// mine placement are known at this point
 export const playGame = (clickedCellLocationArr, boardArrParam) => {
     const objectRow = clickedCellLocationArr[0];
     const objectColumn = clickedCellLocationArr[1];
@@ -36,7 +36,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     // remove a flag from a flagged cell
     if (cellObject.isFlagged) {
         cellObject.isFlagged = false;
-    // update the DOM
+        // update the DOM
         domCell.classList.add('opacity');
         domCell.classList.remove('flagged');
         state.flagsRemaining++;
@@ -119,9 +119,12 @@ function userWon(userWonBoolean, boardArrParam) {
 
     const userProfile = document.getElementById('profile-user-name');
     const currentUser = loadProfile();
-
+ 
     if (userWonBoolean) {
         userProfile.textContent = currentUser.user + ' you won!';
+        boardArrParam.forEach(rowObj => 
+            rowObj.forEach(cellObj =>
+                window.setTimeout(() => document.getElementById(cellObj.id).className = '', 1000)));
     } else {
         userProfile.textContent = currentUser.user + ' you lost!';
     }
