@@ -87,6 +87,14 @@ const playAgain = (mainContainerParam) => {
     // reset flags to full count which matches the number of mines
     state.flagsRemaining = state.numMines;
     state.userHasFlag = false; 
+    let flagDiv = document.getElementById('flag-info');
+    flagDiv.textContent = state.flagsRemaining;
+    const image = document.createElement('img');
+    image.src = '../assests/placeholder-baggy.png';
+    image.id = 'bag';
+    image.alt = 'poop bag icon';
+    flagDiv.appendChild(image);
+
     // create a brand new conceptual board
     const freshBoard = makeBoardArray(state.numRows, state.numColumns);
 
