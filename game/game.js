@@ -90,7 +90,7 @@ const playAgain = (mainContainerParam) => {
     let flagDiv = document.getElementById('flag-info');
     flagDiv.textContent = state.flagsRemaining;
     const image = document.createElement('img');
-    image.src = '../assests/placeholder-baggy.png';
+    image.src = '../assets/placeholder-baggy.png';
     image.id = 'bag';
     image.alt = 'poop bag icon';
     flagDiv.appendChild(image);
