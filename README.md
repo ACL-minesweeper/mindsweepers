@@ -24,7 +24,7 @@ The goal of this project is to create a game with logic similar to the classic m
     - we plan to have a highly modular structure to our code in order to enhance testing and declarative functions
 
 ## Instructions for use of this repository
-This repo will be hosted on github pages upon completion.
+This repo is deployed on github pages: https://acl-minesweeper.github.io/mindsweepers/
 
 # User stories
 1. Robert is nostalgic for his memories of minesweeper.  He wants gameplay logic to be true to the original.

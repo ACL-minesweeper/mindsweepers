@@ -124,7 +124,14 @@ function userWon(userWonBoolean, boardArrParam) {
         userProfile.textContent = currentUser.user + ' you won!';
         boardArrParam.forEach(rowObj => 
             rowObj.forEach(cellObj =>
-                window.setTimeout(() => document.getElementById(cellObj.id).className = '', 1000)));
+                window.setTimeout(() => {
+                    const thisDiv = document.getElementById(cellObj.id);
+                    thisDiv.className = '';
+                    thisDiv.textContent = '';
+                }, 1000)));
+        const theMainContainer = document.getElementById('main-container');
+        window.setTimeout(() => 
+            theMainContainer.innerHTML = '', 1000);
     } else {
         userProfile.textContent = currentUser.user + ' you lost!';
     }
