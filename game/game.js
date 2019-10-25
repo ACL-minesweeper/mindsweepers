@@ -5,9 +5,7 @@ import giveBoardArrayMines from './give-board-array-mines.js';
 import giveBoardNumAdjMines from './give-board-numAdjMines.js';
 import loadProfile from '../common/load-profile.js';
 import { playGame } from './play-game.js';
-
-
-
+import { clearAdjCells } from './clear-adj-cells.js';
 
 // get DOM elements
 const mainContainer = document.getElementById('main-container');
@@ -17,7 +15,6 @@ const playAgainButton = document.getElementById('play-again-button');
 //updating DOM with user profile (in this case, just the user name)
 const currentUser = loadProfile();
 userProfile.textContent = currentUser.user;
-
 
 let boardArray = makeBoardArray(state.numRows, state.numColumns);
 
@@ -48,7 +45,14 @@ export function cellClick(event) {
         initializeDreamBoardState(boardArray, clickedCell);
         state.firstClick = false;
         event.target.classList.remove('opacity');
-        boardArray[clickedCell[0]][clickedCell[1]].isHidden = false;
+        const firstCell = boardArray[clickedCell[0]][clickedCell[1]];
+        firstCell.isHidden = false;
+
+        const domCellId = firstCell.id;
+        const coordStringArr = domCellId.split(',');
+        const coordNumberArr = coordStringArr.map(Number);
+        const clickedCellArray = coordNumberArr;
+        clearAdjCells(clickedCellArray, boardArray);
     } else {
   //play game
         playGame(coordNumberArr, boardArray);
@@ -56,13 +60,10 @@ export function cellClick(event) {
 }
 
 //Part one of setting board: set up board for the first click.
-export const setBlankBoard = boardArrayParam => {
-    boardArrayParam.forEach(row => {
-        row.forEach(cell => {
-            createCell(cell.id);
-        });
-    });
-};
+export const setBlankBoard = boardArrayParam =>
+    boardArrayParam.forEach(row =>
+        row.forEach(cell =>
+            createCell(cell.id)));
 
 function initializeDreamBoardState(boardArrayParam, clickedCell) {
     const arrayOfMineCoordinates = getArrayOfMineCoordinates(
