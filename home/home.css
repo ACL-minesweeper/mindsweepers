@@ -44,9 +44,9 @@ div#play-game {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  margin: auto;
-  margin-top: 5%;
-  padding: 5%;
+
+  padding: 15px;
+  margin-bottom: 50px;
 }
 
 .logo-top img {

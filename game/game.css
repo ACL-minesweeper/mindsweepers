@@ -3,6 +3,7 @@
 #main-container {
   margin: auto;
   background-image: url("../assests/board-bg.png");
+  background-size: cover;
   display: grid;
   width: 600px;
   height: 600px;
@@ -62,6 +63,10 @@ span#profile-user-name {
 
 .mine {
   background-image: url("../assests/bomb.png");
+}
+
+.bag-hand {
+  background-image: url("../assests/bag-hand.png");
 }
 
 .buttons {
