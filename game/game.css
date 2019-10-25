@@ -1,5 +1,4 @@
 
-
 #main-container {
   margin: auto;
   background-image: url("../assets/board-bg.png");
@@ -51,7 +50,6 @@ span#profile-user-name {
   font-weight: bolder;
 }
 
-
 .flagged {
   background-image: url("../assets/placeholder-flag.png");
   background-repeat: none;
@@ -76,7 +74,7 @@ span#profile-user-name {
 }
 
 .flag-pre-click:after {
-    content: url(../assets/placeholder-baggy.png);
+  content: url(../assets/placeholder-baggy.png);
 }
 
 .flag-post-click:after {

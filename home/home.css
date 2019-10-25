@@ -1,5 +1,4 @@
 
-
 p {
   font-size: 0.5em;
 }
@@ -11,8 +10,6 @@ input#name {
   font-weight: 100;
   border-color: rgb(142, 141, 141);
 }
-
-
 
 #instructions {
   display: flex;
