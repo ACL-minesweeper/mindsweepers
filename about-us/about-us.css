@@ -1,3 +1,8 @@
+body {
+  width: 100%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
 
 p {
   color: black;
@@ -5,20 +10,22 @@ p {
 }
 
 .main-container {
-margin-top: 25px;
-display: grid;
-grid-template-columns: 1fr 1fr 1fr;
-grid-template-rows: 1fr 1fr;
+  width: 100%;
+  margin-top: 25px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
 }
 
-#libby, #sarah, #casey, #tess, #lisa {
-border: 1px black solid;
-padding: 10px;
+#libby, #sarah, #casey, #tess, #lisa, #acl {
+  border: 1px #83c441 solid;
+  padding: 10px;
 }
+
 div.images {
   display: flex;
   justify-content: center;
-  }
+}
 
 
 h2 {
