@@ -9,20 +9,24 @@ const flagDiv = document.getElementById('flag-info');
 flagDiv.classList.add('flag-pre-click');
 let userHasFlag = false;
 flagDiv.addEventListener('click', () => {
-    if (!state.firstClick){
-        if (userHasFlag) userHasFlag = false;
-        else if (!userHasFlag) userHasFlag = true;
-
-        flagDiv.classList.remove('flag-pre-click');
-        flagDiv.classList.add('flag-post-click');
+    if (!state.firstClick) {
+        if (!userHasFlag) {
+            userHasFlag = true;
+            flagDiv.classList.remove('flag-pre-click');
+            flagDiv.classList.add('flag-post-click');
+        }
+        else {
+            userHasFlag = false;
+            flagDiv.classList.remove('flag-post-click');
+            flagDiv.classList.add('flag-pre-click');
+        }
     }
 });
-
 
 // Show user initial amount of flags
 flagDiv.textContent = state.flagsRemaining;
 
-// mine placement are known
+// mine placement are known at this point
 export const playGame = (clickedCellLocationArr, boardArrParam) => {
     const objectRow = clickedCellLocationArr[0];
     const objectColumn = clickedCellLocationArr[1];
@@ -32,7 +36,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     // remove a flag from a flagged cell
     if (cellObject.isFlagged) {
         cellObject.isFlagged = false;
-    // update the DOM
+        // update the DOM
         domCell.classList.add('opacity');
         domCell.classList.remove('flagged');
         state.flagsRemaining++;
@@ -58,9 +62,6 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     } 
     else if (cellObject.numAdjMines === 0) {
         // update the DOM
-        // domCell.classList.remove('opacity');
-        // cellObject.isHidden = false;
-
         const domCellId = cellObject.id;
         const coordStringArr = domCellId.split(',');
         const coordNumberArr = coordStringArr.map(Number);
@@ -68,7 +69,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
 
         clearAdjCells(clickedCellArray, boardArrParam);
     } else {
-    // populate the DOM with the number
+        // populate the DOM with the number
         domCell.textContent = cellObject.numAdjMines;
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
@@ -118,13 +119,13 @@ function userWon(userWonBoolean, boardArrParam) {
 
     const userProfile = document.getElementById('profile-user-name');
     const currentUser = loadProfile();
-
+ 
     if (userWonBoolean) {
         userProfile.textContent = currentUser.user + ' you won!';
+        boardArrParam.forEach(rowObj => 
+            rowObj.forEach(cellObj =>
+                window.setTimeout(() => document.getElementById(cellObj.id).className = '', 1000)));
     } else {
         userProfile.textContent = currentUser.user + ' you lost!';
     }
 }
-
-
-
