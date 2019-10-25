@@ -42,12 +42,20 @@ span#profile-user-name {
 }
 
 #main-container div {
-  border: 1px white solid;
+  border: 1px whitesmoke solid;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 275%;
   font-weight: bolder;
+
+  text-shadow:
+  -1px -1px 0 #fff,
+  1px -1px 0 #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
+
+  transition: all 1s;
 }
 
 .flagged {
@@ -79,8 +87,4 @@ span#profile-user-name {
 
 .flag-post-click:after {
   content: url(../assets/bag-hand.png);
-}
-
-div {
-  transition: all 1s;
 }
