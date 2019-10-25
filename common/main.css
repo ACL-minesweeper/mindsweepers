@@ -1,13 +1,20 @@
+html {
+  display: flex;
+  justify-content: center;
+}
+
 body {
-  width: 80%;
+
+  width: 85%;
   border: 4px rgb(135, 193, 48) solid;
   border-radius: 4px;
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+
 header {
   margin-bottom: 50px;
-  padding: 3%;
+  padding: 25px;
   text-align: center;
   background: #83c441;
   color: white;
@@ -15,15 +22,11 @@ header {
   font-family: 'Baloo', cursive;
 }
 
-.logo-top img {
-  width: 20%;
-  height: 20%;
+.header-image {
+display: flex;
+justify-content: center;
 }
 
-.tress-and-dogs {
-  display: flex;
-  justify-content: space-between;
-}
 
 footer {
   font-size: 30px;

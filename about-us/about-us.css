@@ -1,60 +1,39 @@
-body {
-  width: 80%;
-}
-
-header {
-  padding: 2%;
-  text-align: center;
-  background: #83c441;
-  color: white;
-  font-size: 30px;
-  font-family: "Baloo", cursive;
-}
-header-img {
-  margin: -21px;
-}
-
-div.h1 {
-  display: flex;
-  justify-content: center;
-}
 
 p {
-  color: pink;
-  font-family: "Lato", sans-serif;
-  display: flex;
-  justify-content: center;
+  color: black;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  font-size: 0.5em;
+
 }
 
-main.main-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+.main-container {
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+grid-template-rows: 1fr 1fr;
+
 }
 
-.section.grid-images {
-  display: grid;
-}
-
-.box {
+div.box {
+  
   padding: 20px;
   border-radius: 10px;
-
   font-size: 40px;
 }
 
-.tress-and-dogs {
-  display: flex;
-  justify-content: space-between;
+h2 {
+
+  font-family: 'Baloo', cursive;
+  margin: 5px;
+
 }
 
-p {
-  font-size: 0.5em;
+img {
+  display: flex;
+  justify-content: center;
 }
 
 .back-to-home {
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   display: block;
   height: 54px;
   width: 238px;
@@ -70,8 +49,7 @@ p {
   text-align: center;
 }
 
-.start-btn:hover {
-  border: 2px solid #83c441;
-  background: white;
-  color: #83c441;
+#nav-buttons {
+  display: flex;
+  justify-content: center;
 }
