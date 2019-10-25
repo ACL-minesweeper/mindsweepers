@@ -99,6 +99,9 @@ function userWon(userWonBoolean, boardArrParam) {
 
             // prevent user from continuing game by removing the event listener for each cell
             divElement.removeEventListener('click', cellClick); 
+          //  if (userWonBoolean) {
+          //      divElement.className = '';
+          //  }
 
             // if the cell is a mine and the game is over 
             if (cell.isMine) {
@@ -121,6 +124,8 @@ function userWon(userWonBoolean, boardArrParam) {
 
     if (userWonBoolean) {
         userProfile.textContent = currentUser.user + ' you won!';
+        const background = document.getElementById('main-container');
+        background.innerHTML = '';
     } else {
         userProfile.textContent = currentUser.user + ' you lost!';
     }

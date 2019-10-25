@@ -19,5 +19,3 @@ export function makeBoardArray(numRows, numColumns) {
     }
     return board; 
 }
-
-// console.log(makeBoardArray(2, 2));
