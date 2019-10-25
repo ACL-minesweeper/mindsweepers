@@ -9,15 +9,19 @@ const flagDiv = document.getElementById('flag-info');
 flagDiv.classList.add('flag-pre-click');
 let userHasFlag = false;
 flagDiv.addEventListener('click', () => {
-    if (!state.firstClick){
-        if (userHasFlag) userHasFlag = false;
-        else if (!userHasFlag) userHasFlag = true;
-
-        flagDiv.classList.remove('flag-pre-click');
-        flagDiv.classList.add('flag-post-click');
+    if (!state.firstClick) {
+        if (!userHasFlag) {
+            userHasFlag = true;
+            flagDiv.classList.remove('flag-pre-click');
+            flagDiv.classList.add('flag-post-click');
+        }
+        else {
+            userHasFlag = false;
+            flagDiv.classList.remove('flag-post-click');
+            flagDiv.classList.add('flag-pre-click');
+        }
     }
 });
-
 
 // Show user initial amount of flags
 flagDiv.textContent = state.flagsRemaining;
@@ -58,9 +62,6 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     } 
     else if (cellObject.numAdjMines === 0) {
         // update the DOM
-        // domCell.classList.remove('opacity');
-        // cellObject.isHidden = false;
-
         const domCellId = cellObject.id;
         const coordStringArr = domCellId.split(',');
         const coordNumberArr = coordStringArr.map(Number);
@@ -68,7 +69,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
 
         clearAdjCells(clickedCellArray, boardArrParam);
     } else {
-    // populate the DOM with the number
+        // populate the DOM with the number
         domCell.textContent = cellObject.numAdjMines;
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
@@ -125,6 +126,3 @@ function userWon(userWonBoolean, boardArrParam) {
         userProfile.textContent = currentUser.user + ' you lost!';
     }
 }
-
-
-
