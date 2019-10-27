@@ -1,3 +1,5 @@
+import state from '../game/state.js';
+
 // this function returns an integer between 0 and n-1, where n is either the number of rows or the number of columns 
 export const generateRandomIndex = lengthOfArray => Math.floor(Math.random() * lengthOfArray);
 
@@ -19,10 +21,10 @@ export const getUser = () => {
 export const returnHomeIfNoUser = userParam => userParam === null && (window.location = '../');
 
 // determine if user has won
-export const isWin = (boardArrayParam, numFlagsLeft) => {
-    if (numFlagsLeft === 0){
+export const isWin = () => {
+    if (state.flagsRemaining === 0){
         let winning = true;
-        boardArrayParam.forEach(row => {
+        state.boardArray.forEach(row => {
             row.forEach(cell => {
                 if (!cell.isMine && cell.isHidden){
                     winning = false;
@@ -33,24 +35,24 @@ export const isWin = (boardArrayParam, numFlagsLeft) => {
     }
 };
 
-const checkValidRowIndex = (cellRowIndexParam, boardArrayParam) =>
-    cellRowIndexParam >= 0 && cellRowIndexParam < getRows(boardArrayParam);
+const checkValidRowIndex = (cellRowIndexParam) =>
+    cellRowIndexParam >= 0 && cellRowIndexParam < state.numRows;
 
-const checkValidColumnIndex = (cellColumnIndexParam, boardArrayParam) =>
-    cellColumnIndexParam >= 0 && cellColumnIndexParam < getColumns(boardArrayParam);
+const checkValidColumnIndex = (cellColumnIndexParam) =>
+    cellColumnIndexParam >= 0 && cellColumnIndexParam < state.numColumns;
 
-export const getValidAdjCells = (cellCoordinatePairArrayParam, boardArrayParam, includeSelfParam = false) => {
+export const getValidAdjCells = (cellArrayParam, includeSelfParam = false) => {
     const validAdjCells = [];
-    const cellRow = cellCoordinatePairArrayParam[0];
-    const cellColumn = cellCoordinatePairArrayParam[1];
+    const cellRow = cellArrayParam[0];
+    const cellColumn = cellArrayParam[1];
     for (let i = -1; i < 2; i++) {
         for (let j = -1; j < 2; j++) {
             // mark isItself false based on includeSelfParam if we want to include it in the returned array, i.e. when processing the first click
             const isItself = includeSelfParam ? false : (i === 0 && j === 0);
             const cellRowIndex = cellRow + i; 
             const cellColumnIndex = cellColumn + j;
-            const isValidRowIndex = checkValidRowIndex(cellRowIndex, boardArrayParam);
-            const isValidColumnIndex = checkValidColumnIndex(cellColumnIndex, boardArrayParam);
+            const isValidRowIndex = checkValidRowIndex(cellRowIndex, state.boardArray);
+            const isValidColumnIndex = checkValidColumnIndex(cellColumnIndex, state.boardArray);
             if (!isItself && isValidRowIndex && isValidColumnIndex) {
                 validAdjCells.push([cellRowIndex, cellColumnIndex]);
             }
@@ -59,8 +61,3 @@ export const getValidAdjCells = (cellCoordinatePairArrayParam, boardArrayParam, 
     return validAdjCells;
 };
 
-// used in test
-export const getRows = boardArray => boardArray.length;
-
-//used in test
-export const getColumns = boardArray => boardArray[0].length;
