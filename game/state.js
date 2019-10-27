@@ -4,7 +4,7 @@ const state = {
     numMines: 10, 
     flagsRemaining: 10, 
     userHasFlag: false, 
-    firstClick: true
+    firstClick: true,
 };
 
 export default state;

@@ -1,42 +1,25 @@
-// getRows function gets the number of rows 
-// one of the rules is that the board will always be rectangular
-
-export function getRows(boardArray) {
-    return boardArray.length;
-}
-
-export function getColumns(boardArray) {
-    const firstItem = boardArray[0];
-    return firstItem.length;
-}
-
 // this function returns an integer between 0 and n-1, where n is either the number of rows or the number of columns 
-export function generateRandomIndex(lengthOfArray) {
-    const integer = Math.floor(Math.random() * lengthOfArray);
-    return integer;
-}
+export const generateRandomIndex = lengthOfArray => Math.floor(Math.random() * lengthOfArray);
 
-export function saveUser(user) {
+// save user to localStorage
+export const saveUser = (user) => {
     const json = JSON.stringify(user);
     localStorage.setItem('user', json);
-}
+};
 
-export function getUser() {
+// get user from local storage
+export const getUser = () => {
     const json = localStorage.getItem('user');
     if (!json) return null;
     const user = JSON.parse(json);
     return user;
-}
+};
 
-// called after each click (after first click) to check if bomb was in clicked cell object
-export function isLoss(boardArrayParam, clickedCellCoordinatePairParam){
-    if (boardArrayParam[clickedCellCoordinatePairParam[0]][clickedCellCoordinatePairParam[1]].isMine){
-        return true;
-    }
-    else return false;   
-}
+// redirect to home page if user does not exist in local storage for some reason
+export const returnHomeIfNoUser = userParam => userParam === null && (window.location = '../');
 
-export function isWin(boardArrayParam, numFlagsLeft){
+// determine if user has won
+export const isWin = (boardArrayParam, numFlagsLeft) => {
     if (numFlagsLeft === 0){
         let winning = true;
         boardArrayParam.forEach(row => {
@@ -48,9 +31,35 @@ export function isWin(boardArrayParam, numFlagsLeft){
         });
         return winning;
     }
-}
+};
 
+const checkValidRowIndex = (cellRowIndexParam, boardArrayParam) =>
+    cellRowIndexParam >= 0 && cellRowIndexParam < getRows(boardArrayParam);
 
+const checkValidColumnIndex = (cellColumnIndexParam, boardArrayParam) =>
+    cellColumnIndexParam >= 0 && cellColumnIndexParam < getColumns(boardArrayParam);
 
+export const getValidAdjCells = (boardArrayParam, cellCoordinatePairArray) => {
+    const validAdjCells = [];
+    const cellRow = cellCoordinatePairArray[0];
+    const cellColumn = cellCoordinatePairArray[1];
+    for (let i = -1; i < 2; i++) {
+        for (let j = -1; j < 2; j++) {
+            const itIsItself = (i === 0 && j === 0);
+            const cellRowIndex = cellRow + i; 
+            const cellColumnIndex = cellColumn + j;
+            const isValidRowIndex = checkValidRowIndex(cellRowIndex, boardArrayParam);
+            const isValidColumnIndex = checkValidColumnIndex(cellColumnIndex, boardArrayParam);
+            if (!itIsItself && isValidRowIndex && isValidColumnIndex) {
+                validAdjCells.push(boardArrayParam[cellRowIndex][cellColumnIndex]);
+            }
+        }
+    }
+    return validAdjCells;
+};
 
+// used in test
+export const getRows = boardArray => boardArray.length;
 
+//used in test
+export const getColumns = boardArray => boardArray[0].length;

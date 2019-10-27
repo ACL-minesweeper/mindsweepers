@@ -1,5 +1,5 @@
 // IMPORT MODULES under test here:
-import { getRows, getColumns, isLoss, isWin } from '../common/utils.js';
+import { getRows, getColumns, isWin } from '../common/utils.js';
 import { makeBoardArray } from '../game/make-board-array.js';
 import giveBoardArrayMines from '../game/give-board-array-mines.js';
 import giveBoardNumAdjMines from '../game/give-board-numAdjMines.js';
@@ -45,14 +45,14 @@ test('isMine is changed to true for a mine placed on testBoard and a cell that i
     assert.deepEqual(expectedNotMine, resultNotMine);
 });
 
-test('numAdjcell is updated properly for 3 mines on a 3x3 board', function(assert) {
+test('numAdjcell is updated properly for 3 mines on a 4x3 board', function(assert) {
     //Arrange
     // Set up your parameters and expectations
     const testBoard = makeBoardArray(4, 3);
     const minesArray = [[0, 0], [2, 1], [3, 2]];
     const numAdjExpectedValue0 = 0;
     const numAdjExpectedValue1 = 1;
-    const numAdjExpectedValue2 = 2; 
+    const numAdjExpectedValue2 = 2;
     //Act 
     // Call the function you're testing and set the result to a const
     giveBoardArrayMines(testBoard, minesArray);
@@ -66,28 +66,6 @@ test('numAdjcell is updated properly for 3 mines on a 3x3 board', function(asser
     assert.equal(numAdjResultValue1, numAdjExpectedValue1);
     assert.equal(numAdjResultValue2, numAdjExpectedValue2);
 
-});
-
-test('isLoss returns true if user click is a mine and returns falsey if user click is not a mine', function(assert) {
-    //Arrange
-    // Set up your parameters and expectations
-    const testBoard = makeBoardArray(3, 3);
-    const minesArray = [[0, 0], [1, 1], [2, 2]];
-    giveBoardArrayMines(testBoard, minesArray);
-    const clickedCellWithMine = [0, 0];
-    const clickedCellNoMine = [0, 1];
-    const expectedWithMine = true;
-    const expectedNoMine = false;
-
-    //Act 
-    // Call the function you're testing and set the result to a const
-    const resultWithMine = isLoss(testBoard, clickedCellWithMine);
-    const resultNoMine = isLoss(testBoard, clickedCellNoMine);
-
-    //Assert
-    // Make assertions about what is expected valid result
-    assert.deepEqual(expectedWithMine, resultWithMine);
-    assert.deepEqual(expectedNoMine, resultNoMine);
 });
 
 test('isWin returns true when every cell that is not a mine is not hidden', function(assert) {

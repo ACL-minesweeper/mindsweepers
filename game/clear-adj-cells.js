@@ -1,4 +1,4 @@
-import { isValidRowIndexFunc, isValidColumnIndexFunc } from './give-board-numAdjMines.js';
+import { checkValidRowIndex, checkValidColumnIndex } from './utils.js';
 
 export const clearAdjCells = (cellArray, boardArrayParam) => {
     const cellRow = cellArray[0];
@@ -18,8 +18,8 @@ export const clearAdjCells = (cellArray, boardArrayParam) => {
             const itIsItself = (i === 0 && j === 0);
             const cellRowIndex = cellRow + i; 
             const cellColumnIndex = cellColumn + j;
-            const isValidRowIndex = isValidRowIndexFunc(cellRowIndex, boardArrayParam);
-            const isValidColumnIndex = isValidColumnIndexFunc(cellColumnIndex, boardArrayParam);
+            const isValidRowIndex = checkValidRowIndex(cellRowIndex, boardArrayParam);
+            const isValidColumnIndex = checkValidColumnIndex(cellColumnIndex, boardArrayParam);
             if (!itIsItself && isValidRowIndex && isValidColumnIndex && !cellObject.isFlagged) {
                 cellObject = boardArrayParam[cellRowIndex][cellColumnIndex];
                 
