@@ -21,18 +21,16 @@ flagDiv.addEventListener('click', () => {
         }
     }
 });
-// initialize flags remaining
+// initialize flags remaining and display to user
 state.initializeFlagsRemaining();
-
-// show user initial number of flags
 flagDiv.textContent = state.flagsRemaining;
 
-// mine placement are known at this point
-export const playGame = (clickedCellLocationArr, boardArrParam) => {
-    const objectRow = clickedCellLocationArr[0];
-    const objectColumn = clickedCellLocationArr[1];
-    const cellObject = boardArrParam[objectRow][objectColumn];
-    const clickedCellIdString = clickedCellLocationArr[0] + ',' + clickedCellLocationArr[1];
+// mine placements are known at this point
+export const playGame = () => {
+    const objectRow = state.clickedCellArray[0];
+    const objectColumn = state.clickedCellArray[1];
+    const cellObject = state.boardArray[objectRow][objectColumn];
+    const clickedCellIdString = state.clickedCellArray[0] + ',' + state.clickedCellArray[1];
     const domCell = document.getElementById(clickedCellIdString);
     // remove a flag from a flagged cell
     if (cellObject.isFlagged) {
@@ -59,7 +57,7 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
     }
     else if (cellObject.isMine) {
         // execute loss sequence
-        userWon(false, boardArrParam);
+        userWon(false, state.boardArray);
     } 
     else if (cellObject.numAdjMines === 0) {
         // update the DOM
@@ -68,16 +66,16 @@ export const playGame = (clickedCellLocationArr, boardArrParam) => {
         const coordNumberArr = coordStringArr.map(Number);
         const clickedCellArray = coordNumberArr;
 
-        clearAdjCells(clickedCellArray, boardArrParam);
+        clearAdjCells(clickedCellArray,);
     } else {
         // populate the DOM with the number
         domCell.textContent = cellObject.numAdjMines;
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
     }
-    if (isWin(boardArrParam, state.flagsRemaining)) {
+    if (isWin()) {
         // execute win sequence
-        userWon(true, boardArrParam);
+        userWon(true);
     }
 };
 
@@ -92,8 +90,8 @@ const updateUserStats = (userObjParam, isWinParam) => {
     saveUser(userObjParam);
 };
 
-function userWon(userWonBoolean, boardArrParam) {
-    boardArrParam.forEach(row => {
+function userWon(userWonBoolean) {
+    state.boardArray.forEach(row => {
         row.forEach(cell => {
             // get the div element corresponding to the cell object 
             const divId = cell.id; 
@@ -123,7 +121,7 @@ function userWon(userWonBoolean, boardArrParam) {
  
     if (userWonBoolean) {
         userProfile.textContent = currentUser.user + ' you won!';
-        boardArrParam.forEach(rowObj => 
+        state.boardArray.forEach(rowObj => 
             rowObj.forEach(cellObj =>
                 window.setTimeout(() => {
                     const thisDiv = document.getElementById(cellObj.id);

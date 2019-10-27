@@ -1,19 +1,20 @@
 import { generateRandomIndex } from '../common/utils.js';
 import { getValidAdjCells } from '../common/utils.js';
+import state from './state.js';
 
-export function getArrayOfMineCoordinates(stateParam, boardArrayParam, firstClickArrayParam) {
+export function getArrayOfMineCoordinates() {
     // initialize an empty array that we will push coordinate pairs into (coorcinate pairs will each be an array of two numbers)
     const arrayOfMineCoordinates = [];
 
     // avoid the the coordinate pair of the first click and the adjacent cells
     // so that first clicked has numAdjMines = 0
-    const invalidMineCoordinatesPairsArr = getInvalidMineCoordinatesBasedOnFirstClick(boardArrayParam, firstClickArrayParam);
+    const invalidMineCoordinatesPairsArr = getInvalidMineCoordinatesBasedOnFirstClick();
 
     //generate possible mine coordinates until the number of mine coordinates (set by numMines) is met
-    while (arrayOfMineCoordinates.length !== stateParam.numMines) {
+    while (arrayOfMineCoordinates.length !== state.numMines) {
     //make the random coordinates that we might use
-        const rowIndex = generateRandomIndex(stateParam.numRows);
-        const columnIndex = generateRandomIndex(stateParam.numColumns);
+        const rowIndex = generateRandomIndex(state.numRows);
+        const columnIndex = generateRandomIndex(state.numColumns);
         const potentialCoordinatePairArray = [rowIndex, columnIndex];
 
         // check for repeats of current mines already in the mine array
@@ -36,12 +37,10 @@ export function getArrayOfMineCoordinates(stateParam, boardArrayParam, firstClic
     return arrayOfMineCoordinates;
 }
 
-// goal: input coordinate of first click and boardArray
-// output: array of invalid mine coordinates, could be size 4-9
-const getInvalidMineCoordinatesBasedOnFirstClick = (boardArrayParam, firstClickArrayParam) => {
+// output an array of invalid mine coordinates, could be size 4-9
+const getInvalidMineCoordinatesBasedOnFirstClick = () => {
     const invalidMineCoordinateArr = [];
-
-    getValidAdjCells(firstClickArrayParam, boardArrayParam, true).forEach(validCell => {
+    getValidAdjCells(state.clickedCellArray, true).forEach(validCell => {
         const cellRowIndex = validCell[0];
         const cellColumnIndex = validCell[1];
         invalidMineCoordinateArr.push([cellRowIndex, cellColumnIndex]);
