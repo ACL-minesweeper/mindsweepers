@@ -22,8 +22,8 @@ header {
 }
 
 .header-image {
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 footer {
@@ -70,4 +70,3 @@ button:hover {
   background: white;
   color: #83c441;
   }
-

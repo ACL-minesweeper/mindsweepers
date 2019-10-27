@@ -1,7 +1,6 @@
 import state from './state.js';
 import { cellClick } from './game.js';
 import { isWin, getUser, saveUser } from '../common/utils.js';
-import loadProfile from '../common/load-profile.js';
 import { clearAdjCells } from './clear-adj-cells.js';
 
 // populate flag info header
@@ -120,7 +119,7 @@ function userWon(userWonBoolean, boardArrParam) {
     updateUserStats(userObj, userWonBoolean);
 
     const userProfile = document.getElementById('profile-user-name');
-    const currentUser = loadProfile();
+    const currentUser = getUser();
  
     if (userWonBoolean) {
         userProfile.textContent = currentUser.user + ' you won!';
