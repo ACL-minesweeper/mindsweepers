@@ -8,8 +8,8 @@ export const isValidColumnIndexFunc = (cellColumnIndexParam, boardArrayParam) =>
     return (cellColumnIndexParam >= 0 && cellColumnIndexParam < getColumns(boardArrayParam));
 };
 
-const giveBoardNumAdjMines = (boardArray, minesArray) => {
-    minesArray.forEach(mine => {
+const giveBoardNumAdjMines = (boardArrayParam, minesArrayParam) => {
+    minesArrayParam.forEach(mine => {
         const mineRow = mine[0]; 
         const mineColumn = mine[1]; 
         
@@ -19,10 +19,10 @@ const giveBoardNumAdjMines = (boardArray, minesArray) => {
                 const itIsItself = (i === 0 && j === 0);
                 const cellRowIndex = mineRow + i; 
                 const cellColumnIndex = mineColumn + j;
-                const isValidRowIndex = isValidRowIndexFunc(cellRowIndex, boardArray);
-                const isValidColumnIndex = isValidColumnIndexFunc(cellColumnIndex, boardArray);
+                const isValidRowIndex = isValidRowIndexFunc(cellRowIndex, boardArrayParam);
+                const isValidColumnIndex = isValidColumnIndexFunc(cellColumnIndex, boardArrayParam);
                 if (!itIsItself && isValidRowIndex && isValidColumnIndex) {
-                    boardArray[cellRowIndex][cellColumnIndex].numAdjMines++;
+                    boardArrayParam[cellRowIndex][cellColumnIndex].numAdjMines++;
                 }
             }
         }

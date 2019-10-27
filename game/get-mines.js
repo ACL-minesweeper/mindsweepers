@@ -1,21 +1,15 @@
 import { generateRandomIndex } from '../common/utils.js';
 import { isValidRowIndexFunc, isValidColumnIndexFunc } from './give-board-numAdjMines.js';
 
-export function getArrayOfMineCoordinates(
-    numMines,
-    numRows,
-    numColumns,
-    boardArray, // this will change testing
-    firstClickArray
-) {
+export function getArrayOfMineCoordinates(stateParam, boardArrayParam, firstClickArrayParam) {
   // initialize an empty array that we will push coordinate pairs into (coorcinate pairs will each be an array of two numbers)
     const arrayOfMineCoordinates = [];
 
   //generate possible mine coordinates until the number of mine coordinates (set by numMines) is met
-    while (arrayOfMineCoordinates.length !== numMines) {
+    while (arrayOfMineCoordinates.length !== stateParam.numMines) {
     //make the random coordinates that we might use
-        const rowIndex = generateRandomIndex(numRows);
-        const columnIndex = generateRandomIndex(numColumns);
+        const rowIndex = generateRandomIndex(stateParam.numRows);
+        const columnIndex = generateRandomIndex(stateParam.numColumns);
         const potentialCoordinatePairArray = [rowIndex, columnIndex];
 
     // check for repeats of current mines already in the mine array
@@ -25,7 +19,7 @@ export function getArrayOfMineCoordinates(
         );
     // avoid the the coordinate pair of the first click and the adjacent cells
     // so that first clicked has numAdjMines = 0
-        const invalidMineCoordinatesPairsArr = getInvalidMineCoordinatesBasedOnFirstClick(boardArray, firstClickArray);
+        const invalidMineCoordinatesPairsArr = getInvalidMineCoordinatesBasedOnFirstClick(boardArrayParam, firstClickArrayParam);
         const isNotFirstClickAreaArr =
         // if the randomly generated mine coordinate pair is found in the invalidMindCoordinatePairsArr
         // then ! and set equal to isNotFirstClickAreaArr

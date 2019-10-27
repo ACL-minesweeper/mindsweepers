@@ -12,16 +12,16 @@ const mainContainer = document.getElementById('main-container');
 const userProfile = document.getElementById('profile-user-name');
 const playAgainButton = document.getElementById('play-again-button');
 
-//updating DOM with user profile (in this case, just the user name)
+// update DOM with user profile (in this case, just the user name)
 const currentUser = loadProfile();
 userProfile.textContent = currentUser.user;
 
+// make blank conceptual board with numRows, numColumns, and an initialized cellObject in each cell
 let boardArray = makeBoardArray(state.numRows, state.numColumns);
 
-// always the cell currently clicked by user and will be updated anytime a user clicks a cell
+// cell currently clicked by user and will be updated on click
 let clickedCell = [];
 
-state.flagsRemaining = state.numMines;
 
 // sarah's function that we will use for the for loop
 const createCell = id => {
@@ -65,13 +65,9 @@ export const setBlankBoard = boardArrayParam =>
         row.forEach(cell =>
             createCell(cell.id)));
 
-function initializeDreamBoardState(boardArrayParam, clickedCell) {
+function initializeDreamBoardState(boardArrayParam, clickedCellParam) {
     const arrayOfMineCoordinates = getArrayOfMineCoordinates(
-        state.numMines,
-        state.numRows,
-        state.numColumns,
-        boardArrayParam,
-        clickedCell
+        state, boardArrayParam, clickedCellParam
     );
     giveBoardArrayMines(boardArrayParam, arrayOfMineCoordinates);
     giveBoardNumAdjMines(boardArrayParam, arrayOfMineCoordinates);
@@ -97,6 +93,5 @@ const playAgain = (mainContainerParam) => {
     setBlankBoard(freshBoard);
     boardArray = freshBoard; 
 };
-
 
 playAgainButton.addEventListener('click', () => playAgain(mainContainer));

@@ -2,9 +2,12 @@ const state = {
     numRows: 8, 
     numColumns: 8, 
     numMines: 10, 
-    flagsRemaining: 10, 
     userHasFlag: false, 
-    firstClick: true
+    firstClick: true,
+
+    initializeFlagsRemaining() {
+        this.flagsRemaining = this.numMines;
+    }
 };
 
 export default state;
