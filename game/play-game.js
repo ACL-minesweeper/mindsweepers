@@ -4,7 +4,7 @@ import { isWin, getUser, saveUser } from '../common/utils.js';
 import loadProfile from '../common/load-profile.js';
 import { clearAdjCells } from './clear-adj-cells.js';
 
-
+// populate flag info header
 const flagDiv = document.getElementById('flag-info');
 flagDiv.classList.add('flag-pre-click');
 let userHasFlag = false;
@@ -22,8 +22,10 @@ flagDiv.addEventListener('click', () => {
         }
     }
 });
+// initialize flags remaining
+state.initializeFlagsRemaining();
 
-// Show user initial amount of flags
+// show user initial number of flags
 flagDiv.textContent = state.flagsRemaining;
 
 // mine placement are known at this point

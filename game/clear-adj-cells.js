@@ -1,8 +1,8 @@
 import { isValidRowIndexFunc, isValidColumnIndexFunc } from './give-board-numAdjMines.js';
 
-export const clearAdjCells = (cellArray, boardArrayParam) => {
-    const cellRow = cellArray[0];
-    const cellColumn = cellArray[1];
+export const clearAdjCells = (cellArrayParam, boardArrayParam) => {
+    const cellRow = cellArrayParam[0];
+    const cellColumn = cellArrayParam[1];
     // clear this cell
     let cellObject = boardArrayParam[cellRow][cellColumn];
     cellObject.isHidden = false;
@@ -10,7 +10,7 @@ export const clearAdjCells = (cellArray, boardArrayParam) => {
     domObject.classList.remove('opacity');
     
     // record the fact that this cell has been operated on as the cellArray in a call of this function
-    cellObject.clearAdjCells = true;
+    cellObject.clearAdjCellsCalled = true;
 
     // iterate around this cell
     for (let i = -1; i < 2; i++) {
@@ -34,7 +34,7 @@ export const clearAdjCells = (cellArray, boardArrayParam) => {
                 domCell.classList.remove('opacity');
                 
                 // potentially recurse
-                if (!cellObject.clearAdjCells && cellObject.numAdjMines === 0) {
+                if (!cellObject.clearAdjCellsCalled && cellObject.numAdjMines === 0) {
                     clearAdjCells([cellRowIndex, cellColumnIndex], boardArrayParam);
                 }
             }
