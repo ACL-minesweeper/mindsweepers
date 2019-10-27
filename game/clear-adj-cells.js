@@ -1,8 +1,8 @@
-import { checkValidRowIndex, checkValidColumnIndex } from './utils.js';
+import { getValidAdjCells } from '../common/utils.js';
 
-export const clearAdjCells = (cellArray, boardArrayParam) => {
-    const cellRow = cellArray[0];
-    const cellColumn = cellArray[1];
+export const clearAdjCells = (cellArrayParam, boardArrayParam) => {
+    const cellRow = cellArrayParam[0];
+    const cellColumn = cellArrayParam[1];
     // clear this cell
     let cellObject = boardArrayParam[cellRow][cellColumn];
     cellObject.isHidden = false;
@@ -10,34 +10,29 @@ export const clearAdjCells = (cellArray, boardArrayParam) => {
     domObject.classList.remove('opacity');
     
     // record the fact that this cell has been operated on as the cellArray in a call of this function
-    cellObject.clearAdjCells = true;
+    cellObject.clearAdjCellsCalled = true;
 
     // iterate around this cell
-    for (let i = -1; i < 2; i++) {
-        for (let j = -1; j < 2; j++) {
-            const itIsItself = (i === 0 && j === 0);
-            const cellRowIndex = cellRow + i; 
-            const cellColumnIndex = cellColumn + j;
-            const isValidRowIndex = checkValidRowIndex(cellRowIndex, boardArrayParam);
-            const isValidColumnIndex = checkValidColumnIndex(cellColumnIndex, boardArrayParam);
-            if (!itIsItself && isValidRowIndex && isValidColumnIndex && !cellObject.isFlagged) {
-                cellObject = boardArrayParam[cellRowIndex][cellColumnIndex];
-                
-                // get DOM cell div
-                const domCell = document.getElementById(cellObject.id);
+    getValidAdjCells(cellArrayParam, boardArrayParam).forEach(validCell => {
+        const cellRowIndex = validCell[0];
+        const cellColumnIndex = validCell[1];
+        if (!cellObject.isFlagged) {
+            cellObject = boardArrayParam[cellRowIndex][cellColumnIndex];
+            
+            // get DOM cell div
+            const domCell = document.getElementById(cellObject.id);
 
-                // if numbered cell:
-                if (cellObject.numAdjMines > 0)
-                    domCell.textContent = cellObject.numAdjMines;
-                
-                cellObject.isHidden = false;
-                domCell.classList.remove('opacity');
-                
-                // potentially recurse
-                if (!cellObject.clearAdjCells && cellObject.numAdjMines === 0) {
-                    clearAdjCells([cellRowIndex, cellColumnIndex], boardArrayParam);
-                }
+            // if numbered cell:
+            if (cellObject.numAdjMines > 0)
+                domCell.textContent = cellObject.numAdjMines;
+            
+            cellObject.isHidden = false;
+            domCell.classList.remove('opacity');
+            
+            // potentially recurse
+            if (!cellObject.clearAdjCellsCalled && cellObject.numAdjMines === 0) {
+                clearAdjCells([cellRowIndex, cellColumnIndex], boardArrayParam);
             }
         }
-    }
+    });
 };

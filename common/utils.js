@@ -39,19 +39,20 @@ const checkValidRowIndex = (cellRowIndexParam, boardArrayParam) =>
 const checkValidColumnIndex = (cellColumnIndexParam, boardArrayParam) =>
     cellColumnIndexParam >= 0 && cellColumnIndexParam < getColumns(boardArrayParam);
 
-export const getValidAdjCells = (boardArrayParam, cellCoordinatePairArray) => {
+export const getValidAdjCells = (cellCoordinatePairArrayParam, boardArrayParam, includeSelfParam = false) => {
     const validAdjCells = [];
-    const cellRow = cellCoordinatePairArray[0];
-    const cellColumn = cellCoordinatePairArray[1];
+    const cellRow = cellCoordinatePairArrayParam[0];
+    const cellColumn = cellCoordinatePairArrayParam[1];
     for (let i = -1; i < 2; i++) {
         for (let j = -1; j < 2; j++) {
-            const itIsItself = (i === 0 && j === 0);
+            // mark isItself false based on includeSelfParam if we want to include it in the returned array, i.e. when processing the first click
+            const isItself = includeSelfParam ? false : (i === 0 && j === 0);
             const cellRowIndex = cellRow + i; 
             const cellColumnIndex = cellColumn + j;
             const isValidRowIndex = checkValidRowIndex(cellRowIndex, boardArrayParam);
             const isValidColumnIndex = checkValidColumnIndex(cellColumnIndex, boardArrayParam);
-            if (!itIsItself && isValidRowIndex && isValidColumnIndex) {
-                validAdjCells.push(boardArrayParam[cellRowIndex][cellColumnIndex]);
+            if (!isItself && isValidRowIndex && isValidColumnIndex) {
+                validAdjCells.push([cellRowIndex, cellColumnIndex]);
             }
         }
     }

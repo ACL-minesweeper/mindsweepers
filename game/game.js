@@ -26,9 +26,7 @@ const setBlankBoard = boardArrayParam =>
 
 const initializeDreamBoardState = (boardArrayParam, clickedCellParam) => {
     const arrayOfMineCoordinates = getArrayOfMineCoordinates(
-        state.numMines,
-        state.numRows,
-        state.numColumns,
+        state,
         boardArrayParam,
         clickedCellParam
     );
@@ -70,7 +68,7 @@ const createCell = id => {
     newDiv.addEventListener('click', cellClick);
 };
 
-let boardArray = makeBoardArray(state.numRows, state.numColumns);;
+let boardArray = makeBoardArray(state.numRows, state.numColumns);
 setBlankBoard(boardArray);
 
 state.flagsRemaining = state.numMines;
