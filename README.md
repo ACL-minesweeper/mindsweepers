@@ -76,7 +76,7 @@ generateBoard() --> randomlyPlaceMines()
 - slack for communication
 - work in class as much as possible!
 - after MVP we can all review code
-- a couple check ins as a whole group / day
+- a couple check-ins as a whole group / day
 - you can work at home alone on something you've already committed to working on
 -use a whiteboard to document the file scaffolding
 -when naming functions/ parameters please use data types in the names!
@@ -84,7 +84,7 @@ generateBoard() --> randomlyPlaceMines()
 -conflict--> keep it between you and the person you feel conflict with. If you cannot resolve it one-on-one then let the group know that you're going to have a discussion with the instructor
 
 ### Change Log
-#### Version 1.0.0
+#### Version 1.0.2
 
 Copyright 2019 Team Mindsweeper
 

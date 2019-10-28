@@ -127,6 +127,7 @@ function userWon(userWonBoolean) {
                     const thisDiv = document.getElementById(cellObj.id);
                     thisDiv.className = '';
                     thisDiv.textContent = '';
+                    thisDiv.innerHTML = '';
                 }, 1000)));
         const theMainContainer = document.getElementById('main-container');
         window.setTimeout(() => 
