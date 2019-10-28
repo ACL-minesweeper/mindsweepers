@@ -56,7 +56,7 @@ const playAgain = (mainContainerParam) => {
     // reinitialize firstClick for user
     state.firstClick = true;
     // reset flags to full count which matches the number of mines
-    state.initializeFlagsRemaining;
+    state.initializeFlagsRemaining();
     state.userHasFlag = false; 
     const flagDiv = document.getElementById('flag-info');
     flagDiv.textContent = state.flagsRemaining;
