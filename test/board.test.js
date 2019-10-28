@@ -86,7 +86,7 @@ test('when giveBoardArrayMines is run,  isMine property stays false for cells th
     assert.deepEqual(expectedNotMine, resultNotMine);
 });
 
-test('numAdjcell is updated properly for 3 mines on a 8x8 board', function(assert) {
+test('numAdjcell is updated properly for 4 mines on a 8x8 board', function(assert) {
     //Arrange
     // Set up your parameters and expectations
     state.initializeBlankBoardArray();
@@ -94,6 +94,7 @@ test('numAdjcell is updated properly for 3 mines on a 8x8 board', function(asser
     const numAdjExpectedValue0 = 0;
     const numAdjExpectedValue1 = 1;
     const numAdjExpectedValue2 = 2;
+    const numAdjExpectedValueonMine1 = 1;
     //Act 
     // Call the function you're testing and set the result to a const
     giveBoardArrayMines(minesArray, state);
@@ -101,12 +102,13 @@ test('numAdjcell is updated properly for 3 mines on a 8x8 board', function(asser
     const numAdjResultValue0 = state.boardArray[0][2].numAdjMines;
     const numAdjResultValue1 = state.boardArray[3][0].numAdjMines;
     const numAdjResultValue2 = state.boardArray[1][0].numAdjMines; 
+    const numAdjResultValueonMine1 = state.boardArray[3][2].numAdjMines;
     //Assert
     // Make assertions about what is expected valid result
     assert.equal(numAdjResultValue0, numAdjExpectedValue0);
     assert.equal(numAdjResultValue1, numAdjExpectedValue1);
     assert.equal(numAdjResultValue2, numAdjExpectedValue2);
-
+    assert.equal(numAdjResultValueonMine1, numAdjExpectedValueonMine1);
 });
 
 test('isWin returns true when every cell that is not a mine is not hidden', function(assert) {
