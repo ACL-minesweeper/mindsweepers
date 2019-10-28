@@ -1,6 +1,4 @@
-// this function takes the board array (which is an array of an array of objects)
-// and the mines array (which is a array of coordinate pair arrays)
-// and updates the one key/value pair in the object called isMine to true when there is a mine at that coordinate pair 
+// updates state boardArray with randomly generated mines
 const giveBoardArrayMines = (minesArrayParam, stateParam) => {
     minesArrayParam.forEach(mine => {
         const mineRowCoordinate = mine[0];

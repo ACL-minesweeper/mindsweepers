@@ -3,7 +3,7 @@ import { getValidAdjCells } from '../common/utils.js';
 import state from './state.js';
 
 export function getArrayOfMineCoordinates() {
-    // initialize an empty array that we will push coordinate pairs into (coorcinate pairs will each be an array of two numbers)
+    // initialize an empty array to push mine coordinates
     const arrayOfMineCoordinates = [];
 
     // avoid the the coordinate pair of the first click and the adjacent cells
