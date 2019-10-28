@@ -1,43 +1,39 @@
-import { isValidRowIndexFunc, isValidColumnIndexFunc } from './give-board-numAdjMines.js';
+import { getValidAdjCells } from '../common/utils.js';
+import state from './state.js';
 
-export const clearAdjCells = (cellArray, boardArrayParam) => {
-    const cellRow = cellArray[0];
-    const cellColumn = cellArray[1];
+export const clearAdjCells = (cellArrayParam) => {
+    const cellRow = cellArrayParam[0];
+    const cellColumn = cellArrayParam[1];
     // clear this cell
-    let cellObject = boardArrayParam[cellRow][cellColumn];
+    let cellObject = state.boardArray[cellRow][cellColumn];
     cellObject.isHidden = false;
     const domObject = document.getElementById(cellObject.id);
     domObject.classList.remove('opacity');
     
     // record the fact that this cell has been operated on as the cellArray in a call of this function
-    cellObject.clearAdjCells = true;
+    cellObject.clearAdjCellsCalled = true;
 
     // iterate around this cell
-    for (let i = -1; i < 2; i++) {
-        for (let j = -1; j < 2; j++) {
-            const itIsItself = (i === 0 && j === 0);
-            const cellRowIndex = cellRow + i; 
-            const cellColumnIndex = cellColumn + j;
-            const isValidRowIndex = isValidRowIndexFunc(cellRowIndex, boardArrayParam);
-            const isValidColumnIndex = isValidColumnIndexFunc(cellColumnIndex, boardArrayParam);
-            if (!itIsItself && isValidRowIndex && isValidColumnIndex && !cellObject.isFlagged) {
-                cellObject = boardArrayParam[cellRowIndex][cellColumnIndex];
-                
-                // get DOM cell div
-                const domCell = document.getElementById(cellObject.id);
+    getValidAdjCells(cellArrayParam).forEach(validCell => {
+        const cellRowIndex = validCell[0];
+        const cellColumnIndex = validCell[1];
+        if (!cellObject.isFlagged) {
+            cellObject = state.boardArray[cellRowIndex][cellColumnIndex];
+            
+            // get DOM cell div
+            const domCell = document.getElementById(cellObject.id);
 
-                // if numbered cell:
-                if (cellObject.numAdjMines > 0)
-                    domCell.textContent = cellObject.numAdjMines;
-                
-                cellObject.isHidden = false;
-                domCell.classList.remove('opacity');
-                
-                // potentially recurse
-                if (!cellObject.clearAdjCells && cellObject.numAdjMines === 0) {
-                    clearAdjCells([cellRowIndex, cellColumnIndex], boardArrayParam);
-                }
+            // if numbered cell:
+            if (cellObject.numAdjMines > 0)
+                domCell.textContent = cellObject.numAdjMines;
+            
+            cellObject.isHidden = false;
+            domCell.classList.remove('opacity');
+            
+            // potentially recurse
+            if (!cellObject.clearAdjCellsCalled && cellObject.numAdjMines === 0) {
+                clearAdjCells([cellRowIndex, cellColumnIndex]);
             }
         }
-    }
+    });
 };
