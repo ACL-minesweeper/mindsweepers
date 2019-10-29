@@ -60,6 +60,7 @@ const playAgain = (mainContainerParam) => {
     state.userHasFlag = false; 
     const flagDiv = document.getElementById('flag-info');
     flagDiv.textContent = state.flagsRemaining;
+    flagDiv.className = 'flag-pre-click';
     userProfile.textContent = currentUser.user;
     // create a brand new conceptual board
     state.initializeBlankBoardArray();
