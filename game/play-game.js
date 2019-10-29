@@ -136,16 +136,7 @@ function userWon(userWonBoolean) {
                 }, divClearDelay);
             }));
         const theMainContainer = document.getElementById('main-container');
-        const winText = document.createElement('div');
-        window.setTimeout(() => {
-            theMainContainer.innerHTML = '';
-            theMainContainer.appendChild(winText);
-            winText.textContent = '';
-            winText.id = 'win-message';
-        }, 2560);
-        window.setTimeout(() => {
-            winText.className = 'win-grow';
-        }, 4560);
+        window.setTimeout(() => theMainContainer.innerHTML = '', 2560);
     } else {
         userProfile.textContent = currentUser.user + ' you lost!';
     }
