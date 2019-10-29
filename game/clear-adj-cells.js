@@ -17,6 +17,7 @@ export const clearAdjCells = (cellArrayParam) => {
     getValidAdjCells(cellArrayParam).forEach(validCell => {
         const cellRowIndex = validCell[0];
         const cellColumnIndex = validCell[1];
+        cellObject = state.boardArray[cellRowIndex][cellColumnIndex];
         if (!cellObject.isFlagged) {
             cellObject = state.boardArray[cellRowIndex][cellColumnIndex];
             
