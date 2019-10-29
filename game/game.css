@@ -88,3 +88,21 @@ span#profile-user-name {
 .flag-post-click:after {
   content: url(../assets/bag-hand.png);
 }
+
+.end-win-div{
+  background-color: whitesmoke;
+}
+
+#win-message {
+  display: flex;
+  border: none;
+  margin: 40% auto;
+  width: 20%;
+  height: 20%;
+}
+
+.win-grow {
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
+}

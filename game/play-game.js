@@ -35,43 +35,46 @@ export const playGame = () => {
     // remove a flag from a flagged cell
     if (cellObject.isFlagged) {
         cellObject.isFlagged = false;
+        state.flagsRemaining++;
         // update the DOM
         domCell.classList.add('opacity');
         domCell.classList.remove('flagged');
-        state.flagsRemaining++;
         flagDiv.textContent = state.flagsRemaining;
-    } 
+    }
     // if the user grabbed a flag
     else if (userHasFlag) {
         if (!cellObject.isFlagged && cellObject.isHidden) {
+            cellObject.isFlagged = true;
+            state.flagsRemaining--;
+            userHasFlag = false;
             // then update the DOM
             domCell.classList.remove('opacity');
             domCell.classList.add('flagged');
             flagDiv.classList.remove('flag-post-click');
             flagDiv.classList.add('flag-pre-click');
-            state.flagsRemaining--;
             flagDiv.textContent = state.flagsRemaining;
-            cellObject.isFlagged = true;
-            userHasFlag = false;
         }
     }
+    // if the user clicks a mine
     else if (cellObject.isMine) {
         // execute loss sequence
         userWon(false, state.boardArray);
-    } 
+    }
+    // if the user clicks a cell with adjacent mines
+    else if (cellObject.numAdjMines > 0) {
+        // populate the DOM with the number
+        domCell.textContent = cellObject.numAdjMines;
+        domCell.classList.remove('opacity');
+        cellObject.isHidden = false;
+    }
+    // if the user clicks an empty cell
     else if (cellObject.numAdjMines === 0) {
         // update the DOM
         const domCellId = cellObject.id;
         const coordStringArr = domCellId.split(',');
         const coordNumberArr = coordStringArr.map(Number);
         const clickedCellArray = coordNumberArr;
-
-        clearAdjCells(clickedCellArray,);
-    } else {
-        // populate the DOM with the number
-        domCell.textContent = cellObject.numAdjMines;
-        domCell.classList.remove('opacity');
-        cellObject.isHidden = false;
+        clearAdjCells(clickedCellArray);
     }
     if (isWin()) {
         // execute win sequence
@@ -94,11 +97,11 @@ function userWon(userWonBoolean) {
     state.boardArray.forEach(row => {
         row.forEach(cell => {
             // get the div element corresponding to the cell object 
-            const divId = cell.id; 
-            const divElement = document.getElementById(divId); 
+            const divId = cell.id;
+            const divElement = document.getElementById(divId);
 
             // prevent user from continuing game by removing the event listener for each cell
-            divElement.removeEventListener('click', cellClick); 
+            divElement.removeEventListener('click', cellClick);
 
             // if the cell is a mine and the game is over 
             if (cell.isMine) {
@@ -112,26 +115,37 @@ function userWon(userWonBoolean) {
 
     //update local storage for win/loss count on the user object
     //get user object from local storage
-    const userObj = getUser(); 
+    const userObj = getUser();
     //update win/loss count and save user object back to local storage
     updateUserStats(userObj, userWonBoolean);
 
     const userProfile = document.getElementById('profile-user-name');
     const currentUser = getUser();
- 
+
     if (userWonBoolean) {
         userProfile.textContent = currentUser.user + ' you won!';
-        state.boardArray.forEach(rowObj => 
-            rowObj.forEach(cellObj =>
+        state.boardArray.forEach((rowObj, i) =>
+            rowObj.forEach((cellObj, j) => {
+                const divClearDelay = 40 + 40 * i * j;
+                const thisDiv = document.getElementById(cellObj.id);
+                thisDiv.className = 'end-win-div';
                 window.setTimeout(() => {
-                    const thisDiv = document.getElementById(cellObj.id);
                     thisDiv.className = '';
                     thisDiv.textContent = '';
                     thisDiv.innerHTML = '';
-                }, 1000)));
+                }, divClearDelay);
+            }));
         const theMainContainer = document.getElementById('main-container');
-        window.setTimeout(() => 
-            theMainContainer.innerHTML = '', 1000);
+        const winText = document.createElement('div');
+        window.setTimeout(() => {
+            theMainContainer.innerHTML = '';
+            theMainContainer.appendChild(winText);
+            winText.textContent = '';
+            winText.id = 'win-message';
+        }, 2560);
+        window.setTimeout(() => {
+            winText.className = 'win-grow';
+        }, 4560);
     } else {
         userProfile.textContent = currentUser.user + ' you lost!';
     }
