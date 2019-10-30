@@ -57,7 +57,7 @@ const playAgain = (mainContainerParam) => {
     state.firstClick = true;
     // reset flags to full count which matches the number of mines
     state.initializeFlagsRemaining();
-    state.userHasFlag = false; 
+    state.userHasFlag = false;
     const flagDiv = document.getElementById('flag-info');
     flagDiv.textContent = state.flagsRemaining;
     flagDiv.className = 'flag-pre-click';
@@ -67,5 +67,5 @@ const playAgain = (mainContainerParam) => {
     // create a brand new DOM board
     setBlankBoard(state.boardArray);
 };
-
+// nice anonymous function--cool solution for resetting the board!
 playAgainButton.addEventListener('click', () => playAgain(mainContainer));

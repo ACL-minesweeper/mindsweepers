@@ -30,6 +30,7 @@ export const playGame = () => {
     const objectRow = state.clickedCellArray[0];
     const objectColumn = state.clickedCellArray[1];
     const cellObject = state.boardArray[objectRow][objectColumn];
+    // seems like it could be `${state.clickedCellArray[0]},${state.clickedCellArray[1]}`
     const clickedCellIdString = state.clickedCellArray[0] + ',' + state.clickedCellArray[1];
     const domCell = document.getElementById(clickedCellIdString);
     // remove a flag from a flagged cell
