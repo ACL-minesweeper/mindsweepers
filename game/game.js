@@ -1,5 +1,6 @@
 import state from './state.js';
 import './board-specs.js';
+import { boardSpecs } from './board-specs.js';
 import { playGame } from './play-game.js';
 import { clearAdjCells } from './clear-adj-cells.js';
 import { getUser, returnHomeIfNoUser } from '../common/utils.js';
@@ -15,6 +16,10 @@ const currentUser = getUser();
 returnHomeIfNoUser(currentUser);
 // prevent console errors
 if (currentUser) userProfile.textContent = currentUser.user;
+
+const boardDimension = boardSpecs.boardDimension[localStorage.getItem('board-size')];
+mainContainer.style.setProperty('--numRows', boardDimension);
+mainContainer.style.setProperty('--numColumns', boardDimension);
 
 const setBlankBoard = () => {
     state.boardArray.forEach(row =>
@@ -67,7 +72,6 @@ const playAgain = (mainContainerParam) => {
     state.firstClick = true;
     // reset flags to full count which matches the number of mines
     state.initializeFlagsRemaining();
-    console.log(state, 'on play again');
     state.userHasFlag = false; 
     const flagDiv = document.getElementById('flag-info');
     flagDiv.textContent = state.flagsRemaining;

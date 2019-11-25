@@ -6,8 +6,8 @@
   display: grid;
   width: 100vw;
   height: 100vw;
-  grid-template-rows: repeat(8, 1fr);
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(var(--numRows), 1fr);
+  grid-template-columns: repeat(var(--numColumns), 1fr);
   border: white 1px solid;
 }
 

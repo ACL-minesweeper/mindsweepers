@@ -2,7 +2,6 @@ import state from './state.js';
 import { cellClick } from './game.js';
 import { isWin, getUser, saveUser } from '../common/utils.js';
 import { clearAdjCells } from './clear-adj-cells.js';
-console.log(JSON.stringify(state), 'in play-game');
 // populate flag info header
 const flagDiv = document.getElementById('flag-info');
 flagDiv.classList.add('flag-pre-click');
