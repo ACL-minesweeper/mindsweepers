@@ -65,6 +65,7 @@ div#boardgame-header {
 .flagged {
   background-image: url("../assets/placeholder-flag.png");
   background-repeat: none;
+  background-size: cover;
 }
 
 .opacity {
@@ -73,6 +74,7 @@ div#boardgame-header {
 
 .mine {
   background-image: url("../assets/bomb.png");
+  background-size: cover;
 }
 
 .bag-hand {
