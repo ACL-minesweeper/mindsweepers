@@ -3,12 +3,12 @@ import giveBoardArrayMines from './give-board-array-mines.js';
 import giveBoardNumAdjMines from './give-board-numAdjMines.js';
 
 const state = {
-    numRows: 8, 
-    numColumns: 8, 
-    numMines: 10, 
     userHasFlag: false, 
     firstClick: true,
     clearAdjCellsCalled: false,
+    //numRows: 8, 
+    //numColumns: 8, 
+    //numMines: 10, 
     // clickedCellArray: [],
     // flagsRemaining: num,
     // boardArray: [[{}],[{}],...],

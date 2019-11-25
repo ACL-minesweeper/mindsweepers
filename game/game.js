@@ -47,6 +47,7 @@ const createCell = id => {
 };
 // initialize blank conceptual board, initialize flagsRemaining, and setup board for first click
 state.initializeBlankBoardArray();
+console.log(state);
 state.initializeFlagsRemaining();
 setBlankBoard();
 
