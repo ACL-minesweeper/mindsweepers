@@ -1,17 +1,24 @@
 
 #main-container {
-  margin: auto;
+
   background-image: url("../assets/board-bg.png");
   background-size: cover;
   display: grid;
-  width: 600px;
-  height: 600px;
+  width: 100vw;
+  height: 100vw;
   grid-template-rows: repeat(8, 1fr);
   grid-template-columns: repeat(8, 1fr);
   border: white 1px solid;
 }
 
-#flag-info {
+.board-container {
+  border: 1px rgb(135, 193, 48) solid;
+  border-radius: 4px;
+  margin-top: 25px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+/* #flag-info {
   font-size: 4em;
   font-weight: bolder;
   display: flex;
@@ -21,23 +28,20 @@
 #bag {
   padding-right: 1px;
   padding-left: 8px;
-}
+} */
 
-body #boardgame-header {
-  margin: auto;
-}
 
-span#profile-user-name {
+/* span#profile-user-name {
   font-size: 3em;
   margin-left: 15px;
   font-weight: bold;
-}
+} */
 
-#boardgame-header {
+div#boardgame-header {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 600px;
   background-color: #83c441;
 }
 
@@ -46,7 +50,7 @@ span#profile-user-name {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 275%;
+  font-size: 100%;
   font-weight: bolder;
 
   text-shadow:
@@ -78,7 +82,7 @@ span#profile-user-name {
 .buttons {
   display: flex;
   justify-content: center;
-  padding: 50px;
+
 }
 
 .flag-pre-click:after {
@@ -105,4 +109,10 @@ span#profile-user-name {
   -webkit-transform: scale(1.5);
   -ms-transform: scale(1.5);
   transform: scale(1.5);
+}
+
+@media only screen and (max-width: 600px) {
+  .board-container {
+    width: 100%;
+  }
 }
