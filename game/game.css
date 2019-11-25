@@ -18,8 +18,8 @@
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-#flag-info {
-  font-size: 4em;
+/* #flag-info {
+  font-size: 2em;
   font-weight: bolder;
   display: flex;
   padding: 10px;
@@ -32,10 +32,10 @@
 
 
 span#profile-user-name {
-  font-size: 3em;
+  font-size: 2em;
   margin-left: 15px;
   font-weight: bold;
-}
+} */
 
 div#boardgame-header {
   width: 100%;
@@ -113,14 +113,14 @@ div#boardgame-header {
 }
 
 @media only screen and (max-width: 600px) {
-  .board-container {
-    width: 100%;
+  #main-container {
+    width: 100vw;
+    height: 100vw;
   }
 }
 
 @media only screen and (min-width: 601px) {
   body.wrapper {
     width: 960px;
-
   }
 }

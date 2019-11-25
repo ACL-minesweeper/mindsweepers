@@ -51,14 +51,14 @@ a:active {
 button {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   align-self: center;
-  height: 64px;
+
 
   border: 2px solid white;
   background: #83c441;
   border-radius: 4px;
   letter-spacing: 2px;
   color: white;
-  font-size: 22px;
+  font-size: 1em;
   text-align: center;
 }
   
