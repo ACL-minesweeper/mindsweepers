@@ -7,6 +7,7 @@ import { getUser, returnHomeIfNoUser } from '../common/utils.js';
 // get DOM elements
 const mainContainer = document.getElementById('main-container');
 const userProfile = document.getElementById('profile-user-name');
+const timerDiv = document.getElementById('timer');
 const playAgainButton = document.getElementById('play-again-button');
 
 //updating DOM with user profile (in this case, just the user name)
@@ -15,15 +16,20 @@ returnHomeIfNoUser(currentUser);
 // prevent console errors
 if (currentUser) userProfile.textContent = currentUser.user;
 
-
-
 const setBlankBoard = () => {
     state.boardArray.forEach(row =>
         row.forEach(cell =>
             createCell(cell.id)));
 };
+
+const incrementTimeDiv = timerInterval => {
+    const currentTime = +timerDiv.textContent;
+    timerDiv.textContent = (currentTime + 1).toString().padStart(3, '0');
+    if (currentTime >= 998) clearInterval(timerInterval);
+};
+
 // handles user click if firstClick and otherwise
-export const cellClick = (event) => {
+export const cellClick = event => {
     state.updateClickedCellArray(event.target.id);
     if (state.firstClick) {
         // after the first click, board objects are updated with mines and numAdjines   
@@ -33,6 +39,7 @@ export const cellClick = (event) => {
         state.boardArray[state.clickedCellArray[0]][state.clickedCellArray[1]].isHidden = false;
         //state.updateClickedCellArray(firstCell.id);
         clearAdjCells(state.clickedCellArray);
+        const timerInterval = setInterval(() => incrementTimeDiv(timerInterval), 1000);
     } else {
         playGame();
     }
