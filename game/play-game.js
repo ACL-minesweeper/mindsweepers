@@ -2,7 +2,7 @@ import state from './state.js';
 import { cellClick } from './game.js';
 import { isWin, getUser, saveUser } from '../common/utils.js';
 import { clearAdjCells } from './clear-adj-cells.js';
-
+console.log(JSON.stringify(state), 'in play-game');
 // populate flag info header
 const flagDiv = document.getElementById('flag-info');
 flagDiv.classList.add('flag-pre-click');
@@ -22,7 +22,7 @@ flagDiv.addEventListener('click', () => {
     }
 });
 // initialize flags remaining and display to user
-state.initializeFlagsRemaining();
+//state.initializeFlagsRemaining();
 flagDiv.textContent = state.flagsRemaining;
 
 // mine placements are known at this point
