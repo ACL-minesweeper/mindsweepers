@@ -1,18 +1,25 @@
 
 #main-container {
-  margin: auto;
+
   background-image: url("../assets/board-bg.png");
   background-size: cover;
   display: grid;
-  width: 600px;
-  height: 600px;
-  grid-template-rows: repeat(8, 1fr);
-  grid-template-columns: repeat(8, 1fr);
+  width: 75vw;
+  height: 75vw;
+  grid-template-rows: repeat(var(--numRows), 1fr);
+  grid-template-columns: repeat(var(--numColumns), 1fr);
   border: white 1px solid;
 }
 
-#flag-info {
-  font-size: 4em;
+.board-container {
+  border: 1px rgb(135, 193, 48) solid;
+  border-radius: 4px;
+  margin-top: 25px;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+/* #flag-info {
+  font-size: 2em;
   font-weight: bolder;
   display: flex;
   padding: 10px;
@@ -23,21 +30,18 @@
   padding-left: 8px;
 }
 
-body #boardgame-header {
-  margin: auto;
-}
 
 span#profile-user-name {
-  font-size: 3em;
+  font-size: 2em;
   margin-left: 15px;
   font-weight: bold;
-}
+} */
 
-#boardgame-header {
+div#boardgame-header {
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 600px;
   background-color: #83c441;
 }
 
@@ -46,7 +50,7 @@ span#profile-user-name {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 275%;
+  font-size: 100%;
   font-weight: bolder;
 
   text-shadow:
@@ -61,6 +65,7 @@ span#profile-user-name {
 .flagged {
   background-image: url("../assets/placeholder-flag.png");
   background-repeat: none;
+  background-size: cover;
 }
 
 .opacity {
@@ -69,6 +74,7 @@ span#profile-user-name {
 
 .mine {
   background-image: url("../assets/bomb.png");
+  background-size: cover;
 }
 
 .bag-hand {
@@ -78,7 +84,6 @@ span#profile-user-name {
 .buttons {
   display: flex;
   justify-content: center;
-  padding: 50px;
 }
 
 .flag-pre-click:after {
@@ -105,4 +110,17 @@ span#profile-user-name {
   -webkit-transform: scale(1.5);
   -ms-transform: scale(1.5);
   transform: scale(1.5);
+}
+
+@media only screen and (max-width: 600px) {
+  #main-container {
+    width: 100vw;
+    height: 100vw;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  body.wrapper {
+    width: 960px;
+  }
 }

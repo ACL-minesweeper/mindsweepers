@@ -1,23 +1,20 @@
-html {
-  display: flex;
-  justify-content: center;
-}
 
 body {
-  width: 85%;
-  border: 4px rgb(135, 193, 48) solid;
-  border-radius: 4px;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+  
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+
 }
 
-header {
-  margin-bottom: 50px;
-  padding: 25px;
+
+header img {
+  width: 100%;
   text-align: center;
   background: #83c441;
   color: white;
-  font-size: 30px;
   font-family: 'Baloo', cursive;
 }
 
@@ -27,13 +24,13 @@ header {
 }
 
 footer {
-  font-size: 30px;
+
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
     text-align: center;
   background: #83c441;
   color: white;
-  padding: 15px;
+
 }
 a {
   color: white;
@@ -54,14 +51,14 @@ a:active {
 button {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   align-self: center;
-  height: 64px;
-  width: 248px;
+
+
   border: 2px solid white;
   background: #83c441;
   border-radius: 4px;
   letter-spacing: 2px;
   color: white;
-  font-size: 22px;
+  font-size: 1em;
   text-align: center;
 }
   
@@ -70,3 +67,4 @@ button:hover {
   background: white;
   color: #83c441;
   }
+

@@ -3,6 +3,9 @@ import { cellClick } from './game.js';
 import { isWin, getUser, saveUser } from '../common/utils.js';
 import { clearAdjCells } from './clear-adj-cells.js';
 
+import { timerInterval } from './game.js';
+
+
 // populate flag info header
 const flagDiv = document.getElementById('flag-info');
 flagDiv.classList.add('flag-pre-click');
@@ -22,7 +25,7 @@ flagDiv.addEventListener('click', () => {
     }
 });
 // initialize flags remaining and display to user
-state.initializeFlagsRemaining();
+//state.initializeFlagsRemaining();
 flagDiv.textContent = state.flagsRemaining;
 
 // mine placements are known at this point
@@ -58,6 +61,7 @@ export const playGame = () => {
     // if the user clicks a mine
     else if (cellObject.isMine) {
         // execute loss sequence
+        clearInterval(timerInterval);
         userWon(false, state.boardArray);
     }
     // if the user clicks a cell with adjacent mines
@@ -78,6 +82,7 @@ export const playGame = () => {
     }
     if (isWin()) {
         // execute win sequence
+        clearInterval(timerInterval);
         userWon(true);
     }
 };
