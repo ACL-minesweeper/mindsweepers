@@ -17,8 +17,8 @@ returnHomeIfNoUser(currentUser);
 if (currentUser) userProfile.textContent = currentUser.user;
 
 const boardDimension = boardSpecs.boardDimension[localStorage.getItem('board-size')];
-mainContainer.setAttribute("style", );
-
+mainContainer.style.setProperty('--numRows', boardDimension);
+mainContainer.style.setProperty('--numColumns', boardDimension);
 
 const setBlankBoard = () => {
     state.boardArray.forEach(row =>
@@ -63,7 +63,6 @@ const playAgain = (mainContainerParam) => {
     state.firstClick = true;
     // reset flags to full count which matches the number of mines
     state.initializeFlagsRemaining();
-    console.log(state, 'on play again');
     state.userHasFlag = false; 
     const flagDiv = document.getElementById('flag-info');
     flagDiv.textContent = state.flagsRemaining;

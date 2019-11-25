@@ -23,4 +23,3 @@ state.numRows = boardDimension;
 state.numColumns = boardDimension;
 state.numMines = boardSpecs.calculateMinesNumber(boardDimension, mineConcentration);
 state.initializeFlagsRemaining();
-console.log(JSON.stringify(state), `on game page`);
