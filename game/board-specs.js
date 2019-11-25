@@ -1,6 +1,6 @@
 import state from '../game/state.js';
 
-const boardSpecs = {
+export const boardSpecs = {
     boardDimension: {
         small: 8,
         medium: 14,
