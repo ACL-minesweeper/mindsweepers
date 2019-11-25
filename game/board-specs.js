@@ -1,6 +1,6 @@
 import state from '../game/state.js';
 
-const boardSpecs = {
+export const boardSpecs = {
     boardDimension: {
         small: 8,
         medium: 14,
@@ -23,4 +23,3 @@ state.numRows = boardDimension;
 state.numColumns = boardDimension;
 state.numMines = boardSpecs.calculateMinesNumber(boardDimension, mineConcentration);
 state.initializeFlagsRemaining();
-console.log(JSON.stringify(state), `on game page`);

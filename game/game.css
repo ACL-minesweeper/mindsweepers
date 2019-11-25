@@ -6,8 +6,8 @@
   display: grid;
   width: 100vw;
   height: 100vw;
-  grid-template-rows: repeat(8, 1fr);
-  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: repeat(var(--numRows), 1fr);
+  grid-template-columns: repeat(var(--numColumns), 1fr);
   border: white 1px solid;
 }
 
@@ -65,6 +65,7 @@ div#boardgame-header {
 .flagged {
   background-image: url("../assets/placeholder-flag.png");
   background-repeat: none;
+  background-size: cover;
 }
 
 .opacity {
@@ -73,6 +74,7 @@ div#boardgame-header {
 
 .mine {
   background-image: url("../assets/bomb.png");
+  background-size: cover;
 }
 
 .bag-hand {
