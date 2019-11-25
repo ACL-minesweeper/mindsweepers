@@ -24,7 +24,7 @@ The goal of this project is to create a game with logic similar to the classic m
     - we plan to have a highly modular structure to our code in order to enhance testing and declarative functions
 
 ## Instructions for use of this repository
-This repo will be hosted on github pages upon completion.
+This repo is deployed on github pages: https://acl-minesweeper.github.io/mindsweepers/
 
 # User stories
 1. Robert is nostalgic for his memories of minesweeper.  He wants gameplay logic to be true to the original.
@@ -76,7 +76,7 @@ generateBoard() --> randomlyPlaceMines()
 - slack for communication
 - work in class as much as possible!
 - after MVP we can all review code
-- a couple check ins as a whole group / day
+- a couple check-ins as a whole group / day
 - you can work at home alone on something you've already committed to working on
 -use a whiteboard to document the file scaffolding
 -when naming functions/ parameters please use data types in the names!
@@ -84,4 +84,12 @@ generateBoard() --> randomlyPlaceMines()
 -conflict--> keep it between you and the person you feel conflict with. If you cannot resolve it one-on-one then let the group know that you're going to have a discussion with the instructor
 
 ### Change Log
-#### Version 1.0.0
+#### Version 1.0.2
+
+Copyright 2019 Team Mindsweeper
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

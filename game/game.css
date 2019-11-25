@@ -1,5 +1,4 @@
 
-
 #main-container {
   margin: auto;
   background-image: url("../assets/board-bg.png");
@@ -7,8 +6,8 @@
   display: grid;
   width: 600px;
   height: 600px;
-  grid-template-rows: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-rows: repeat(8, 1fr);
+  grid-template-columns: repeat(8, 1fr);
   border: white 1px solid;
 }
 
@@ -43,14 +42,21 @@ span#profile-user-name {
 }
 
 #main-container div {
-  border: 1px white solid;
+  border: 1px whitesmoke solid;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 275%;
   font-weight: bolder;
-}
 
+  text-shadow:
+  -1px -1px 0 #fff,
+  1px -1px 0 #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
+
+  transition: all 1s;
+}
 
 .flagged {
   background-image: url("../assets/placeholder-flag.png");
@@ -76,9 +82,27 @@ span#profile-user-name {
 }
 
 .flag-pre-click:after {
-    content: url(../assets/placeholder-baggy.png);
+  content: url(../assets/placeholder-baggy.png);
 }
 
 .flag-post-click:after {
   content: url(../assets/bag-hand.png);
+}
+
+.end-win-div{
+  background-color: whitesmoke;
+}
+
+#win-message {
+  display: flex;
+  border: none;
+  margin: 40% auto;
+  width: 20%;
+  height: 20%;
+}
+
+.win-grow {
+  -webkit-transform: scale(1.5);
+  -ms-transform: scale(1.5);
+  transform: scale(1.5);
 }
