@@ -4,8 +4,8 @@
   background-image: url("../assets/board-bg.png");
   background-size: cover;
   display: grid;
-  width: 100vw;
-  height: 100vw;
+  width: 75vw;
+  height: 75vw;
   grid-template-rows: repeat(var(--numRows), 1fr);
   grid-template-columns: repeat(var(--numColumns), 1fr);
   border: white 1px solid;
@@ -18,7 +18,7 @@
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-/* #flag-info {
+#flag-info {
   font-size: 4em;
   font-weight: bolder;
   display: flex;
@@ -28,14 +28,14 @@
 #bag {
   padding-right: 1px;
   padding-left: 8px;
-} */
+}
 
 
-/* span#profile-user-name {
+span#profile-user-name {
   font-size: 3em;
   margin-left: 15px;
   font-weight: bold;
-} */
+}
 
 div#boardgame-header {
   width: 100%;
@@ -84,7 +84,6 @@ div#boardgame-header {
 .buttons {
   display: flex;
   justify-content: center;
-
 }
 
 .flag-pre-click:after {
@@ -116,5 +115,12 @@ div#boardgame-header {
 @media only screen and (max-width: 600px) {
   .board-container {
     width: 100%;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  body.wrapper {
+    width: 960px;
+
   }
 }
