@@ -1,7 +1,7 @@
 
 #main-container {
 
-  background-image: url("../assets/board-bg.png");
+  background-image: url("../assets/dog-park/board-bg.png");
   background-size: cover;
   display: grid;
   width: 75vw;
@@ -63,7 +63,7 @@ div#boardgame-header {
 }
 
 .flagged {
-  background-image: url("../assets/placeholder-flag.png");
+  background-image: url("../assets/dog-park/placeholder-flag.png");
   background-repeat: none;
   background-size: cover;
 }
@@ -73,12 +73,12 @@ div#boardgame-header {
 }
 
 .mine {
-  background-image: url("../assets/bomb.png");
+  background-image: url("../assets/dog-park/bomb.png");
   background-size: cover;
 }
 
 .bag-hand {
-  background-image: url("../assets/bag-hand.png");
+  background-image: url("../assets/dog-park/bag-hand.png");
 }
 
 .buttons {
@@ -87,11 +87,11 @@ div#boardgame-header {
 }
 
 .flag-pre-click:after {
-  content: url(../assets/placeholder-baggy.png);
+  content: url(../assets/dog-park/placeholder-baggy.png);
 }
 
 .flag-post-click:after {
-  content: url(../assets/bag-hand.png);
+  content: url(../assets/dog-park/bag-hand.png);
 }
 
 .end-win-div{
