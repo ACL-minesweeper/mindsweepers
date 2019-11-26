@@ -17,6 +17,8 @@ returnHomeIfNoUser(currentUser);
 // prevent console errors
 if (currentUser) userProfile.textContent = currentUser.user;
 
+export let timerInterval;
+
 const boardDimension = boardSpecs.boardDimension[localStorage.getItem('board-size')];
 mainContainer.style.setProperty('--numRows', boardDimension);
 mainContainer.style.setProperty('--numColumns', boardDimension);
@@ -27,10 +29,10 @@ const setBlankBoard = () => {
             createCell(cell.id)));
 };
 
-const incrementTimeDiv = timerInterval => {
+export const incrementTimeDiv = timerInterval => {
     const currentTime = +timerDiv.textContent;
     timerDiv.textContent = (currentTime + 1).toString().padStart(3, '0');
-    if (currentTime >= 998) clearInterval(timerInterval);
+    if (currentTime >= 998) clearInterval(timerInterval.id);
 };
 
 // handles user click if firstClick and otherwise
@@ -44,7 +46,7 @@ export const cellClick = event => {
         state.boardArray[state.clickedCellArray[0]][state.clickedCellArray[1]].isHidden = false;
         //state.updateClickedCellArray(firstCell.id);
         clearAdjCells(state.clickedCellArray);
-        const timerInterval = setInterval(() => incrementTimeDiv(timerInterval), 1000);
+        timerInterval = setInterval(() => incrementTimeDiv(timerInterval.id), 1000);
     } else {
         playGame();
     }
@@ -65,11 +67,14 @@ state.initializeBlankBoardArray();
 //state.initializeFlagsRemaining();
 setBlankBoard();
 
-const playAgain = (mainContainerParam) => {
+const playAgain = mainContainerParam => {
     // clear the board container so we can place a brand new board, strips 
     mainContainerParam.innerHTML = '';
     // reinitialize firstClick for user
     state.firstClick = true;
+    // reset timerDiv text
+    clearInterval(timerInterval);
+    timerDiv.textContent = '000';
     // reset flags to full count which matches the number of mines
     state.initializeFlagsRemaining();
     state.userHasFlag = false; 
