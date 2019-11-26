@@ -17,13 +17,11 @@ returnHomeIfNoUser(currentUser);
 // prevent console errors
 if (currentUser) userProfile.textContent = currentUser.user;
 
-
 export let timerInterval;
 
 const boardDimension = boardSpecs.boardDimension[localStorage.getItem('board-size')];
 mainContainer.style.setProperty('--numRows', boardDimension);
 mainContainer.style.setProperty('--numColumns', boardDimension);
-
 
 const setBlankBoard = () => {
     state.boardArray.forEach(row =>
