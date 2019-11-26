@@ -18,13 +18,25 @@
                 <img src="./assets/generic/header-image.png">
             </div>
         </header>
-        <div id="instructions">
-                Wow, you are such a good samaritan!
-                The purpose of the game is to find all the doggy doo in the park and put it into a bag. To start, click anywhere on the board. If you step in doo before you give it a doggy bag, you lose! The numbers indicate how many adjacent boxes contain doggy doo. Be sure to mark the squares you think have doo with a doggy bag.  Click the bag then click the square that has the doo.  You can remove a bag by clicking on it if you later think you are wrong. Make sure not to run out of bags before the park is doo-free. Once all the doos are in a bag and all the other spaces are doo-free, you win!
-        </div>
+
 
             <body>
                 <div id="user-input">
+                    <form id="theme-selection">
+                        <p>Choose Your Theme</p>
+                        <label><input type="radio" name="theme" value="deep-space" checked/>Deep Space</label>
+                        <label><input type="radio" name="theme" value="dog-park"/>Dog Park</label>
+                        <div id="dog-park" class="hidden">
+                            Wow, you are such a good samaritan!
+                            The purpose of the game is to find all the doggy doo in the park and put it into a bag. To start, click anywhere on the board. If you step in doo before you give it a doggy bag, you lose! The numbers indicate how many adjacent boxes contain doggy doo. Be sure to mark the squares you think have doo with a doggy bag.  Click the bag then click the square that has the doo.  You can remove a bag by clicking on it if you later think you are wrong. Make sure not to run out of bags before the park is doo-free. Once all the doos are in a bag and all the other spaces are doo-free, you win!
+                        </div>
+                        <div id="deep-space">
+                            Space space space! 
+                        </div>
+                    </form>
+                        
+
+
                     <form id="user-info-form">
                         <label for="name">Enter Your Name</label>
                         <input type="text" name="name" id="name" required>
@@ -42,6 +54,15 @@
                         <p>Theme</p>
                         <label><input type="radio" name="theme" value="dog-park"/>Dog Park</label>
                         <label><input type="radio" name="theme" value="deep-space" checked/>Deep Space</label>
+
+                        <div id="instructions-dog" class="hidden">
+                            Wow, you are such a good samaritan!
+                            The purpose of the game is to find all the doggy doo in the park and put it into a bag. To start, click anywhere on the board. If you step in doo before you give it a doggy bag, you lose! The numbers indicate how many adjacent boxes contain doggy doo. Be sure to mark the squares you think have doo with a doggy bag.  Click the bag then click the square that has the doo.  You can remove a bag by clicking on it if you later think you are wrong. Make sure not to run out of bags before the park is doo-free. Once all the doos are in a bag and all the other spaces are doo-free, you win!
+                        </div>
+
+                        <div id="instructions-space" class="hidden">
+                            Space space space! 
+                        </div>
 
                         <button id="play-game">PLAY GAME</button>
                     </form>
