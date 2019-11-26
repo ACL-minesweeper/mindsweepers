@@ -1,32 +1,58 @@
 import state from './state.js';
-import { getArrayOfMineCoordinates } from './get-mines.js';
-import { makeBoardArray } from './make-board-array.js';
-import giveBoardArrayMines from './give-board-array-mines.js';
-import giveBoardNumAdjMines from './give-board-numAdjMines.js';
-import loadProfile from '../common/load-profile.js';
+import './board-specs.js';
+import { boardSpecs } from './board-specs.js';
 import { playGame } from './play-game.js';
-
-
-
+import { clearAdjCells } from './clear-adj-cells.js';
+import { getUser, returnHomeIfNoUser } from '../common/utils.js';
 
 // get DOM elements
 const mainContainer = document.getElementById('main-container');
 const userProfile = document.getElementById('profile-user-name');
+const timerDiv = document.getElementById('timer');
 const playAgainButton = document.getElementById('play-again-button');
 
 //updating DOM with user profile (in this case, just the user name)
-const currentUser = loadProfile();
-userProfile.textContent = currentUser.user;
+const currentUser = getUser();
+returnHomeIfNoUser(currentUser);
+// prevent console errors
+if (currentUser) userProfile.textContent = currentUser.user;
 
+export let timerInterval;
 
-let boardArray = makeBoardArray(state.numRows, state.numColumns);
+const boardDimension = boardSpecs.boardDimension[localStorage.getItem('board-size')];
+mainContainer.style.setProperty('--numRows', boardDimension);
+mainContainer.style.setProperty('--numColumns', boardDimension);
 
-// always the cell currently clicked by user and will be updated anytime a user clicks a cell
-let clickedCell = [];
+const setBlankBoard = () => {
+    state.boardArray.forEach(row =>
+        row.forEach(cell =>
+            createCell(cell.id)));
+};
 
-state.flagsRemaining = state.numMines;
+export const incrementTimeDiv = timerInterval => {
+    const currentTime = +timerDiv.textContent;
+    timerDiv.textContent = (currentTime + 1).toString().padStart(3, '0');
+    if (currentTime >= 998) clearInterval(timerInterval.id);
+};
 
-// sarah's function that we will use for the for loop
+// handles user click if firstClick and otherwise
+export const cellClick = event => {
+    state.updateClickedCellArray(event.target.id);
+    if (state.firstClick) {
+        // after the first click, board objects are updated with mines and numAdjines   
+        state.initializeDreamBoardArray();
+        state.firstClick = false;
+        event.target.classList.remove('opacity');
+        state.boardArray[state.clickedCellArray[0]][state.clickedCellArray[1]].isHidden = false;
+        //state.updateClickedCellArray(firstCell.id);
+        clearAdjCells(state.clickedCellArray);
+        timerInterval = setInterval(() => incrementTimeDiv(timerInterval.id), 1000);
+    } else {
+        playGame();
+    }
+};
+
+// create DOM cell div elements
 const createCell = id => {
     const newDiv = document.createElement('div');
     newDiv.id = id;
@@ -36,66 +62,30 @@ const createCell = id => {
     mainContainer.appendChild(newDiv);
     newDiv.addEventListener('click', cellClick);
 };
+// initialize blank conceptual board, initialize flagsRemaining, and setup board for first click
+state.initializeBlankBoardArray();
+//state.initializeFlagsRemaining();
+setBlankBoard();
 
-//click handler function
-export function cellClick(event) {
-    const domCellId = event.target.id;
-    const coordStringArr = domCellId.split(',');
-    const coordNumberArr = coordStringArr.map(Number);
-    clickedCell = coordNumberArr;
-    if (state.firstClick) {
-  // after the first click, board objects are updated with mines and numAdjines
-        initializeDreamBoardState(boardArray, clickedCell);
-        state.firstClick = false;
-        event.target.classList.remove('opacity');
-        boardArray[clickedCell[0]][clickedCell[1]].isHidden = false;
-    } else {
-  //play game
-        playGame(coordNumberArr, boardArray);
-    }
-}
-
-//Part one of setting board: set up board for the first click.
-export const setBlankBoard = boardArrayParam => {
-    boardArrayParam.forEach(row => {
-        row.forEach(cell => {
-            createCell(cell.id);
-        });
-    });
-};
-
-function initializeDreamBoardState(boardArrayParam, clickedCell) {
-    const arrayOfMineCoordinates = getArrayOfMineCoordinates(
-        state.numMines,
-        state.numRows,
-        state.numColumns,
-        boardArrayParam,
-        clickedCell
-    );
-    giveBoardArrayMines(boardArrayParam, arrayOfMineCoordinates);
-    giveBoardNumAdjMines(boardArrayParam, arrayOfMineCoordinates);
-}
-
-setBlankBoard(boardArray);
-
-const playAgain = (mainContainerParam) => {
+const playAgain = mainContainerParam => {
     // clear the board container so we can place a brand new board, strips 
     mainContainerParam.innerHTML = '';
     // reinitialize firstClick for user
     state.firstClick = true;
+    // reset timerDiv text
+    clearInterval(timerInterval);
+    timerDiv.textContent = '000';
     // reset flags to full count which matches the number of mines
-    state.flagsRemaining = state.numMines;
+    state.initializeFlagsRemaining();
     state.userHasFlag = false; 
     const flagDiv = document.getElementById('flag-info');
     flagDiv.textContent = state.flagsRemaining;
+    flagDiv.className = 'flag-pre-click';
     userProfile.textContent = currentUser.user;
     // create a brand new conceptual board
-    const freshBoard = makeBoardArray(state.numRows, state.numColumns);
-
+    state.initializeBlankBoardArray();
     // create a brand new DOM board
-    setBlankBoard(freshBoard);
-    boardArray = freshBoard; 
+    setBlankBoard(state.boardArray);
 };
-
 
 playAgainButton.addEventListener('click', () => playAgain(mainContainer));
