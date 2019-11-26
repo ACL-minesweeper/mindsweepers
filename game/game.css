@@ -45,6 +45,16 @@ div#boardgame-header {
   background-color: #83c441;
 }
 
+#profile-user-name{
+  margin-left: 15px;
+}
+
+#flag-info{
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+}
+
 #main-container div {
   border: 1px whitesmoke solid;
   display: flex;
