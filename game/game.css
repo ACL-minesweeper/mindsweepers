@@ -91,6 +91,10 @@ div#boardgame-header {
   background-image: url("../assets/bag-hand.png");
 }
 
+button{
+  height: 60px;
+}
+
 .buttons {
   display: flex;
   justify-content: center;
