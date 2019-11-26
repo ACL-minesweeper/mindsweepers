@@ -10,9 +10,10 @@ function processForm(event) {
     const user = formData.get('name');
     const boardSize = formData.get('board-size');
     const difficulty = formData.get('difficulty');
+    const theme = formData.get('theme');
     localStorage.setItem('board-size', boardSize);
     localStorage.setItem('difficulty', difficulty);
-    const theme = formData.get('theme');
+    localStorage.setItem('theme', theme);
     const userObject = makeUser(user);
     saveUser(userObject);
     window.location = './game/index.html';
