@@ -1,7 +1,7 @@
 import { getValidAdjCells } from '../common/utils.js';
 import state from './state.js';
 
-export const clearAdjCells = (cellArrayParam) => {
+export const clearAdjCells = cellArrayParam => {
     const cellRow = cellArrayParam[0];
     const cellColumn = cellArrayParam[1];
     // clear this cell
@@ -24,10 +24,11 @@ export const clearAdjCells = (cellArrayParam) => {
             // get DOM cell div
             const domCell = document.getElementById(cellObject.id);
 
-            // if numbered cell:
+            // if numbered cell, show the number
             if (cellObject.numAdjMines > 0)
                 domCell.textContent = cellObject.numAdjMines;
             
+            // unhide if not flagged
             cellObject.isHidden = false;
             domCell.classList.remove('opacity');
             

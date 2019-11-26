@@ -33,13 +33,13 @@ const state = {
             for (let j = 0; j < this.numColumns; j++) {
                 this.boardArray[i][j] = {};
                 const cell = this.boardArray[i][j];
-                cell.id = i + ',' + j; 
-                cell.row = i; 
-                cell.column = j; 
+                cell.id = i + ',' + j;
+                cell.row = i;
+                cell.column = j;
                 cell.isMine = false;
-                cell.isHidden = true; 
-                cell.isFlagged = false; 
-                cell.numAdjMines = 0; 
+                cell.isHidden = true;
+                cell.isFlagged = false;
+                cell.numAdjMines = 0;
             }
         }
     },

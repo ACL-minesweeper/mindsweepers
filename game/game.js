@@ -1,7 +1,7 @@
 import state from './state.js';
 import './board-specs.js';
 import { boardSpecs } from './board-specs.js';
-import { playGame } from './play-game.js';
+import { playGame, toggleFlagged } from './play-game.js';
 import { clearAdjCells } from './clear-adj-cells.js';
 import { getUser, returnHomeIfNoUser } from '../common/utils.js';
 
@@ -37,6 +37,7 @@ export const incrementTimeDiv = timerInterval => {
 
 // handles user click if firstClick and otherwise
 export const cellClick = event => {
+    event.preventDefault();
     state.updateClickedCellArray(event.target.id);
     if (state.firstClick) {
         // after the first click, board objects are updated with mines and numAdjines   
@@ -59,8 +60,38 @@ const createCell = id => {
     // to remove all of the classes every time the board is set 
     newDiv.className = '';
     newDiv.classList.add('opacity');
+    newDiv.oncontextmenu = 'return !1';
     mainContainer.appendChild(newDiv);
+    newDiv.addEventListener('mouseup', (e) => {
+        e.preventDefault();
+        // https://www.hacksparrow.com/webdev/javascript/disabling-the-context-menu.html
+        document.oncontextmenu = () => false;
+        let rowColArr = [];
+        if (e.button) {
+            switch (e.button) {
+                case 0:
+                    //alert('Left button clicked.');
+                    break;
+                case 1:
+                    //alert('Middle button clicked.');
+                    break;
+                case 2:
+                    //alert('Right button clicked.');
+                    rowColArr = e.target.id.split(',');
+                    console.log(e.target.id, 'isHidden:', state.boardArray[rowColArr[0]][rowColArr[1]].isHidden);
+                    !state.firstClick && toggleFlagged(document.getElementById(e.target.id));
+                    break;
+                default:
+                    //alert(`Unknown button code: ${e.button}`);
+            }
+        }
+    });
     newDiv.addEventListener('click', cellClick);
+    newDiv.addEventListener('oncontextmenu', (e) => {
+        e.preventDefault();
+        e.stopImmediatePropagation();
+        return false;
+    });
 };
 // initialize blank conceptual board, initialize flagsRemaining, and setup board for first click
 state.initializeBlankBoardArray();

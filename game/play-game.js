@@ -3,7 +3,6 @@ import { cellClick } from './game.js';
 import { isWin, getUser, saveUser } from '../common/utils.js';
 import { clearAdjCells } from './clear-adj-cells.js';
 import { holdFlag, placeFlag, dropFlag, tripMine, recursion, gameWin, clickAudio } from '../assets/sounds.js';   
-
 import { timerInterval } from './game.js';
 
 
@@ -11,7 +10,8 @@ import { timerInterval } from './game.js';
 const flagDiv = document.getElementById('flag-info');
 flagDiv.classList.add('flag-pre-click');
 let userHasFlag = false;
-flagDiv.addEventListener('click', () => {
+// toggle flag state
+const flagDivClick = flagDiv => {
     if (!state.firstClick) {
         if (!userHasFlag) {
             userHasFlag = true;
@@ -26,20 +26,23 @@ flagDiv.addEventListener('click', () => {
             flagDiv.classList.add('flag-pre-click');
         }
     }
-});
+};
+flagDiv.addEventListener('click', e => flagDivClick(e.target));
 // initialize flags remaining and display to user
 //state.initializeFlagsRemaining();
 flagDiv.textContent = state.flagsRemaining;
 
 // mine placements are known at this point
-export const playGame = () => {
+export const toggleFlagged = (domEl = 0) => {
     const objectRow = state.clickedCellArray[0];
     const objectColumn = state.clickedCellArray[1];
     const cellObject = state.boardArray[objectRow][objectColumn];
     const clickedCellIdString = state.clickedCellArray[0] + ',' + state.clickedCellArray[1];
-    const domCell = document.getElementById(clickedCellIdString);
+    const domCell = domEl || document.getElementById(clickedCellIdString);
+    console.log('isFlagged', cellObject.isFlagged, 'isHidden', cellObject.isHidden);
     // remove a flag from a flagged cell
     if (cellObject.isFlagged) {
+        console.log('isFlagged = true');
         cellObject.isFlagged = false;
         dropFlag.play();
         state.flagsRemaining++;
@@ -47,10 +50,14 @@ export const playGame = () => {
         domCell.classList.add('opacity');
         domCell.classList.remove('flagged');
         flagDiv.textContent = state.flagsRemaining;
+        return true;
     }
-    // if the user grabbed a flag
-    else if (userHasFlag) {
+    // if the user grabbed a flag or has right clicked and domEl has been passed in as a result
+    else if (userHasFlag || domEl) {
+        console.log('got here');
+        // FOR SOME REASON ISHIDDEN IS TRUE HERE EVEN FOR HIDDEN CELLS
         if (!cellObject.isFlagged && cellObject.isHidden) {
+            console.log('and here');
             cellObject.isFlagged = true;
             state.flagsRemaining--;
             userHasFlag = false;
@@ -61,8 +68,43 @@ export const playGame = () => {
             flagDiv.classList.remove('flag-post-click');
             flagDiv.classList.add('flag-pre-click');
             flagDiv.textContent = state.flagsRemaining;
+            return true;
         }
     }
+    return false;
+}
+export const playGame = () => {
+    const objectRow = state.clickedCellArray[0];
+    const objectColumn = state.clickedCellArray[1];
+    const cellObject = state.boardArray[objectRow][objectColumn];
+    const clickedCellIdString = state.clickedCellArray[0] + ',' + state.clickedCellArray[1];
+    const domCell = document.getElementById(clickedCellIdString);
+    if (toggleFlagged()) true;
+    // // remove a flag from a flagged cell
+    // if (cellObject.isFlagged) {
+    //     cellObject.isFlagged = false;
+    //     dropFlag.play();
+    //     state.flagsRemaining++;
+    //     // update the DOM
+    //     domCell.classList.add('opacity');
+    //     domCell.classList.remove('flagged');
+    //     flagDiv.textContent = state.flagsRemaining;
+    // }
+    // // if the user grabbed a flag
+    // else if (userHasFlag) {
+    //     if (!cellObject.isFlagged && cellObject.isHidden) {
+    //         cellObject.isFlagged = true;
+    //         state.flagsRemaining--;
+    //         userHasFlag = false;
+    //         placeFlag.play();
+    //         // then update the DOM
+    //         domCell.classList.remove('opacity');
+    //         domCell.classList.add('flagged');
+    //         flagDiv.classList.remove('flag-post-click');
+    //         flagDiv.classList.add('flag-pre-click');
+    //         flagDiv.textContent = state.flagsRemaining;
+    //     }
+    // }
     // if the user clicks a mine
     else if (cellObject.isMine) {
         // execute loss sequence
@@ -93,7 +135,6 @@ export const playGame = () => {
         gameWin.play();
         clearInterval(timerInterval);
         userWon(true);
-        
     }
 };
 
