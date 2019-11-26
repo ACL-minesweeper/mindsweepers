@@ -18,7 +18,7 @@
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
-/* #flag-info {
+#flag-info {
   font-size: 2em;
   font-weight: bolder;
   display: flex;
@@ -35,7 +35,7 @@ span#profile-user-name {
   font-size: 2em;
   margin-left: 15px;
   font-weight: bold;
-} */
+}
 
 div#boardgame-header {
   width: 100%;
