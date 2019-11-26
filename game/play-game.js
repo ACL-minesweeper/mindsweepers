@@ -2,6 +2,7 @@ import state from './state.js';
 import { cellClick } from './game.js';
 import { isWin, getUser, saveUser } from '../common/utils.js';
 import { clearAdjCells } from './clear-adj-cells.js';
+import { holdFlag, placeFlag, dropFlag, tripMine, recursion, gameWin, clickAudio } from '../assets/sounds.js';   
 
 import { timerInterval } from './game.js';
 
@@ -14,11 +15,13 @@ flagDiv.addEventListener('click', () => {
     if (!state.firstClick) {
         if (!userHasFlag) {
             userHasFlag = true;
+            holdFlag.play();
             flagDiv.classList.remove('flag-pre-click');
             flagDiv.classList.add('flag-post-click');
         }
         else {
             userHasFlag = false;
+            dropFlag.play();
             flagDiv.classList.remove('flag-post-click');
             flagDiv.classList.add('flag-pre-click');
         }
@@ -38,6 +41,7 @@ export const playGame = () => {
     // remove a flag from a flagged cell
     if (cellObject.isFlagged) {
         cellObject.isFlagged = false;
+        dropFlag.play();
         state.flagsRemaining++;
         // update the DOM
         domCell.classList.add('opacity');
@@ -50,6 +54,7 @@ export const playGame = () => {
             cellObject.isFlagged = true;
             state.flagsRemaining--;
             userHasFlag = false;
+            placeFlag.play();
             // then update the DOM
             domCell.classList.remove('opacity');
             domCell.classList.add('flagged');
@@ -61,6 +66,7 @@ export const playGame = () => {
     // if the user clicks a mine
     else if (cellObject.isMine) {
         // execute loss sequence
+        tripMine.play();
         clearInterval(timerInterval);
         userWon(false, state.boardArray);
     }
@@ -70,10 +76,12 @@ export const playGame = () => {
         domCell.textContent = cellObject.numAdjMines;
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
+        clickAudio.play();
     }
     // if the user clicks an empty cell
     else if (cellObject.numAdjMines === 0) {
         // update the DOM
+        recursion.play();
         const domCellId = cellObject.id;
         const coordStringArr = domCellId.split(',');
         const coordNumberArr = coordStringArr.map(Number);
@@ -82,8 +90,10 @@ export const playGame = () => {
     }
     if (isWin()) {
         // execute win sequence
+        gameWin.play();
         clearInterval(timerInterval);
         userWon(true);
+        
     }
 };
 
