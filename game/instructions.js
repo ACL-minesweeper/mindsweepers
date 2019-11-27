@@ -1,0 +1,7 @@
+<div id="dog-park">
+                                        <p>Wow, you are such a good samaritan!
+                                        The purpose of the game is to find all the doggy doo in the park and put it into a bag. To start, click anywhere on the board. If you step in doo before you give it a doggy bag, you lose! The numbers indicate how many adjacent boxes contain doggy doo. Be sure to mark the squares you think have doo with a doggy bag.  Click the bag then click the square that has the doo.  You can remove a bag by clicking on it if you later think you are wrong. Make sure not to run out of bags before the park is doo-free. Once all the doos are in a bag and all the other spaces are doo-free, you win!</p>
+                                    </div>
+                                    <div id="deep-space" class='hidden'>
+                                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Possimus, debitis. Voluptatibus harum doloremque necessitatibus nobis eveniet repudiandae alias fuga, ea debitis optio ex natus possimus fugiat asperiores illo ipsam similique quia doloribus. Esse excepturi facere fugit architecto maiores voluptates quisquam accusamus voluptate vitae inventore, temporibus veritatis illum, quis autem ullam aliquam facilis reiciendis iste explicabo? In dolor sapiente pariatur iusto. </p>
+                                    </div>
