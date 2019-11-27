@@ -2,29 +2,39 @@ body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.form-wrapper {
-  display: flex;
-  justify-content: center;
-  width: 960px;
+div.form-wrapper {
+  display: grid;
+  width: 90%;
+  height: 100%;
+  /* grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr); */
   border: black 1px solid;
   border-radius: 5px;
   background-color: lightgrey;
 }
 
+form#user-info-form {
+  display: grid;
+  grid-template-rows: 15% 20% 20% 45%;
+  /* grid-template-columns: repeat(1, 1fr); */
+}
+div {
+  margin:5px;
+}
 p {
-  font-size: 1em;
+  font-size: 100%;
   text-align: left;
 }
-.form-wrapper input[type="radio"] {
+input[type="radio"] {
   opacity: 0;
   position: fixed;
   width: 0;
 }
-.form-wrapper input[type="radio"]:checked + label {
+.form-wrapper [type="radio"]:checked + label {
   background-color:#bfb;
   border-color: #4c4;
 }
-.form-wrapper input[type="radio"]:focus + label {
+.form-wrapper [type="radio"]:focus + label {
   border: 2px dashed #444;
 }
 .form-wrapper label:hover {
@@ -33,6 +43,7 @@ p {
 
 #board-size {
   display: flex;
+
   justify-content: center;
   border: black 1px solid;
   background-color: slategray;
@@ -40,18 +51,20 @@ p {
 }
 
 #difficulty {
+  display: flex;
+  justify-content: center;
   border: black 1px solid;
   border-radius: 5px;
   background-color: slategray;
 }
-
+/* 
 label {
-  font-size: 1.25em;
+  font-size: 1em;
   padding: 3%;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-weight: 100;
   border-color: rgb(142, 141, 141);
-}
+} */
 
 div#user-input {
   display: flex;
@@ -67,16 +80,21 @@ input[id="name"] {
   box-sizing: border-box;
 }
 
-#instructions {
+/* #instructions {
   display: flex;
   justify-content: center;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   font-size: 1.5em;
   color: rgb(80, 80, 80);
-}
+} */
 
 #username {
+  width: 40%;
+  display: flex;
+  justify-content: center;
+  padding: 5px;
   background-color: steelblue;
+  border-radius: 5px;
 }
 
 
