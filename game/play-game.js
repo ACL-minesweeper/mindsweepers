@@ -5,7 +5,7 @@ import { clearAdjCells } from './clear-adj-cells.js';
 import { holdFlag, placeFlag, dropFlag, tripMine, recursion, gameWin, clickAudio } from '../assets/sounds.js';   
 
 import { timerInterval } from './game.js';
-
+let theme = localStorage.getItem('theme');
 
 // populate flag info header
 const flagDiv = document.getElementById('flag-info');
@@ -28,7 +28,6 @@ flagDiv.addEventListener('click', () => {
     }
 });
 // initialize flags remaining and display to user
-//state.initializeFlagsRemaining();
 flagDiv.textContent = state.flagsRemaining;
 
 // mine placements are known at this point
@@ -38,6 +37,7 @@ export const playGame = () => {
     const cellObject = state.boardArray[objectRow][objectColumn];
     const clickedCellIdString = state.clickedCellArray[0] + ',' + state.clickedCellArray[1];
     const domCell = document.getElementById(clickedCellIdString);
+
     // remove a flag from a flagged cell
     if (cellObject.isFlagged) {
         cellObject.isFlagged = false;
@@ -73,13 +73,20 @@ export const playGame = () => {
     // if the user clicks a cell with adjacent mines
     else if (cellObject.numAdjMines > 0) {
         // populate the DOM with the number
-        domCell.textContent = cellObject.numAdjMines;
+        if (theme === 'dog-park') domCell.textContent = cellObject.numAdjMines;
+
+        // optionally add background color (for deep space theme)
+        if (theme === 'deep-space'){
+            const green = 90 + cellObject.numAdjMines * 40;
+            domCell.style.backgroundColor = `rgb(255, ${green}, 40)`;
+        }
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
         clickAudio.play();
     }
     // if the user clicks an empty cell
     else if (cellObject.numAdjMines === 0) {
+        if (theme === 'deep-space') domCell.style.backgroundColor = 'rgb(255, 90, 40)';
         // update the DOM
         recursion.play();
         const domCellId = cellObject.id;
@@ -124,6 +131,8 @@ function userWon(userWonBoolean) {
                 divElement.classList.remove('opacity');
                 //show the user the mine image
                 divElement.classList.add('mine');
+                if (theme === 'dog-park') divElement.style.backgroundImage = "url('../assets/dog-park/bomb.png')";
+                if (theme === 'deep-space') divElement.style.backgroundImage = "url('../assets/deep-space/bomb.png')";
             }
         });
     });
