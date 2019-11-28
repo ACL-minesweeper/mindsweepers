@@ -13,11 +13,11 @@ div.form-wrapper {
   border: black 1px solid;
   border-radius: 5px;
   background-color: lightgrey;
+  padding: 5px;
 }
 section {
   padding: 3%;
   width: auto;
-  margin: 3%;
 }
 
 input#name {
@@ -86,11 +86,15 @@ input[type="radio"] {
   color: lightskyblue;
   cursor: pointer;
 }
+/* .form-wrapper label:checked {
+  color: lightskyblue;
+  font-size: 125%;
+} */
 
-.form-wrapper input[type="radio"]:checked + label {
+/* input[type="radio"]:checked + label {
   background-color:#bfb;
   border-color: #4c4;
-}
+} */
 
 .radios {
   display: flex;
@@ -100,28 +104,18 @@ input[type="radio"] {
 
 }
 
-
-
-
-
-.hidden {
-  display: none;
-}
-
 @media only screen and (max-width: 600px) {
   div.form-wrapper {
     width: 100vw;
     height: 90vh;
     margin: auto;
-
-
   }
 }
 
 @media only screen and (min-width: 601px) {
   div.form-wrapper {
     width: 960px;
-    height: 100vh;
+    height: 90vh;
     margin: auto;
   }
 }

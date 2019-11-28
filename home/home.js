@@ -5,9 +5,9 @@ const userThemeForm = document.getElementById('theme-selection');
 
 userThemeForm.addEventListener('change', function(){
     const userThemeSelection = userThemeForm.querySelector('input:checked').value;
-    document.getElementById(userThemeSelection).classList.remove('hidden');
-    const notUserThemeSelection = userThemeForm.querySelector('input:not(:checked)').value;
-    document.getElementById(notUserThemeSelection).classList.add('hidden');
+    // document.getElementById(userThemeSelection).classList.remove('hidden');
+    // const notUserThemeSelection = userThemeForm.querySelector('input:not(:checked)').value;
+    // document.getElementById(notUserThemeSelection).classList.add('hidden');
     localStorage.setItem('theme', userThemeSelection);
 });
 
