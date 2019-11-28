@@ -93,7 +93,7 @@ const playGame = () => {
         if (theme === 'dog-park') domCell.textContent = cellObject.numAdjMines;
 
         // optionally add background color (for deep space theme)
-        else if (theme === 'deep-space'){
+        else if (theme === 'deep-space') {
             const green = 90 + cellObject.numAdjMines * 40;
             domCell.style.backgroundColor = `rgb(255, ${green}, 40)`;
         }
@@ -164,10 +164,11 @@ function userWon(userWonBoolean) {
 
     if (userWonBoolean) {
         userProfile.textContent = currentUser.user + ' you won!';
-        let divClearDelay = 40;
+        let totalDelay = 0;
         state.boardArray.forEach((rowObj, i) =>
             rowObj.forEach((cellObj, j) => {
-                divClearDelay += 40 * i * j;
+                const divClearDelay = 40 + 40 * i * j;
+                totalDelay = i * j * 40;
                 const thisDiv = document.getElementById(cellObj.id);
                 thisDiv.className = 'end-win-div';
                 window.setTimeout(() => {
@@ -176,7 +177,7 @@ function userWon(userWonBoolean) {
                     thisDiv.innerHTML = '';
                 }, divClearDelay);
             }));
-        window.setTimeout(() => mainContainer.innerHTML = '', divClearDelay + 40);
+        window.setTimeout(() => mainContainer.innerHTML = '', totalDelay + 80);
     } else {
         userProfile.textContent = currentUser.user + ' you lost!';
     }
@@ -274,15 +275,13 @@ const createCell = id => {
     // to remove all of the classes every time the board is set 
     newDiv.className = '';
     newDiv.classList.add('opacity');
-    // newDiv.oncontextmenu = 'return !1';
     mainContainer.appendChild(newDiv);
+
+    // trap right mouse click
     newDiv.addEventListener('mouseup', (e) => {
         // https://www.hacksparrow.com/webdev/javascript/disabling-the-context-menu.html
-        let rowColArr = [];
         if (e.button && e.button > 1) {
             state.updateClickedCellArray(event.target.id);
-            rowColArr = e.target.id.split(',');
-            console.log(e.target.id, 'isHidden:', state.boardArray[rowColArr[0]][rowColArr[1]].isHidden);
             !state.firstClick && toggleFlagged(document.getElementById(e.target.id));
         }
     });
