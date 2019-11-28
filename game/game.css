@@ -18,6 +18,7 @@
   font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
     "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
 }
+
 #flag-info {
   font-size: 2em;
   font-weight: bolder;
@@ -30,8 +31,13 @@
   padding-left: 8px;
 }
 
-
 span#profile-user-name {
+  font-size: 2em;
+  margin-left: 15px;
+  font-weight: bold;
+}
+
+#timer {
   font-size: 2em;
   margin-left: 15px;
   font-weight: bold;
