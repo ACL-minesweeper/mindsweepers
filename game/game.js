@@ -14,8 +14,8 @@ const timerDiv = document.getElementById('timer');
 const playAgainButton = document.getElementById('play-again-button');
 
 header.addEventListener('click', () => {
-    header.classList.toggle('portrait');
-    header.classList.toggle('landscape');
+    mainContainer.classList.toggle('portrait');
+    mainContainer.classList.toggle('landscape');
 });
 
 // prevent context menu globally on page
@@ -223,7 +223,6 @@ export const toggleFlagged = (domEl = 0) => {
     //console.log('cell', clickedCellIdString, 'isFlagged', cellObject.isFlagged, 'isHidden', cellObject.isHidden);
     // remove a flag from a flagged cell
     if (cellObject.isFlagged) {
-        console.log('isFlagged = true');
         cellObject.isFlagged = false;
         dropFlag.play();
         state.flagsRemaining++;
@@ -235,10 +234,8 @@ export const toggleFlagged = (domEl = 0) => {
     }
     // if the user grabbed a flag or has right clicked and domEl has been passed in as a result
     else if (userHasFlag || domEl) {
-        console.log('got here');
         // FOR SOME REASON ISHIDDEN IS TRUE HERE EVEN FOR HIDDEN CELLS
         if (!cellObject.isFlagged && cellObject.isHidden) {
-            console.log('and here');
             cellObject.isFlagged = true;
             state.flagsRemaining--;
             userHasFlag = false;

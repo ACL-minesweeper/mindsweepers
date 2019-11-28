@@ -9,6 +9,8 @@
   grid-template-rows: repeat(var(--numRows), 1fr);
   grid-template-columns: repeat(var(--numColumns), 1fr);
   border: white 1px solid;
+  width: 100%;
+  height: auto;
 }
 
 .portrait {
@@ -55,7 +57,7 @@ span#profile-user-name {
   font-weight: bold;
 }
 
-div#boardgame-header {
+div #boardgame-header {
   width: 100%;
   display: flex;
   align-items: center;
@@ -89,6 +91,16 @@ div#boardgame-header {
 
   transition: all 1s;
 }
+
+/* #main-container .portrait div {
+  width: 80vh / --numRows;
+  height: 80vh / --numRows;
+} */
+
+/* #main-container .landscape div {
+  width: 80vw / --numRows;
+  height: 80vw / --numRows;
+} */
 
 .flagged {
   background-image: url("../assets/dog-park/placeholder-flag.png");
