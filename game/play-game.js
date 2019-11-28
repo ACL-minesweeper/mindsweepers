@@ -72,7 +72,8 @@ export const toggleFlagged = (domEl = 0) => {
         }
     }
     return false;
-}
+};
+
 export const playGame = () => {
     const objectRow = state.clickedCellArray[0];
     const objectColumn = state.clickedCellArray[1];
