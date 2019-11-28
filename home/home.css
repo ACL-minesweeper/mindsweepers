@@ -1,70 +1,50 @@
 body {
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  align-self: center;
+
 }
 
-div {
-  margin: 5px;
-}
 h2 {
   font-size: 150%;
 }
 
-p {
-  font-size: 100%;
-  text-align: left;
-}
 
 div.form-wrapper {
-  width: 90%;
-  height: 100%;
   border: black 1px solid;
   border-radius: 5px;
   background-color: lightgrey;
 }
-
-form#user-info-form {
-  display: grid;
-  height: 70%;
-  grid-template-rows: 20% 20% 45% 15%;
-  grid-template-columns: repeat(2, 1fr);
+section {
+  padding: 3%;
+  width: auto;
+  margin: 3%;
 }
 
 input#name {
   border-radius: 4px;
   line-height: 20px;
-  width: 100%;
-
+  width: 50%;
 }
-/* label {
-display: flex;
-justify-content: space-between;
-font-size: 125%;
-} */
 
 #username {
   display: flex;
   justify-content: center;
   flex-direction: column;
-  grid-column: 1 / 2;
-  grid-row: 1;
   background-color: steelblue;
   border-radius: 5px;
+  margin-bottom: 10px;
   padding: 25px 10px; 
   line-height: 25px;
 }
 
 #play-button {
-  grid-column: 2;
-  grid-row: 1;
 }
 
 #board-size.section {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  flex-direction: row;
-  grid-column: 1;
-  grid-row: 2;
   justify-content: left;
   border: black 1px solid;
   background-color: slategray;
@@ -74,37 +54,32 @@ font-size: 125%;
 
 #difficulty.section {
   display: flex;
-  justify-content: center;
-  grid-column: 2;
-  grid-row: 2;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   border: black 1px solid;
   border-radius: 5px;
   background-color: slategray;
 }
 
-#instructions {
-  display: flex;
-  justify-content: center;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 1em;
-  color: rgb(80, 80, 80);
-}
-
-div#user-input {
+#user-input.section {
   display: flex;
   flex-direction: column;
-  grid-column: 1 / 3;
-  grid-row: 3 / 5;
+  align-items: center;
   border: black 1px solid;
   border-radius: 5px;
   background-color: slategray;
+}
+
+#instructions  {
+  color: rgb(80, 80, 80);
+  padding: 0;
 }
 
 input[type="radio"] {
   opacity: 0;
   position: inherit;
   width: 0;
-  margin: 2em;
 }
 
 .form-wrapper label:hover {
@@ -117,38 +92,13 @@ input[type="radio"] {
   border-color: #4c4;
 }
 
-/* label[type="radio"]:checked {
-  background-color:#bfb;
-  border-color: #4c4;
-} */
-/* .form-wrapper [type="radio"]:focus + label {
-  border: 2px dashed #444;
-} */
-
-
-
-
-
-
-
-/* #user-input {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border-radius: 4px;
-  box-sizing: border-box;
+.radios {
   display: flex;
-} */
-/* div#play-game {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
 
-  padding: 15px;
-  margin-bottom: 50px;
-} */
-
+}
 
 
 
@@ -156,6 +106,24 @@ input[type="radio"] {
 
 .hidden {
   display: none;
+}
+
+@media only screen and (max-width: 600px) {
+  div.form-wrapper {
+    width: 100vw;
+    height: 90vh;
+    margin: auto;
+
+
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  div.form-wrapper {
+    width: 960px;
+    height: 100vh;
+    margin: auto;
+  }
 }
 
 
