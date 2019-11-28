@@ -2,6 +2,7 @@ import makeUser from '../home/make-user.js';
 import { saveUser } from '../common/utils.js';
 
 const userThemeForm = document.getElementById('theme-selection');
+localStorage.setItem('theme', 'deep-space');
 
 userThemeForm.addEventListener('change', function(){
     const userThemeSelection = userThemeForm.querySelector('input:checked').value;

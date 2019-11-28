@@ -6,6 +6,24 @@ import { clearAdjCells } from './clear-adj-cells.js';
 import { holdFlag, placeFlag, dropFlag, tripMine, recursion, gameWin, clickAudio } from '../assets/sounds.js';   
 const theme = localStorage.getItem('theme');
 
+// get DOM elements
+const mainContainer = document.getElementById('main-container');
+const userProfile = document.getElementById('profile-user-name');
+const timerDiv = document.getElementById('timer');
+const playAgainButton = document.getElementById('play-again-button');
+
+// prevent context menu globally on page
+// https://gist.github.com/FelipeBudinich/1dbe3c1e58901d24d7e3
+if (mainContainer.addEventListener) {
+    mainContainer.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+    }, false);
+} else {
+    mainContainer.attachEvent('oncontextmenu', function() {
+        window.event.returnValue = false;
+    });
+}
+
 // populate flag info header
 const flagDiv = document.getElementById('flag-info');
 flagDiv.classList.add('flag-pre-click');
@@ -34,7 +52,6 @@ const playGame = () => {
     const objectRow = state.clickedCellArray[0];
     const objectColumn = state.clickedCellArray[1];
     const cellObject = state.boardArray[objectRow][objectColumn];
-    console.log('isHidden', cellObject.isHidden);
     const clickedCellIdString = state.clickedCellArray[0] + ',' + state.clickedCellArray[1];
     const domCell = document.getElementById(clickedCellIdString);
 
@@ -147,9 +164,10 @@ function userWon(userWonBoolean) {
 
     if (userWonBoolean) {
         userProfile.textContent = currentUser.user + ' you won!';
+        let divClearDelay = 40;
         state.boardArray.forEach((rowObj, i) =>
             rowObj.forEach((cellObj, j) => {
-                const divClearDelay = 40 + 40 * i * j;
+                divClearDelay += 40 * i * j;
                 const thisDiv = document.getElementById(cellObj.id);
                 thisDiv.className = 'end-win-div';
                 window.setTimeout(() => {
@@ -158,18 +176,11 @@ function userWon(userWonBoolean) {
                     thisDiv.innerHTML = '';
                 }, divClearDelay);
             }));
-        const theMainContainer = document.getElementById('main-container');
-        window.setTimeout(() => theMainContainer.innerHTML = '', 2560);
+        window.setTimeout(() => mainContainer.innerHTML = '', divClearDelay + 40);
     } else {
         userProfile.textContent = currentUser.user + ' you lost!';
     }
 }
-
-// get DOM elements
-const mainContainer = document.getElementById('main-container');
-const userProfile = document.getElementById('profile-user-name');
-const timerDiv = document.getElementById('timer');
-const playAgainButton = document.getElementById('play-again-button');
 
 //updating DOM with user profile (in this case, just the user name)
 const currentUser = getUser();
@@ -202,7 +213,7 @@ export const toggleFlagged = (domEl = 0) => {
     const cellObject = state.boardArray[objectRow][objectColumn];
     const clickedCellIdString = state.clickedCellArray[0] + ',' + state.clickedCellArray[1];
     const domCell = domEl || document.getElementById(clickedCellIdString);
-    console.log('isFlagged', cellObject.isFlagged, 'isHidden', cellObject.isHidden);
+    //console.log('cell', clickedCellIdString, 'isFlagged', cellObject.isFlagged, 'isHidden', cellObject.isHidden);
     // remove a flag from a flagged cell
     if (cellObject.isFlagged) {
         console.log('isFlagged = true');
@@ -238,7 +249,7 @@ export const toggleFlagged = (domEl = 0) => {
 };
 
 // handles user click if firstClick and otherwise
-export const cellClick = event => {
+const cellClick = event => {
     event.preventDefault();
     state.updateClickedCellArray(event.target.id);
     if (state.firstClick) {
@@ -262,26 +273,19 @@ const createCell = id => {
     // to remove all of the classes every time the board is set 
     newDiv.className = '';
     newDiv.classList.add('opacity');
-    newDiv.oncontextmenu = 'return !1';
+    // newDiv.oncontextmenu = 'return !1';
     mainContainer.appendChild(newDiv);
     newDiv.addEventListener('mouseup', (e) => {
-        e.preventDefault();
         // https://www.hacksparrow.com/webdev/javascript/disabling-the-context-menu.html
-        document.oncontextmenu = () => false;
         let rowColArr = [];
-        if (e.button && e.button > 0) {
+        if (e.button && e.button > 1) {
+            state.updateClickedCellArray(event.target.id);
             rowColArr = e.target.id.split(',');
             console.log(e.target.id, 'isHidden:', state.boardArray[rowColArr[0]][rowColArr[1]].isHidden);
             !state.firstClick && toggleFlagged(document.getElementById(e.target.id));
-            alert('non=left click!');
         }
     });
     newDiv.addEventListener('click', cellClick);
-    newDiv.addEventListener('oncontextmenu', (e) => {
-        e.preventDefault();
-        e.stopImmediatePropagation();
-        return false;
-    });
 };
 // initialize blank conceptual board, initialize flagsRemaining, and setup board for first click
 state.initializeBlankBoardArray();
