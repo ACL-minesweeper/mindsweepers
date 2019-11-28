@@ -7,7 +7,7 @@ import { holdFlag, placeFlag, dropFlag, tripMine, recursion, gameWin, clickAudio
 const theme = localStorage.getItem('theme');
 
 // get DOM elements
-const header = document.getElementsByTagName('header')[0];
+const header = document.getElementsByClassName('header-image')[0];
 const mainContainer = document.getElementById('main-container');
 const userProfile = document.getElementById('profile-user-name');
 const timerDiv = document.getElementById('timer');
