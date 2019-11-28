@@ -19,14 +19,23 @@ export const clearAdjCells = (cellArrayParam) => {
         const cellColumnIndex = validCell[1];
         cellObject = state.boardArray[cellRowIndex][cellColumnIndex];
         if (!cellObject.isFlagged) {
+            const theme = localStorage.getItem('theme');
             cellObject = state.boardArray[cellRowIndex][cellColumnIndex];
             
             // get DOM cell div
             const domCell = document.getElementById(cellObject.id);
-
+            if (theme === 'deep-space') domCell.style.backgroundColor = 'rgb(255, 90, 40)';
             // if numbered cell:
-            if (cellObject.numAdjMines > 0)
-                domCell.textContent = cellObject.numAdjMines;
+            if (cellObject.numAdjMines > 0){
+                if (theme === 'dog-park') domCell.textContent = cellObject.numAdjMines;
+                if (theme === 'deep-space'){
+                    const green = 90 + cellObject.numAdjMines * 40;
+                    domCell.style.backgroundColor = `rgb(255, ${green}, 40)`;
+                }
+                domCell.classList.remove('opacity');
+                cellObject.isHidden = false;
+                //clickAudio.play();
+            }
             
             cellObject.isHidden = false;
             domCell.classList.remove('opacity');

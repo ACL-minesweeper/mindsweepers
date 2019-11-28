@@ -1,7 +1,5 @@
 
 #main-container {
-
-  background-image: url("../assets/dog-park/board-bg.png");
   background-size: cover;
   display: grid;
   width: 75vw;
@@ -83,7 +81,6 @@ div#boardgame-header {
 }
 
 .mine {
-  background-image: url("../assets/dog-park/bomb.png");
   background-size: cover;
 }
 
