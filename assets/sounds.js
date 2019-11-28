@@ -1,5 +1,4 @@
 const theme = localStorage.getItem('theme');
-
 export const holdFlag = new Audio(`../assets/${theme}/audio/holdflag.mp3`);
 export const placeFlag = new Audio(`../assets/${theme}/audio/placeflag.mp3`);
 export const dropFlag = new Audio(`../assets/${theme}/audio/dropflag.mp3`);

@@ -11,6 +11,10 @@ const userProfile = document.getElementById('profile-user-name');
 const timerDiv = document.getElementById('timer');
 const playAgainButton = document.getElementById('play-again-button');
 
+// set background for dog park theme
+let theme = localStorage.getItem('theme');
+if (theme === 'dog-park') mainContainer.style.backgroundImage = "url('../assets/dog-park/board-bg.png')";
+
 //updating DOM with user profile (in this case, just the user name)
 const currentUser = getUser();
 returnHomeIfNoUser(currentUser);
