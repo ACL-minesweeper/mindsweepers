@@ -1,80 +1,128 @@
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  align-self: center;
 
-p {
-  font-size: 0.5em;
+}
+
+h2 {
+  font-size: 150%;
+}
+
+
+div.form-wrapper {
+  border: black 1px solid;
+  border-radius: 5px;
+  background-color: lightgrey;
+  padding: 5px;
+}
+section {
+  padding: 3%;
+  width: auto;
 }
 
 input#name {
-  font-size: 1.5em;
-  padding: 3%;
-  font-family: "Lato", sans-serif;
-  font-weight: 100;
-  border-color: rgb(142, 141, 141);
-}
-
-#instructions {
-  display: flex;
-  justify-content: center;
-  margin-top: 2%;
-  margin-right: 5%;
-  margin-left: 5%;
-  padding: 5%;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-size: 1.5em;
-  color: rgb(80, 80, 80);
-}
-
-div#user-input {
-  display: flex;
-  justify-content: center;
-}
-
-#user-input {
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
   border-radius: 4px;
-  box-sizing: border-box;
-  display: flex;
+  line-height: 20px;
+  width: 50%;
 }
-div#play-game {
+
+#username {
   display: flex;
   justify-content: center;
-  align-items: flex-end;
-
-  padding: 15px;
-  margin-bottom: 50px;
+  flex-direction: column;
+  background-color: steelblue;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  padding: 25px 10px; 
+  line-height: 25px;
 }
 
-.logo-top img {
-  width: 20%;
-  height: 20%;
+#play-button {
 }
 
-.tress-and-dogs {
+#board-size.section {
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: space-between;
+  justify-content: left;
+  border: black 1px solid;
+  background-color: slategray;
+  border-radius: 5px;
+
 }
 
-label {
-  font-size: 1.5em;
-  padding: 3%;
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-weight: 100;
-  border-color: rgb(142, 141, 141);
-}
-
-input[id="name"] {
-  font-size: 150%;
-  width: 100%;
-  padding: 12px 20px;
-  margin: 8px 0;
-  display: inline-block;
-  border-radius: 4px;
-  box-sizing: border-box;
+#difficulty.section {
   display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  border: black 1px solid;
+  border-radius: 5px;
+  background-color: slategray;
+}
+
+#user-input.section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: black 1px solid;
+  border-radius: 5px;
+  background-color: slategray;
+}
+
+#instructions  {
+  color: rgb(80, 80, 80);
+  padding: 0;
+}
+
+input[type="radio"] {
+  opacity: 0;
+  position: inherit;
+  width: 0;
+}
+
+.form-wrapper label:hover {
+  color: lightskyblue;
+  cursor: pointer;
+}
+/* .form-wrapper label:checked {
+  color: lightskyblue;
+  font-size: 125%;
+} */
+
+/* input[type="radio"]:checked + label {
+  background-color:#bfb;
+  border-color: #4c4;
+} */
+
+.radios {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  flex-wrap: wrap;
+
 }
 
 .hidden{
   display: none;
 }
+
+@media only screen and (max-width: 600px) {
+  div.form-wrapper {
+    width: 100vw;
+    height: 90vh;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 601px) {
+  div.form-wrapper {
+    width: 960px;
+    height: 90vh;
+    margin: auto;
+  }
+}
+
+
+

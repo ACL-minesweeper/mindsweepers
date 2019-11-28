@@ -5,6 +5,7 @@ const userThemeForm = document.getElementById('theme-selection');
 
 userThemeForm.addEventListener('change', function(){
     const userThemeSelection = userThemeForm.querySelector('input:checked').value;
+    console.log(userThemeSelection);
     document.getElementById(userThemeSelection).classList.remove('hidden');
     const notUserThemeSelection = userThemeForm.querySelector('input:not(:checked)').value;
     document.getElementById(notUserThemeSelection).classList.add('hidden');

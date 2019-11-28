@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <link rel="stylesheet" href="./home/home.css">
-        <link rel="stylesheet" href="./common/main.css">
+        <!-- <link rel="stylesheet" href="./common/main.css"> -->
         <link href="https://fonts.googleapis.com/css?family=Baloo&display=swap"
             rel="stylesheet">
         <title>MINESWEEPER NO.2</title>
@@ -14,60 +14,57 @@
     <body>
         <header>
             <h1>MINESWEEPER NO.2</h1>
-            <div class="header-image">
+            <!-- <div class="header-image">
                 <img src="./assets/generic/header-image.png">
-            </div>
+            </div> -->
         </header>
-
-
-            <body>
-                <div id="user-input">
-                    <form id="theme-selection">
-                        <p>Choose Your Theme</p>
-                        <label><input type="radio" name="theme" value="deep-space" checked/>Deep Space</label>
-                        <label><input type="radio" name="theme" value="dog-park"/>Dog Park</label>
-                        <div id="dog-park" class="hidden">
-                            Wow, you are such a good samaritan!
-                            The purpose of the game is to find all the doggy doo in the park and put it into a bag. To start, click anywhere on the board. If you step in doo before you give it a doggy bag, you lose! The numbers indicate how many adjacent boxes contain doggy doo. Be sure to mark the squares you think have doo with a doggy bag.  Click the bag then click the square that has the doo.  You can remove a bag by clicking on it if you later think you are wrong. Make sure not to run out of bags before the park is doo-free. Once all the doos are in a bag and all the other spaces are doo-free, you win!
-                        </div>
-                        <div id="deep-space">
-                            Space space space! 
-                        </div>
-                    </form>
-                        
-
-
-                    <form id="user-info-form">
+        <body>
+            <div class='form-wrapper'>
+                <form id="user-info-form">
+                    <section id='username'>
                         <label for="name">Enter Your Name</label>
                         <input type="text" name="name" id="name" required>
+                    </section>
+                    <div class='radios'>
+                        <section id='board-size' class='section'>
+                            <div><h2>Board Size</h2></div>
+                            <label for='small-board'><input type="radio" id='small-board' name="board-size" value="small" checked/>Small</label>
+                            <label for='med-board'><input type="radio" id='med-board' name="board-size" value="medium"/>Medium</label>
+                            <label for='large-board'><input type="radio" id='lrg-board' name="board-size" value="large"/>Large</label>
+                        </section>
 
-                        <p>Board Size</p>
-                        <label><input type="radio" name="board-size" value="small" checked/>Small</label>
-                        <label><input type="radio" name="board-size" value="medium"/>Medium</label>
-                        <label><input type="radio" name="board-size" value="large"/>Large</label>
-
-                        <p>Board Difficulty</p>
-                        <label><input type="radio" name="difficulty" value="beginner"/>Beginner</label>
-                        <label><input type="radio" name="difficulty" value="intermediate" checked/>Intermediate</label>
-                        <label><input type="radio" name="difficulty" value="expert"/>Expert</label>
-
-                        <div id="instructions-dog" class="hidden">
-                            Wow, you are such a good samaritan!
-                            The purpose of the game is to find all the doggy doo in the park and put it into a bag. To start, click anywhere on the board. If you step in doo before you give it a doggy bag, you lose! The numbers indicate how many adjacent boxes contain doggy doo. Be sure to mark the squares you think have doo with a doggy bag.  Click the bag then click the square that has the doo.  You can remove a bag by clicking on it if you later think you are wrong. Make sure not to run out of bags before the park is doo-free. Once all the doos are in a bag and all the other spaces are doo-free, you win!
-                        </div>
-
-                        <div id="instructions-space" class="hidden">
-                            Space space space! 
-                        </div>
-
-                        <button id="play-game">PLAY GAME</button>
-                    </form>
+                        <section id='difficulty' class='section'>
+                            <h2>Board Difficulty</h2>
+                            <label for='difficulty-beg'><input type="radio" id='difficulty-beg' name="difficulty" value="beginner"/>Beginner</label>
+                            <label for='difficulty-int'><input type="radio" id='difficulty-int' name="difficulty" value="intermediate" checked />Intermediate</label>
+                            <label for='difficulty-exp'><input type="radio" id='difficulty-exp' name="difficulty" value="expert"/>Expert</label>
+                        </section>
+                    </div>
+                <div id='play-button'>          
+                        <button type='submit' id="play-game">PLAY GAME</button>
                 </div>
-                <footer>
-                        <a href='./about-us/'>ABOUT THE DEV TEAM</a>
-                </footer>
-
-                <script type="module" src="./home/home.js"></script>
-            </body>
+            </form>
+                
+            <section id="user-input" class='section'>
+                <h2>Choose Theme</h2>
+                <form id="theme-selection">
+                    <p>Choose Your Theme</p>
+                    <label><input type="radio" name="theme" value="deep-space" checked/>Deep Space</label>
+                    <label><input type="radio" name="theme" value="dog-park"/>Dog Park</label>
+                    <div id="dog-park" class="hidden">
+                        Uh oh, this park is a mess!  Start by clicking any cell.  The numbers indicate that adjacent cells contain hidden doggy-doo. Pick up a bag and mark where you think the doggy doo-doo is until the park is all cleaned up. 
+                    </div>
+                    <div id="deep-space">
+                        You're on a deep space mission in the name of science to photograph a black hole.  Colors indicate number of adjacent black holes.  Help Katie Bouman mark the black holes.  Find them all and you win!
+                    </div>
+                </form>
+                        </section>
+                </div>
+            </div> end form wrapper
+            <footer>
+                    <a href='./about-us/'>ABOUT THE DEV TEAM</a>
+            </footer>
+            <script type="module" src="./home/home.js"></script>
+        </body>
 
     </html>
