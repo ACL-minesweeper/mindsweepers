@@ -93,7 +93,7 @@ const playGame = () => {
         if (theme === 'dog-park') domCell.textContent = cellObject.numAdjMines;
 
         // optionally add background color (for deep space theme)
-        if (theme === 'deep-space'){
+        else if (theme === 'deep-space'){
             const green = 90 + cellObject.numAdjMines * 40;
             domCell.style.backgroundColor = `rgb(255, ${green}, 40)`;
         }
@@ -102,7 +102,7 @@ const playGame = () => {
         clickAudio.play();
     }
     // if the user clicks an empty cell
-    else if (cellObject.numAdjMines === 0) {
+    else if (cellObject.numAdjMines === 0 && cellObject.isHidden) {
         if (theme === 'deep-space') domCell.style.backgroundColor = 'rgb(255, 90, 40)';
         // update the DOM
         recursion.play();
@@ -148,7 +148,7 @@ function userWon(userWonBoolean) {
                 //show the user the mine image
                 divElement.classList.add('mine');
                 if (theme === 'dog-park') divElement.style.backgroundImage = "url('../assets/dog-park/bomb.png')";
-                if (theme === 'deep-space') divElement.style.backgroundImage = "url('../assets/deep-space/bomb.png')";
+                else if (theme === 'deep-space') divElement.style.backgroundImage = "url('../assets/deep-space/bomb.png')";
             }
         });
     });
@@ -261,6 +261,7 @@ const cellClick = event => {
         //state.updateClickedCellArray(firstCell.id);
         clearAdjCells(state.clickedCellArray);
         timerInterval = setInterval(() => incrementTimeDiv(timerInterval), 1000);
+        clickAudio.play();
     } else {
         playGame();
     }

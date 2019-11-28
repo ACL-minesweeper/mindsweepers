@@ -4,6 +4,7 @@ import state from './state.js';
 export const clearAdjCells = cellArrayParam => {
     const cellRow = cellArrayParam[0];
     const cellColumn = cellArrayParam[1];
+    const theme = localStorage.getItem('theme');
     // clear this cell
     let cellObject = state.boardArray[cellRow][cellColumn];
     cellObject.isHidden = false;
@@ -19,7 +20,6 @@ export const clearAdjCells = cellArrayParam => {
         const cellColumnIndex = validCell[1];
         cellObject = state.boardArray[cellRowIndex][cellColumnIndex];
         if (!cellObject.isFlagged) {
-            const theme = localStorage.getItem('theme');
             cellObject = state.boardArray[cellRowIndex][cellColumnIndex];
             
             // get DOM cell div
@@ -28,13 +28,12 @@ export const clearAdjCells = cellArrayParam => {
             // if numbered cell:
             if (cellObject.numAdjMines > 0){
                 if (theme === 'dog-park') domCell.textContent = cellObject.numAdjMines;
-                if (theme === 'deep-space'){
+                else if (theme === 'deep-space'){
                     const green = 90 + cellObject.numAdjMines * 40;
                     domCell.style.backgroundColor = `rgb(255, ${green}, 40)`;
                 }
                 domCell.classList.remove('opacity');
                 cellObject.isHidden = false;
-                //clickAudio.play();
             }
             
             // unhide if not flagged
