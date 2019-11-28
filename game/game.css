@@ -3,12 +3,24 @@
   background-image: url("../assets/dog-park/board-bg.png");
   background-size: cover;
   display: grid;
-  width: 75vw;
+  /* width: 75vw;
   height: 75vw;
-  font-size: 2vw;
+  font-size: 2vw; */
   grid-template-rows: repeat(var(--numRows), 1fr);
   grid-template-columns: repeat(var(--numColumns), 1fr);
   border: white 1px solid;
+}
+
+.portrait {
+  width: 80vh;
+  height: 80vh;
+  font-size: 2vw;
+}
+
+.landscape {
+  width: 80vw;
+  height: 80vw;
+  font-size: 2vw;
 }
 
 .board-container {
