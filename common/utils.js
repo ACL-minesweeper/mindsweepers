@@ -9,7 +9,7 @@ export const isWin = () => {
     else
         for (let row = 0; row < state.boardArray.length; row++) 
             for (let cell = 0; cell < row.length; cell++)
-                if (cell.isMine && !cell.isFlagged)
+                if (!cell.isMine && cell.isHidden)
                     return false;
     return true;
 };
@@ -30,8 +30,8 @@ export const getValidAdjCells = (cellArrayParam, includeSelfParam = false) => {
             const isItself = includeSelfParam ? false : (i === 0 && j === 0);
             const cellRowIndex = cellRow + i; 
             const cellColumnIndex = cellColumn + j;
-            const isValidRowIndex = checkValidRowIndex(cellRowIndex, state.boardArray);
-            const isValidColumnIndex = checkValidColumnIndex(cellColumnIndex, state.boardArray);
+            const isValidRowIndex = checkValidRowIndex(cellRowIndex);
+            const isValidColumnIndex = checkValidColumnIndex(cellColumnIndex);
             if (!isItself && isValidRowIndex && isValidColumnIndex) {
                 validAdjCells.push([cellRowIndex, cellColumnIndex]);
             }
