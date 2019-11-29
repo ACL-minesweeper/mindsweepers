@@ -18,6 +18,9 @@ header.addEventListener('click', () => {
     mainContainer.classList.toggle('landscape');
 });
 
+if (theme === 'deep-space') mainContainer.classList.add('deep-space');
+else if (theme === 'dog-park') mainContainer.classList.add('dog-park');
+
 // prevent context menu globally on page
 // https://gist.github.com/FelipeBudinich/1dbe3c1e58901d24d7e3
 if (mainContainer.addEventListener) {

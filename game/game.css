@@ -1,7 +1,5 @@
 
 #main-container {
-  background-image: url("../assets/dog-park/board-bg.png");
-  background-size: cover;
   display: grid;
   /* width: 75vw;
   height: 75vw;
@@ -11,6 +9,15 @@
   border: white 1px solid;
   /* width: 100%;
   height: auto; */
+}
+
+.deep-space {
+  background-color: black;
+}
+
+.dog-park {
+  background-image: url("../assets/dog-park/board-bg.png");
+  background-size: cover;
 }
 
 .portrait {
