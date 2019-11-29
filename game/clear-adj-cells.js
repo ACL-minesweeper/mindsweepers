@@ -1,10 +1,12 @@
 import { getValidAdjCells } from '../common/utils.js';
 import state from './state.js';
+import { getUserState } from '../common/user.js';
+
+const theme = getUserState().theme;
 
 export const clearAdjCells = cellArrayParam => {
     const cellRow = cellArrayParam[0];
     const cellColumn = cellArrayParam[1];
-    const theme = localStorage.getItem('theme');
     // clear this cell
     let cellObject = state.boardArray[cellRow][cellColumn];
     cellObject.isHidden = false;
@@ -28,7 +30,7 @@ export const clearAdjCells = cellArrayParam => {
             // if numbered cell:
             if (cellObject.numAdjMines > 0) {
                 if (theme === 'dog-park') domCell.textContent = cellObject.numAdjMines;
-                else if (theme === 'deep-space'){
+                else if (theme === 'deep-space') {
                     const green = 90 + cellObject.numAdjMines * 40;
                     //const a = 1 - cellObject.numAdjMines / 8;
                     const a = 1;

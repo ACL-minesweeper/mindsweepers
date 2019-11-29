@@ -6,13 +6,6 @@ const state = {
     userHasFlag: false, 
     firstClick: true,
     clearAdjCellsCalled: false,
-    //numRows: 8, 
-    //numColumns: 8, 
-    //numMines: 10, 
-    // clickedCellArray: [],
-    // flagsRemaining: num,
-    // boardArray: [[{}],[{}],...],
-    // are generated dynamically
 
     initializeFlagsRemaining() {
         this.flagsRemaining = this.numMines;
@@ -24,6 +17,7 @@ const state = {
         const coordStringArr = domCellId.split(',');
         this.clickedCellArray = coordStringArr.map(Number);
     },
+
     // generates array of array of objects i.e. blank conceptual board
     initializeBlankBoardArray() {
         this.boardArray = [];
@@ -43,6 +37,7 @@ const state = {
             }
         }
     },
+    
     // populates board with mines and updates number of adjacent mines thus achieving the ultimate dream board state. 
     initializeDreamBoardArray() {
         const arrayOfMineCoordinates = getArrayOfMineCoordinates();

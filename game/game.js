@@ -1,10 +1,13 @@
 import state from './state.js';
 // import './board-specs.js';
 import { boardSpecs } from './board-specs.js';
-import { isWin, getUser, saveUser, returnHomeIfNoUser } from '../common/utils.js';
+import { isWin } from '../common/utils.js';
+import { getUserState, updateUserState, returnHomeIfNoValidUser } from '../common/user.js';
 import { clearAdjCells } from './clear-adj-cells.js';
 import { holdFlag, placeFlag, dropFlag, tripMine, recursion, gameWin, clickAudio } from '../assets/sounds.js';   
-const theme = localStorage.getItem('theme');
+const userState = getUserState();
+returnHomeIfNoValidUser(userState);
+const theme = userState.theme;
 
 // get DOM elements
 const header = document.getElementsByClassName('header-image')[0];
@@ -21,6 +24,9 @@ header.addEventListener('click', () => {
 if (theme === 'deep-space') mainContainer.classList.add('deep-space');
 else if (theme === 'dog-park') mainContainer.classList.add('dog-park');
 
+// show user name
+userProfile.textContent = userState.name;
+
 // prevent context menu globally on page
 // https://gist.github.com/FelipeBudinich/1dbe3c1e58901d24d7e3
 if (mainContainer.addEventListener) {
@@ -33,8 +39,20 @@ if (mainContainer.addEventListener) {
     });
 }
 
+// timer variable
+let timerId;
+
+const boardDimension = boardSpecs.boardDimension[localStorage.getItem('board-size')];
+mainContainer.style.setProperty('--numRows', boardDimension);
+mainContainer.style.setProperty('--numColumns', boardDimension);
+
+// initialize blank conceptual board, initialize flagsRemaining, and setup board for first click
+state.initializeBlankBoardArray();
+
 // populate flag info header
 const flagDiv = document.getElementById('flag-info');
+// initialize flags remaining and display to user
+flagDiv.textContent = state.flagsRemaining;
 flagDiv.classList.add('flag-pre-click');
 let userHasFlag = false;
 flagDiv.addEventListener('click', () => {
@@ -53,8 +71,6 @@ flagDiv.addEventListener('click', () => {
         }
     }
 });
-// initialize flags remaining and display to user
-flagDiv.textContent = state.flagsRemaining;
 
 // mine placements are known at this point
 const playGame = () => {
@@ -93,7 +109,7 @@ const playGame = () => {
     else if (cellObject.isMine) {
         // execute loss sequence
         tripMine.play();
-        clearInterval(timerInterval);
+        clearInterval(timerId);
         userWon(false, state.boardArray);
     }
     // if the user clicks a cell with adjacent mines
@@ -121,23 +137,13 @@ const playGame = () => {
         const clickedCellArray = coordNumberArr;
         clearAdjCells(clickedCellArray);
     }
+
     if (isWin()) {
         // execute win sequence
         gameWin.play();
-        clearInterval(timerInterval);
+        clearInterval(timerId);
         userWon(true);
     }
-};
-
-// update user win/loss record in local storage
-const updateUserStats = (userObjParam, isWinParam) => {
-    if (isWinParam) {
-        userObjParam.wins++;
-    } else {
-        userObjParam.losses++;
-    }
-    // save updated user to local storage
-    saveUser(userObjParam);
 };
 
 function userWon(userWonBoolean) {
@@ -164,15 +170,14 @@ function userWon(userWonBoolean) {
 
     //update local storage for win/loss count on the user object
     //get user object from local storage
-    const userObj = getUser();
+    const userObj = getUserState();
     //update win/loss count and save user object back to local storage
-    updateUserStats(userObj, userWonBoolean);
+    updateUserState(userObj, userWonBoolean);
 
     const userProfile = document.getElementById('profile-user-name');
-    const currentUser = getUser();
 
     if (userWonBoolean) {
-        userProfile.textContent = currentUser.user + ' you won!';
+        userProfile.textContent = userState.name + ' you won!';
         let totalDelay = 0;
         state.boardArray.forEach((rowObj, i) =>
             rowObj.forEach((cellObj, j) => {
@@ -188,36 +193,18 @@ function userWon(userWonBoolean) {
             }));
         window.setTimeout(() => mainContainer.innerHTML = '', totalDelay + 80);
     } else {
-        userProfile.textContent = currentUser.user + ' you lost!';
+        userProfile.textContent = userState.name + ' you lost!';
     }
 }
 
-//updating DOM with user profile (in this case, just the user name)
-const currentUser = getUser();
-returnHomeIfNoUser(currentUser);
-// prevent console errors
-if (currentUser) userProfile.textContent = currentUser.user;
-
-export let timerInterval;
-
-const boardDimension = boardSpecs.boardDimension[localStorage.getItem('board-size')];
-mainContainer.style.setProperty('--numRows', boardDimension);
-mainContainer.style.setProperty('--numColumns', boardDimension);
-
-const setBlankBoard = () => {
-    state.boardArray.forEach(row =>
-        row.forEach(cell =>
-            createCell(cell.id)));
-};
-
-export const incrementTimeDiv = timerInterval => {
+const incrementTimeDiv = timerId => {
     const currentTime = +timerDiv.textContent;
     timerDiv.textContent = (currentTime + 1).toString().padStart(3, '0');
-    if (currentTime >= 998) clearInterval(timerInterval);
+    if (currentTime >= 998) clearInterval(timerId);
 };
 
 // mine placements are known at this point
-export const toggleFlagged = (domEl = 0) => {
+const toggleFlagged = (domEl = 0) => {
     const objectRow = state.clickedCellArray[0];
     const objectColumn = state.clickedCellArray[1];
     const cellObject = state.boardArray[objectRow][objectColumn];
@@ -267,7 +254,7 @@ const cellClick = event => {
         state.boardArray[state.clickedCellArray[0]][state.clickedCellArray[1]].isHidden = false;
         //state.updateClickedCellArray(firstCell.id);
         clearAdjCells(state.clickedCellArray);
-        timerInterval = setInterval(() => incrementTimeDiv(timerInterval), 1000);
+        timerId = setInterval(() => incrementTimeDiv(timerId), 1000);
         clickAudio.play();
     } else {
         playGame();
@@ -289,13 +276,17 @@ const createCell = id => {
         if (e.button && e.button > 1) {
             state.updateClickedCellArray(event.target.id);
             !state.firstClick && toggleFlagged(document.getElementById(e.target.id));
+
         }
     });
     newDiv.addEventListener('click', cellClick);
 };
-// initialize blank conceptual board, initialize flagsRemaining, and setup board for first click
-state.initializeBlankBoardArray();
-//state.initializeFlagsRemaining();
+
+const setBlankBoard = () => {
+    state.boardArray.forEach(row =>
+        row.forEach(cell =>
+            createCell(cell.id)));
+};
 setBlankBoard();
 
 const playAgain = mainContainerParam => {
@@ -304,7 +295,7 @@ const playAgain = mainContainerParam => {
     // reinitialize firstClick for user
     state.firstClick = true;
     // reset timerDiv text
-    clearInterval(timerInterval);
+    clearInterval(timerId);
     timerDiv.textContent = '000';
     // reset flags to full count which matches the number of mines
     state.initializeFlagsRemaining();
@@ -312,11 +303,11 @@ const playAgain = mainContainerParam => {
     const flagDiv = document.getElementById('flag-info');
     flagDiv.textContent = state.flagsRemaining;
     flagDiv.className = 'flag-pre-click';
-    userProfile.textContent = currentUser.user;
+    userProfile.textContent = userState.name;
     // create a brand new conceptual board
     state.initializeBlankBoardArray();
     // create a brand new DOM board
-    setBlankBoard(state.boardArray);
+    setBlankBoard();
 };
 
 playAgainButton.addEventListener('click', () => playAgain(mainContainer));

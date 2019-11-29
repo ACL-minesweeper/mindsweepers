@@ -3,42 +3,21 @@ import state from '../game/state.js';
 // this function returns an integer between 0 and n-1, where n is either the number of rows or the number of columns 
 export const generateRandomIndex = lengthOfArray => Math.floor(Math.random() * lengthOfArray);
 
-// save user to localStorage
-export const saveUser = (user) => {
-    const json = JSON.stringify(user);
-    localStorage.setItem('user', json);
-};
-
-// get user from local storage
-export const getUser = () => {
-    const json = localStorage.getItem('user');
-    if (!json) return null;
-    const user = JSON.parse(json);
-    return user;
-};
-
-// redirect to home page if user does not exist in local storage for some reason
-export const returnHomeIfNoUser = userParam => userParam === null && (window.location = '../');
-
 // determine if user has won
 export const isWin = () => {
-    if (state.flagsRemaining === 0){
-        let winning = true;
-        state.boardArray.forEach(row => {
-            row.forEach(cell => {
-                if (!cell.isMine && cell.isHidden){
-                    winning = false;
-                }
-            });
-        });
-        return winning;
-    }
+    if (state.flagsRemaining !== 0) return false;
+    else
+        for (let row = 0; row < state.boardArray.length; row++) 
+            for (let cell = 0; cell < row.length; cell++)
+                if (cell.isMine && !cell.isFlagged)
+                    return false;
+    return true;
 };
 
-const checkValidRowIndex = (cellRowIndexParam) =>
+const checkValidRowIndex = cellRowIndexParam =>
     cellRowIndexParam >= 0 && cellRowIndexParam < state.numRows;
 
-const checkValidColumnIndex = (cellColumnIndexParam) =>
+const checkValidColumnIndex = cellColumnIndexParam =>
     cellColumnIndexParam >= 0 && cellColumnIndexParam < state.numColumns;
 
 export const getValidAdjCells = (cellArrayParam, includeSelfParam = false) => {
@@ -60,4 +39,3 @@ export const getValidAdjCells = (cellArrayParam, includeSelfParam = false) => {
     }
     return validAdjCells;
 };
-
