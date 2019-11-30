@@ -10,13 +10,48 @@
   height: auto; */
 }
 
+#main-container div {
+  /* border: 1px whitesmoke solid; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* font-size: 200%; */
+  font-weight: bolder;
+
+  text-shadow:
+  -1px -1px 0 #fff,
+  1px -1px 0 #fff,
+  -1px 1px 0 #fff,
+  1px 1px 0 #fff;
+
+  transition: all 1s;
+}
+
+/* #main-container .portrait div {
+  width: 80vh / --numRows;
+  height: 80vh / --numRows;
+} */
+
+/* #main-container .landscape div {
+  width: 80vw / --numRows;
+  height: 80vw / --numRows;
+} */
+
 .deep-space {
-  background-color: black;
+  background-color: darkblue;
 }
 
 .dog-park {
   background-image: url("../assets/dog-park/board-bg.png");
   background-size: cover;
+}
+
+.deep-space div {
+  border: 1px black solid;
+}
+
+.dog-park div {
+  border: 1px whitesmoke solid;
 }
 
 .portrait {
@@ -80,33 +115,6 @@ div #boardgame-header {
   display: flex;
   align-items: center;
 }
-
-#main-container div {
-  border: 1px whitesmoke solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  /* font-size: 200%; */
-  font-weight: bolder;
-
-  text-shadow:
-  -1px -1px 0 #fff,
-  1px -1px 0 #fff,
-  -1px 1px 0 #fff,
-  1px 1px 0 #fff;
-
-  transition: all 1s;
-}
-
-/* #main-container .portrait div {
-  width: 80vh / --numRows;
-  height: 80vh / --numRows;
-} */
-
-/* #main-container .landscape div {
-  width: 80vw / --numRows;
-  height: 80vw / --numRows;
-} */
 
 .flagged {
   background-image: url("../assets/dog-park/placeholder-flag.png");
@@ -172,4 +180,40 @@ button{
   body.wrapper {
     width: 960px;
   }
+}
+
+.ds0 {
+  background-color: #000000;
+}
+
+.ds1 {
+  background-color: #391D1D;
+}
+
+.ds2 {
+  background-color: #68372F;
+}
+
+.ds3 {
+  background-color: #945137;
+}
+
+.ds4 {
+  background-color: #A75D3A;
+}
+
+.ds5 {
+  background-color: #C88139;
+}
+
+.ds6 {
+  background-color: #E6A638;
+}
+
+.ds7 {
+  background-color: #EEC039;
+}
+
+.ds8 {
+  background-color: #FFF43B;
 }

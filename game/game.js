@@ -131,8 +131,9 @@ const playGame = () => {
 
         // optionally add background color (for deep space theme)
         else if (theme === 'deep-space') {
-            const green = 90 + cellObject.numAdjMines * 40;
-            domCell.style.backgroundColor = `rgb(255, ${green}, 40)`;
+        //     const green = 90 + cellObject.numAdjMines * 40;
+        //     domCell.style.backgroundColor = `rgb(255, ${green}, 40)`;
+            domCell.classList.add(`ds${cellObject.numAdjMines}`);
         }
         domCell.classList.remove('opacity');
         cellObject.isHidden = false;
@@ -140,7 +141,8 @@ const playGame = () => {
     }
     // if the user clicks an empty cell
     else if (cellObject.numAdjMines === 0 && cellObject.isHidden) {
-        if (theme === 'deep-space') domCell.style.backgroundColor = 'rgb(255, 90, 40)';
+        //if (theme === 'deep-space') domCell.style.backgroundColor = 'rgb(255, 90, 40)';
+        domCell.classList.add(`ds${cellObject.numAdjMines}`);
         // update the DOM
         recursion.play();
         const domCellId = cellObject.id;

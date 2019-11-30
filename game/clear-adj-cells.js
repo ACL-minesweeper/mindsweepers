@@ -26,15 +26,18 @@ export const clearAdjCells = cellArrayParam => {
             
             // get DOM cell div
             const domCell = document.getElementById(cellObject.id);
-            if (theme === 'deep-space') domCell.style.backgroundColor = 'rgb(255, 90, 40)';
+            //if (theme === 'deep-space') domCell.style.backgroundColor = 'rgb(255, 90, 40)';
             // if numbered cell:
+            if (theme === 'deep-space') domCell.classList.add(`ds${cellObject.numAdjMines}`);
+            
             if (cellObject.numAdjMines > 0) {
                 if (theme === 'dog-park') domCell.textContent = cellObject.numAdjMines;
                 else if (theme === 'deep-space') {
-                    const green = 90 + cellObject.numAdjMines * 40;
+                    //const green = 90 + cellObject.numAdjMines * 40;
                     //const a = 1 - cellObject.numAdjMines / 8;
-                    const a = 1;
-                    domCell.style.backgroundColor = `rgba(255, ${green}, 40, ${a})`;
+                    //const a = 1;
+                    //domCell.style.backgroundColor = `rgba(255, ${green}, 40, ${a})`;
+                    domCell.classList.add(`ds${cellObject.numAdjMines}`);
                 }
                 domCell.classList.remove('opacity');
                 cellObject.isHidden = false;
