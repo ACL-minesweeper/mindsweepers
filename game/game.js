@@ -10,6 +10,7 @@ returnHomeIfNoValidUser(userState);
 const theme = userState.theme;
 
 // get DOM elements
+const wrapper = document.getElementsByClassName('wrapper')[0];
 const header = document.getElementsByClassName('header-image')[0];
 const mainContainer = document.getElementById('main-container');
 const userProfile = document.getElementById('profile-user-name');
@@ -17,6 +18,8 @@ const timerDiv = document.getElementById('timer');
 const playAgainButton = document.getElementById('play-again-button');
 
 header.addEventListener('click', () => {
+    wrapper.classList.toggle('portrait');
+    wrapper.classList.toggle('landscape');
     mainContainer.classList.toggle('portrait');
     mainContainer.classList.toggle('landscape');
 });
@@ -71,6 +74,15 @@ flagDiv.addEventListener('click', () => {
         }
     }
 });
+
+const checkIfWin = () => {
+    if (isWin()) {
+        // execute win sequence
+        gameWin.play();
+        clearInterval(timerId);
+        userWon(true);
+    }
+};
 
 // mine placements are known at this point
 const playGame = () => {
@@ -138,12 +150,7 @@ const playGame = () => {
         clearAdjCells(clickedCellArray);
     }
 
-    if (isWin()) {
-        // execute win sequence
-        gameWin.play();
-        clearInterval(timerId);
-        userWon(true);
-    }
+    checkIfWin();
 };
 
 function userWon(userWonBoolean) {
@@ -220,7 +227,6 @@ const toggleFlagged = (domEl = 0) => {
         domCell.classList.add('opacity');
         domCell.classList.remove('flagged');
         flagDiv.textContent = state.flagsRemaining;
-        return true;
     }
     // if the user grabbed a flag or has right clicked and domEl has been passed in as a result
     else if (userHasFlag || domEl) {
@@ -236,10 +242,9 @@ const toggleFlagged = (domEl = 0) => {
             flagDiv.classList.remove('flag-post-click');
             flagDiv.classList.add('flag-pre-click');
             flagDiv.textContent = state.flagsRemaining;
-            return true;
         }
     }
-    return false;
+    checkIfWin();
 };
 
 // handles user click if firstClick and otherwise
@@ -275,8 +280,7 @@ const createCell = id => {
         // https://www.hacksparrow.com/webdev/javascript/disabling-the-context-menu.html
         if (e.button && e.button > 1) {
             state.updateClickedCellArray(event.target.id);
-            !state.firstClick && toggleFlagged(document.getElementById(e.target.id));
-
+            if (!state.firstClick) toggleFlagged(document.getElementById(e.target.id));
         }
     });
     newDiv.addEventListener('click', cellClick);

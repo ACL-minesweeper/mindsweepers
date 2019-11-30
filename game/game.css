@@ -1,4 +1,3 @@
-
 #main-container {
   display: grid;
   /* width: 75vw;
@@ -23,13 +22,13 @@
 .portrait {
   width: 80vh;
   height: 80vh;
-  font-size: 2vw;
+  font-size: 200%;
 }
 
 .landscape {
   width: 80vw;
   height: 80vw;
-  font-size: 2vw;
+  font-size: 200%;
 }
 
 .board-container {

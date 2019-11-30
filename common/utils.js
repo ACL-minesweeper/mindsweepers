@@ -4,14 +4,28 @@ import state from '../game/state.js';
 export const generateRandomIndex = lengthOfArray => Math.floor(Math.random() * lengthOfArray);
 
 // determine if user has won
+// export const isWin = () => {
+//     if (state.flagsRemaining !== 0) return false;
+//     else
+//         for (let row = 0; row < state.boardArray.length; row++) 
+//             for (let cell = 0; cell < row.length; cell++)
+//                 if (!cell.isMine && cell.isHidden)
+//                     return false;
+//     return true;
+// };
+
 export const isWin = () => {
-    if (state.flagsRemaining !== 0) return false;
-    else
-        for (let row = 0; row < state.boardArray.length; row++) 
-            for (let cell = 0; cell < row.length; cell++)
-                if (!cell.isMine && cell.isHidden)
-                    return false;
-    return true;
+    if (state.flagsRemaining === 0){
+        let winning = true;
+        state.boardArray.forEach(row => {
+            row.forEach(cell => {
+                if (!cell.isMine && cell.isHidden){
+                    winning = false;
+                }
+            });
+        });
+        return winning;
+    }
 };
 
 const checkValidRowIndex = cellRowIndexParam =>
