@@ -17,6 +17,7 @@ const userProfile = document.getElementById('profile-user-name');
 const timerDiv = document.getElementById('timer');
 const playAgainButton = document.getElementById('play-again-button');
 
+// allow resizing of board by click on header
 header.addEventListener('click', () => {
     wrapper.classList.toggle('portrait');
     wrapper.classList.toggle('landscape');
@@ -250,21 +251,22 @@ const toggleFlagged = (domEl = 0) => {
 };
 
 // handles user click if firstClick and otherwise
-const cellClick = event => {
-    event.preventDefault();
-    state.updateClickedCellArray(event.target.id);
+const cellClick = e => {
+    e.preventDefault();
+
+    state.updateClickedCellArray(e.target.id);
     if (state.firstClick) {
         state.firstClick = false;
         // after the first click, board objects are updated with mines and numAdjines
         state.initializeDreamBoardArray();
-        event.target.classList.remove('opacity');
+        e.target.classList.remove('opacity');
         state.boardArray[state.clickedCellArray[0]][state.clickedCellArray[1]].isHidden = false;
         //state.updateClickedCellArray(firstCell.id);
         clearAdjCells(state.clickedCellArray);
         timerId = setInterval(() => incrementTimeDiv(timerId), 1000);
         clickAudio.play();
     } else {
-        playGame();
+        if (!e.ctrlKey) playGame();
     }
 };
 
@@ -278,9 +280,10 @@ const createCell = id => {
     mainContainer.appendChild(newDiv);
 
     // trap right mouse click
-    newDiv.addEventListener('mouseup', (e) => {
+    newDiv.addEventListener('mousedown', e => {
         // https://www.hacksparrow.com/webdev/javascript/disabling-the-context-menu.html
-        if (e.button && e.button > 1) {
+        if (e.ctrlKey || e.button > 1) {
+            e.preventDefault();
             state.updateClickedCellArray(event.target.id);
             if (!state.firstClick) toggleFlagged(document.getElementById(e.target.id));
         }
