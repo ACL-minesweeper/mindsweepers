@@ -188,11 +188,12 @@ function userWon(userWonBoolean) {
 
     if (userWonBoolean) {
         userProfile.textContent = userState.name + ' you won!';
-        let totalDelay = 0;
+        // total effect time of about 2.5 seconds seems reasonable
+        const totalDelayMs = 2500;
+        const incrementalDelay = Math.floor(totalDelayMs / (state.numRows * state.numColumns));
         state.boardArray.forEach((rowObj, i) =>
             rowObj.forEach((cellObj, j) => {
-                const divClearDelay = 40 + 40 * i * j;
-                totalDelay = i * j * 40;
+                const divClearDelay = incrementalDelay + incrementalDelay * i * j;
                 const thisDiv = document.getElementById(cellObj.id);
                 thisDiv.className = 'end-win-div';
                 window.setTimeout(() => {
@@ -201,7 +202,7 @@ function userWon(userWonBoolean) {
                     thisDiv.innerHTML = '';
                 }, divClearDelay);
             }));
-        window.setTimeout(() => mainContainer.innerHTML = '', totalDelay + 80);
+        window.setTimeout(() => mainContainer.innerHTML = '', totalDelayMs);
     } else {
         userProfile.textContent = userState.name + ' you lost!';
     }

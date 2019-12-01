@@ -6,6 +6,9 @@ const state = {
     userHasFlag: false, 
     firstClick: true,
     clearAdjCellsCalled: false,
+    numRows: null,
+    numColumns: null,
+    numMines: null,
 
     initializeFlagsRemaining() {
         this.flagsRemaining = this.numMines;
@@ -37,7 +40,7 @@ const state = {
             }
         }
     },
-    
+
     // populates board with mines and updates number of adjacent mines thus achieving the ultimate dream board state. 
     initializeDreamBoardArray() {
         const arrayOfMineCoordinates = getArrayOfMineCoordinates();
