@@ -5,6 +5,8 @@ export const saveUserState = userObj => {
         wins: 0,
         losses: 0,
         theme: userObj.theme,
+        boardSize: userObj.boardSize,
+        difficulty: userObj.difficulty,
     };
     const json = JSON.stringify(userState);
     localStorage.setItem('userState', json);

@@ -46,7 +46,7 @@ if (mainContainer.addEventListener) {
 // timer variable
 let timerId;
 
-const boardDimension = boardSpecs.boardDimension[localStorage.getItem('board-size')];
+const boardDimension = boardSpecs.boardDimension[JSON.parse(localStorage.getItem('userState')).boardSize];
 mainContainer.style.setProperty('--numRows', boardDimension);
 mainContainer.style.setProperty('--numColumns', boardDimension);
 

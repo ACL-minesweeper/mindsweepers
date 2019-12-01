@@ -15,8 +15,9 @@ export const boardSpecs = {
         return Math.floor(boardDimensionParam ** 2 * mineConcentrationParam);
     }
 };
-const boardSize = localStorage.getItem('board-size');
-const difficulty = localStorage.getItem('difficulty');
+const userState = JSON.parse(localStorage.getItem('userState'));
+const boardSize = userState.boardSize;
+const difficulty = userState.difficulty;
 const boardDimension = boardSpecs.boardDimension[boardSize];
 const mineConcentration = boardSpecs.mineConcentration[difficulty];
 state.numRows = boardDimension;
