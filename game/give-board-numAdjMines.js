@@ -1,4 +1,5 @@
 import { getValidAdjCells } from '../common/utils.js';
+// seems like this could live in a file with some other functions
 
 const giveBoardNumAdjMines = (boardArrayParam, minesArrayParam) =>
     minesArrayParam.forEach(mine =>

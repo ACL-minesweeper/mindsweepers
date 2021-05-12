@@ -12,12 +12,13 @@ export function getArrayOfMineCoordinates() {
 
     //generate possible mine coordinates until the number of mine coordinates (set by numMines) is met
     while (arrayOfMineCoordinates.length !== state.numMines) {
-    //make the random coordinates that we might use
+        //make the random coordinates that we might use
         const rowIndex = generateRandomIndex(state.numRows);
         const columnIndex = generateRandomIndex(state.numColumns);
         const potentialCoordinatePairArray = [rowIndex, columnIndex];
 
         // check for repeats of current mines already in the mine array
+        // nice use of .find!
         const coordinateIsNotInArrayOfMineCoordinates = !arrayOfMineCoordinates.find(
             coordinate =>
                 JSON.stringify(coordinate) === JSON.stringify(potentialCoordinatePairArray)

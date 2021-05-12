@@ -18,15 +18,16 @@ export const getUser = () => {
 };
 
 // redirect to home page if user does not exist in local storage for some reason
+// very cool util! could probably use !userParam instead of userParam === null
 export const returnHomeIfNoUser = userParam => userParam === null && (window.location = '../');
 
 // determine if user has won
 export const isWin = () => {
-    if (state.flagsRemaining === 0){
+    if (state.flagsRemaining === 0) {
         let winning = true;
         state.boardArray.forEach(row => {
             row.forEach(cell => {
-                if (!cell.isMine && cell.isHidden){
+                if (!cell.isMine && cell.isHidden) {
                     winning = false;
                 }
             });
@@ -41,15 +42,18 @@ const checkValidRowIndex = (cellRowIndexParam) =>
 const checkValidColumnIndex = (cellColumnIndexParam) =>
     cellColumnIndexParam >= 0 && cellColumnIndexParam < state.numColumns;
 
+// a default parameter!? wow!
 export const getValidAdjCells = (cellArrayParam, includeSelfParam = false) => {
     const validAdjCells = [];
     const cellRow = cellArrayParam[0];
     const cellColumn = cellArrayParam[1];
+    // a nested for loop?! wow!
     for (let i = -1; i < 2; i++) {
         for (let j = -1; j < 2; j++) {
             // mark isItself false based on includeSelfParam if we want to include it in the returned array, i.e. when processing the first click
+            // a ternary!? wow!
             const isItself = includeSelfParam ? false : (i === 0 && j === 0);
-            const cellRowIndex = cellRow + i; 
+            const cellRowIndex = cellRow + i;
             const cellColumnIndex = cellColumn + j;
             const isValidRowIndex = checkValidRowIndex(cellRowIndex, state.boardArray);
             const isValidColumnIndex = checkValidColumnIndex(cellColumnIndex, state.boardArray);
